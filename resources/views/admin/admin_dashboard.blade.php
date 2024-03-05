@@ -21,6 +21,8 @@
 <link rel="stylesheet" href="{{asset('backend/assets/plugins/fontawesome/css/all.min.css')}}">
 
 <link rel="stylesheet" href="{{asset('backend/assets/css/style.css')}}">
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 </head>
 <body>
 
@@ -56,7 +58,36 @@
 <script src="{{asset('backend/assets/plugins/apexchart/chart-data.js')}}" type="530567ed2bd147a057bef500-text/javascript"></script>
 
 <script src="{{asset('backend/assets/js/script.js')}}" type="530567ed2bd147a057bef500-text/javascript"></script>
-<script src="{{asset('backend/assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js')}}" data-cf-settings="530567ed2bd147a057bef500-|49" defer></script></body>
+<script src="{{asset('backend/assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js')}}" data-cf-settings="530567ed2bd147a057bef500-|49" defer>
+</script>
+</body>
 
-<!-- Mirrored from preschool.dreamstechnologies.com/template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 18 Feb 2024 22:58:04 GMT -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+ @if(Session::has('message'))
+ var type = "{{ Session::get('alert-type','info') }}"
+ switch(type){
+    case 'info':
+    toastr.info(" {{ Session::get('message') }} ");
+    break;
+
+    case 'success':
+    toastr.success(" {{ Session::get('message') }} ");
+    break;
+
+    case 'warning':
+    toastr.warning(" {{ Session::get('message') }} ");
+    break;
+
+    case 'error':
+    toastr.error(" {{ Session::get('message') }} ");
+    break; 
+ }
+ @endif 
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
 </html>

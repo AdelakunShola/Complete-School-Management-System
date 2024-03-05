@@ -21,6 +21,11 @@
 <link rel="stylesheet" href="{{asset('backend/assets/plugins/fontawesome/css/all.min.css')}}">
 
 <link rel="stylesheet" href="{{asset('backend/assets/css/style.css')}}">
+
+	 <!-- Toaster -->
+	 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+ <!-- Toaster   -->
+
 </head>
 <body>
 
@@ -101,7 +106,34 @@
 <script src="{{asset('backend/assets/js/feather.min.js')}}" type="a18d06057a6a4bff0ea0a4db-text/javascript"></script>
 
 <script src="{{asset('backend/assets/js/script.js')}}" type="a18d06057a6a4bff0ea0a4db-text/javascript"></script>
-<script src="{{asset('backend/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js')}}" data-cf-settings="a18d06057a6a4bff0ea0a4db-|49" defer></script></body>
+<script src="{{asset('backend/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js')}}" data-cf-settings="a18d06057a6a4bff0ea0a4db-|49" defer></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+ @if(Session::has('message'))
+ var type = "{{ Session::get('alert-type','info') }}"
+ switch(type){
+    case 'info':
+    toastr.info(" {{ Session::get('message') }} ");
+    break;
+
+    case 'success':
+    toastr.success(" {{ Session::get('message') }} ");
+    break;
+
+    case 'warning':
+    toastr.warning(" {{ Session::get('message') }} ");
+    break;
+
+    case 'error':
+    toastr.error(" {{ Session::get('message') }} ");
+    break; 
+ }
+ @endif 
+</script>
+
+</body>
 
 
 </html>
