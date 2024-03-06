@@ -47,7 +47,10 @@
 
 <div class="form-group">
 <label>Email/Username/PhoneNo  <span class="login-danger">*</span></label>
-<input class="form-control" id="login" name="login" type="text">
+<input class="form-control @error('login') is-invalid @enderror " id="login" name="login" type="text">
+@error('login')
+<span class="text-danger"> {{ $message }} </span>
+@enderror
 <span class="profile-views"><i class="fas fa-user-circle"></i></span>
 </div>
 

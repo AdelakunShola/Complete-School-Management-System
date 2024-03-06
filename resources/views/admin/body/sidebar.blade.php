@@ -101,7 +101,7 @@
 </ul>
 </li>
 <li>
-<a href="settings.html"><i class="fas fa-cog"></i> <span>Settings</span></a>
+<a href="{{ route('settings') }}"><i class="fas fa-cog"></i> <span>Settings</span></a>
 </li>
 <li class="menu-title">
 <span>Pages</span>
