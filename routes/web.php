@@ -51,7 +51,11 @@ Route::middleware(['auth','role:admin'])->group(function(){
 Route::controller(SettingsController::class)->group(function(){
 
     Route::get('/site/settings', 'SiteSettings')->name('settings');
-    Route::post('/update/site/settings', 'UpdateSiteSettings')->name('update.site_settings');
+    Route::post('/update/site/settings', 'UpdateSiteSettings')->name('update.site.settings');
+
+    Route::get('/social/links', 'SocialLinks')->name('social.links');
+    Route::post('/update/social/links', 'UpdateSocialLinks')->name('update.social.links');
+    
    
 });
 

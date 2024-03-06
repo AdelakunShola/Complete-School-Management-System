@@ -18,8 +18,8 @@
 
 <div class="settings-menu-links">
 <ul class="nav nav-tabs menu-tabs">
-<li class="nav-item active">
-<a class="nav-link" href="settings.html">General Settings</a>
+<li class="nav-item active ">
+<a class="nav-link" href="{{ route('settings') }}">General Settings</a>
 </li>
 <li class="nav-item">
 <a class="nav-link" href="localization-details.html">Localization</a>
@@ -33,8 +33,8 @@
 <li class="nav-item">
 <a class="nav-link" href="social-settings.html">Social Media Login</a>
 </li>
-<li class="nav-item">
-<a class="nav-link" href="social-links.html">Social Links</a>
+<li class="nav-item ">
+<a class="nav-link" href="{{ route('social.links') }}">Social Links</a>
 </li>
 <li class="nav-item">
 <a class="nav-link" href="seo-settings.html">SEO Settings</a>
@@ -45,7 +45,7 @@
 </ul>
 </div>
 
-<form action="{{  route('update.site_settings') }}" method="post" enctype="multipart/form-data">
+<form action="{{  route('update.site.settings') }}" method="post" enctype="multipart/form-data">
 @csrf
 
 <input type="hidden" name="id" value="{{ $site->id }}">
@@ -84,6 +84,7 @@
 </div>
 </div>
 
+
 <div class="form-group">
 <p class="settings-label">Favicon <span class="star-red">*</span></p>
 <div class="settings-btn">
@@ -121,7 +122,7 @@ Recommended image size is <span>16px x 16px or 32px x 32px</span>
 <div class="settings-form">
 <div class="form-group">
 <label>Address Line 1 <span class="star-red">*</span></label>
-<input type="text" class="form-control" placeholder="address" value="{{ $site->address }}">
+<input type="text" class="form-control" name="address" value="{{ $site->address }}">
 </div>
 
 <div class="row">
@@ -153,6 +154,7 @@ Recommended image size is <span>16px x 16px or 32px x 32px</span>
 <input type="text" class="form-control" name="country" value="{{ $site->country }}">
 </div>
 </div>
+
 
 </div>
 

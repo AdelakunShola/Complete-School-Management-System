@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Settings;
+use App\Models\SocialLinks;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -54,7 +55,7 @@ class SettingsController extends Controller
             ]);
 
             $notification = array(
-                'message' => 'Site Setting Updated Successfully',
+                'message' => 'Site Setting Updated with image Successfully',
                 'alert-type' => 'success'
             );
 
@@ -84,9 +85,34 @@ class SettingsController extends Controller
 
             return redirect()->back()->with($notification);
 
-        } // End Eles 
-
-
+        } // End Else 
     }// End Method 
+
+
+    public function SocialLinks(){
+        $social_links = SocialLinks::find(1);
+        return view('backend.settings.social_links', compact('social_links'));
+    }// End Method 
+
+
+    public function UpdateSocialLinks(Request $request){
+            $site_id = $request->id;
+               $site = SocialLinks::findOrFail($site_id);
+               $site->update([
+                'facebook' => $request->facebook,
+                'twitter' => $request->twitter,
+                'instagram' => $request->instagram, 
+            ]);
+            $notification = array(
+                'message' => 'Site Setting Updated with image Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+ 
+    }// End Method 
+
+
+ 
+
  
 }
