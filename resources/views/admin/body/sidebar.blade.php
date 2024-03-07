@@ -5,23 +5,76 @@
 <li class="menu-title">
 <span>Main Menu</span>
 </li>
-<li class="submenu active">
-<a href="#"><i class="feather-grid"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
-<ul>
-<li><a href="index.html" class="active">Admin Dashboard</a></li>
-<li><a href="teacher-dashboard.html">Teacher Dashboard</a></li>
-<li><a href="student-dashboard.html">Student Dashboard</a></li>
-</ul>
+
+<li>
+<a href="{{ route('admin.dashboard') }}"><i class="feather-grid"></i> <span>Dashboard</span></a>
 </li>
+
+
 <li class="submenu">
-<a href="#"><i class="fas fa-graduation-cap"></i> <span> Students</span> <span class="menu-arrow"></span></a>
+<a href="#"><i class="fas fa-graduation-cap"></i> <span> Academics</span> <span class="menu-arrow"></span></a>
 <ul>
-<li><a href="students.html">Student List</a></li>
-<li><a href="student-details.html">Student View</a></li>
-<li><a href="add-student.html">Student Add</a></li>
-<li><a href="edit-student.html">Student Edit</a></li>
+<li><a href="students.html">Enquiry Category</a></li>
+<li><a href="student-details.html">view Enquiry</a></li>
+<li><a href="add-student.html">School Clubs</a></li>
+<li><a href="edit-student.html">Manage Circular</a></li>
+<li><a href="students.html">Manage Holiday</a></li>
+<li><a href="student-details.html">Manage Moraltalk</a></li>
+<li><a href="add-student.html">Syllabus</a></li>
+<li><a href="edit-student.html">Manage Helpdesk</a></li>
+<li><a href="edit-student.html">Registration Code</a></li>
+<li><a href="add-student.html">Approve Student</a></li>
+<li><a href="edit-student.html">Student Result PIN</a></li>
+<li><a href="edit-student.html">Market Place</a></li>
 </ul>
 </li>
+
+
+<li class="submenu">
+<a href="#"><i class="fas fa-graduation-cap"></i> <span> Task Manager</span> <span class="menu-arrow"></span></a>
+<ul>
+<li><a href="students.html">Running Tasks</a></li>
+<li><a href="student-details.html">Archieved Tasks</a></li>
+</ul>
+</li>
+
+
+<li class="submenu">
+<a href="#"><i class="fas fa-graduation-cap"></i> <span> Manage Employees</span> <span class="menu-arrow"></span></a>
+<ul>
+<li><a href="students.html">Teachers</a></li>
+<li><a href="student-details.html">Librarians</a></li>
+<li><a href="add-student.html">Accountant</a></li>
+<li><a href="edit-student.html">Hostel Manager</a></li>
+<li><a href="students.html">Human Resources</a></li>
+</ul>
+</li>
+
+
+<li class="submenu">
+<a href="#"><i class="fas fa-graduation-cap"></i> <span> Manage Student</span> <span class="menu-arrow"></span></a>
+<ul>
+<li><a href="students.html">Admission Form</a></li>
+<li><a href="student-details.html">Student List</a></li>
+<li><a href="add-student.html">Promote Student</a></li>
+<li><a href="edit-student.html">Student Categories</a></li>
+<li><a href="students.html">Student House</a></li>
+<li><a href="students.html">Student Activities</a></li>
+</ul>
+</li>
+
+<li class="submenu">
+<a href="#"><i class="fas fa-graduation-cap"></i> <span> Manage Attendance</span> <span class="menu-arrow"></span></a>
+<ul>
+<li><a href="students.html">Teachers</a></li>
+<li><a href="student-details.html">Librarians</a></li>
+<li><a href="add-student.html">Accountant</a></li>
+<li><a href="edit-student.html">Hostel Manager</a></li>
+<li><a href="students.html">Human Resources</a></li>
+</ul>
+</li>
+
+
 <li class="submenu">
 <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Teachers</span> <span class="menu-arrow"></span></a>
 <ul>
