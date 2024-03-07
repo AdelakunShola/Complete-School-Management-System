@@ -20,15 +20,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//Route::get('/dashboard', function () {
+  //  return view('dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+//Route::middleware('auth')->group(function () {
+  //  Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    //Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    //Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//});
 
 require __DIR__.'/auth.php';
 
@@ -37,6 +37,10 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
 
 Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
 Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
+Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
+Route::post('/admin/profile/update', [AdminController::class, 'AdminProfileUpdate'])->name('admin.profile.update');
+Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('update_password');
+
 
 });
 
@@ -54,9 +58,7 @@ Route::controller(SettingsController::class)->group(function(){
     Route::post('/update/site/settings', 'UpdateSiteSettings')->name('update.site.settings');
 
     Route::get('/social/links', 'SocialLinks')->name('social.links');
-    Route::post('/update/social/links', 'UpdateSocialLinks')->name('update.social.links');
-    
-   
+    Route::post('/update/social/links', 'UpdateSocialLinks')->name('update.social.links'); 
 });
 
 

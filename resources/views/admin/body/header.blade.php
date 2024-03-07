@@ -1,11 +1,16 @@
+@php
+
+$setting = App\Models\Settings::find(1);
+
+@endphp
 <div class="header">
 
 <div class="header-left">
 <a href="index.html" class="logo">
-<img src="assets/img/logo.png" alt="Logo">
+<img src="{{ asset($setting->logo) }}" alt="Logo">
 </a>
 <a href="index.html" class="logo logo-small">
-<img src="assets/img/logo-small.png" alt="Logo" width="30" height="30">
+<img src="{{ asset($setting->logo) }}" alt="Logo" width="30" height="30">
 </a>
 </div>
 
@@ -31,7 +36,7 @@
 <ul class="nav user-menu">
 <li class="nav-item dropdown noti-dropdown language-drop me-2">
 <a href="#" class="dropdown-toggle nav-link header-nav-list" data-bs-toggle="dropdown">
-<img src="assets/img/icons/header-icon-01.svg" alt>
+<img src="{{asset('backend/assets/img/icons/header-icon-01.svg')}}" alt>
 </a>
 <div class="dropdown-menu ">
 <div class="noti-content">
@@ -46,7 +51,7 @@
 
 <li class="nav-item dropdown noti-dropdown me-2">
 <a href="#" class="dropdown-toggle nav-link header-nav-list" data-bs-toggle="dropdown">
-<img src="assets/img/icons/header-icon-05.svg" alt>
+<img src="{{asset('backend/assets/img/icons/header-icon-05.svg')}}" alt>
 </a>
 <div class="dropdown-menu notifications">
 <div class="topnav-dropdown-header">
@@ -117,31 +122,27 @@
 
 <li class="nav-item zoom-screen me-2">
 <a href="#" class="nav-link header-nav-list win-maximize">
-<img src="assets/img/icons/header-icon-04.svg" alt>
+<img src="{{asset('backend/assets/img/icons/header-icon-04.svg')}}" alt>
 </a>
 </li>
+
+@php
+$id = Auth::user()->id;
+$adminData = App\Models\User::find($id);
+@endphp
 
 <li class="nav-item dropdown has-arrow new-user-menus">
 <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
 <div class="user-img">
-<img class="rounded-circle" src="assets/img/profiles/avatar-01.jpg" width="31" alt="Ryan Taylor">
+<img class="rounded-circle" src="{{ (!empty($adminData->photo)) ? url('upload/admin_images/'.$adminData->photo):url('upload/no_image.jpg') }}" width="31" alt="Ryan Taylor">
 <div class="user-text">
-<h6>Ryan Taylor</h6>
+<h6>{{Auth::user()->name}}</h6>
 <p class="text-muted mb-0">Administrator</p>
 </div>
 </div>
 </a>
 <div class="dropdown-menu">
-<div class="user-header">
-<div class="avatar avatar-sm">
-<img src="assets/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle">
-</div>
-<div class="user-text">
-<h6>Ryan Taylor</h6>
-<p class="text-muted mb-0">Administrator</p>
-</div>
-</div>
-<a class="dropdown-item" href="profile.html">My Profile</a>
+<a class="dropdown-item" href="{{ route('admin.profile') }}">My Profile</a>
 <a class="dropdown-item" href="inbox.html">Inbox</a>
 <a class="dropdown-item" href="{{ route('admin.logout') }}">Logout</a>
 </div>

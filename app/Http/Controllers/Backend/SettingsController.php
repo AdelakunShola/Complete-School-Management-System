@@ -22,6 +22,7 @@ class SettingsController extends Controller
         // Handle Logo White
    if ($request->file('logo')) {
        $logoImage = $request->file('logo');
+       @unlink(public_path('upload/settings/'.$site_id->logo));
        $logoName = hexdec(uniqid()) . '.' . $logoImage->getClientOriginalExtension();
        Image::make($logoImage)->resize(150, 150)->save('upload/settings/' . $logoName);
        $logoUrl = 'upload/settings/' . $logoName;
@@ -31,6 +32,7 @@ class SettingsController extends Controller
 
    if ($request->file('favicon')) {
        $faviconImage = $request->file('favicon');
+       @unlink(public_path('upload/settings/'.$site_id->favicon));
        $faviconName = hexdec(uniqid()) . '.' . $faviconImage->getClientOriginalExtension();
        Image::make($faviconImage)->resize(32, 32)->save('upload/settings/' . $faviconName);
        $faviconUrl = 'upload/settings/' . $faviconName;
@@ -52,6 +54,7 @@ class SettingsController extends Controller
                 'instagram' => $request->instagram,
                 'logo' => isset($logoUrl) ? $logoUrl : $site->logo,
                 'favicon' => isset($faviconUrl) ? $faviconUrl : $site->favicon, 
+ 
             ]);
 
             $notification = array(
