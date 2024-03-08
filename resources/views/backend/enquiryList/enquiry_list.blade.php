@@ -1,11 +1,14 @@
 @extends('admin.admin_dashboard')
 @section('admin')
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <div class="content container-fluid">
 
 <div class="page-header">
 <div class="row align-items-center">
 <div class="col">
-<h3 class="page-title">ENQUIRY LIST</h3>
+<h3 class="page-title">MANAGE ENQUIRY LIST</h3>
 <ul class="breadcrumb">
 <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
 <li class="breadcrumb-item active">ENQUIRY LIST</li>

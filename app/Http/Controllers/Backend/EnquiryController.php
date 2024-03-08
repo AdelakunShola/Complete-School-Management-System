@@ -16,9 +16,7 @@ class EnquiryController extends Controller
     }//end method
 
 
-
     public function EditEnquiryCategory($id){
-
         $enquirycategory = EnquiryCategory::find($id);
         return response()->json($enquirycategory);
     }// End Method 
@@ -41,8 +39,8 @@ class EnquiryController extends Controller
 
 
     public function UpdateEnquiryCategory(Request $request){
-        $topic_id = $request->topic_id;
-        EnquiryCategory::find($topic_id)->update([
+        $category_id = $request->category_id;
+        EnquiryCategory::find($category_id)->update([
             'category' => $request->category,
             'purpose' => $request->purpose,
             'whom' => $request->whom,
@@ -66,6 +64,11 @@ class EnquiryController extends Controller
         return redirect()->back()->with($notification);
 
     }// End Method 
+
+
+
+
+    ///////ENQUIRY LIST ///////////////////////
 
 
     public function EnquiryList(){

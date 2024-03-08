@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('school_clubs', function (Blueprint $table) {
             $table->id();
+            $table->text('club_name')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\EnquiryController;
+use App\Http\Controllers\Backend\SchoolClubController;
 use App\Http\Controllers\Backend\SettingsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -54,7 +55,6 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
 ///Settings All Route 
 Route::controller(SettingsController::class)->group(function(){
-
     Route::get('/site/settings', 'SiteSettings')->name('settings');
     Route::post('/update/site/settings', 'UpdateSiteSettings')->name('update.site.settings');
     Route::get('/social/links', 'SocialLinks')->name('social.links');
@@ -77,7 +77,18 @@ Route::controller(EnquiryController::class)->group(function(){
     Route::get('/enquiry/list', 'EnquiryList')->name('enquiry.list');
     Route::get('/delete/enquiry/list/{id}', 'DeleteEnquiryList')->name('delete.enquiry.list');
     Route::get('/view/enquiry/list/{id}', 'ViewEnquiryList');
-    
+});
+
+
+
+///School Club All Route 
+Route::controller(SchoolClubController::class)->group(function(){
+    Route::get('/school/club', 'SchoolClub')->name('school.club');
+    Route::post('/store/school/club', 'StoreSchoolClub')->name('store.school.club');
+    Route::get('/edit/school/club/{id}', 'EditSchoolClub');
+    Route::post('/update/school/club', 'UpdateSchoolClub')->name('update.school.club');
+    Route::get('/delete/school/club/{id}', 'DeleteSchoolClub')->name('delete.school.club');
+
 });
 
 
