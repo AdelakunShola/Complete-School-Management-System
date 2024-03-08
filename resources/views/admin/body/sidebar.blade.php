@@ -14,8 +14,8 @@
 <li class="submenu">
 <a href="#"><i class="fas fa-graduation-cap"></i> <span> Academics</span> <span class="menu-arrow"></span></a>
 <ul>
-<li><a href="students.html">Enquiry Category</a></li>
-<li><a href="student-details.html">view Enquiry</a></li>
+<li><a href="{{ route('enquiry.category') }}">Enquiry Category</a></li>
+<li><a href="{{ route('enquiry.list') }}">View Enquiry</a></li>
 <li><a href="add-student.html">School Clubs</a></li>
 <li><a href="edit-student.html">Manage Circular</a></li>
 <li><a href="students.html">Manage Holiday</a></li>

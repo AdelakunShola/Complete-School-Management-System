@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\EnquiryController;
 use App\Http\Controllers\Backend\SettingsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -56,9 +57,27 @@ Route::controller(SettingsController::class)->group(function(){
 
     Route::get('/site/settings', 'SiteSettings')->name('settings');
     Route::post('/update/site/settings', 'UpdateSiteSettings')->name('update.site.settings');
-
     Route::get('/social/links', 'SocialLinks')->name('social.links');
     Route::post('/update/social/links', 'UpdateSocialLinks')->name('update.social.links'); 
+});
+
+
+
+///Enquiry Category All Route 
+Route::controller(EnquiryController::class)->group(function(){
+
+    Route::get('/enquiry/category', 'EnquiryCategory')->name('enquiry.category');
+    Route::post('/store/enquiry/category', 'StoreEnquiryCategory')->name('store.enquiry.category');
+    Route::get('/edit/enquiry/category/{id}', 'EditEnquiryCategory');
+    Route::post('/update/enquiry/category', 'UpdateEnquiryCategory')->name('update.enquiry.category');
+    Route::get('/delete/enquiry/category/{id}', 'DeleteEnquiryCategory')->name('delete.enquiry.category');
+
+    ///Enquiry List
+
+    Route::get('/enquiry/list', 'EnquiryList')->name('enquiry.list');
+    Route::get('/delete/enquiry/list/{id}', 'DeleteEnquiryList')->name('delete.enquiry.list');
+    Route::get('/view/enquiry/list/{id}', 'ViewEnquiryList');
+    
 });
 
 
