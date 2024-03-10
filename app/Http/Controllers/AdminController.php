@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    public function AdminDashboard(){
-        return view('admin.index');
-    }//end method
+    public function AdminDashboard(Request $request){
+        $currentRoute = $request->route()->getName();
+        return view('admin.index', compact('currentRoute'));
+    }
 
 
     public function AdminLogout(Request $request) {

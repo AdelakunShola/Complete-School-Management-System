@@ -1,3 +1,21 @@
+@php
+    $currentRoute = \Request::route()->getName();
+@endphp
+
+<style>
+        .sidebar-inner.slimscroll {
+            max-height: 100%;
+            overflow-y: auto;
+        }
+
+        .sidebar-inner.slimscroll::-webkit-scrollbar {
+    width: 6px; /* Adjust the width as needed */
+}
+
+.sidebar-inner.slimscroll::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* Adjust the color as needed */
+}
+    </style>
 <div class="sidebar" id="sidebar">
 <div class="sidebar-inner slimscroll">
 <div id="sidebar-menu" class="sidebar-menu">
@@ -7,17 +25,17 @@
 </li>
 
 <li>
-<a href="{{ route('admin.dashboard') }}"><i class="feather-grid"></i> <span>Dashboard</span></a>
+<a class="{{ $currentRoute == 'admin.dashboard' ? 'active' : '' }}" href="{{ route('admin.dashboard') }}"><i class="feather-grid"></i> <span>Dashboard</span></a>
 </li>
 
 
 <li class="submenu">
-<a href="#"><i class="fas fa-graduation-cap"></i> <span> Academics</span> <span class="menu-arrow"></span></a>
+<a  href="#"><i class="{{ $currentRoute == 'enquiry.category' ? 'active' : '' }} fas fa-graduation-cap"></i> <span> Academics</span> <span class="menu-arrow"></span></a>
 <ul>
-<li><a href="{{ route('enquiry.category') }}">Enquiry Category</a></li>
-<li><a href="{{ route('enquiry.list') }}">View Enquiry</a></li>
-<li><a href="{{ route('school.club') }}">School Clubs</a></li>
-<li><a href="edit-student.html">Manage Circular</a></li>
+<li><a class="{{ $currentRoute == 'enquiry.category' ? 'active' : '' }}" href="{{ route('enquiry.category') }}">Enquiry Category</a></li>
+<li><a class="{{ $currentRoute == 'enquiry.list' ? 'active' : '' }}" href="{{ route('enquiry.list') }}">View Enquiry</a></li>
+<li><a class="{{ $currentRoute == 'school.club' ? 'active' : '' }}" href="{{ route('school.club') }}">School Clubs</a></li>
+<li><a class="{{ $currentRoute == 'manage.circular' ? 'active' : '' }}" href="{{ route('manage.circular') }}">Manage Circular</a></li>
 <li><a href="students.html">Manage Holiday</a></li>
 <li><a href="student-details.html">Manage Moraltalk</a></li>
 <li><a href="add-student.html">Syllabus</a></li>
@@ -84,6 +102,7 @@
 <li><a href="edit-teacher.html">Teacher Edit</a></li>
 </ul>
 </li>
+
 <li class="submenu">
 <a href="#"><i class="fas fa-building"></i> <span> Departments</span> <span class="menu-arrow"></span></a>
 <ul>
@@ -306,3 +325,8 @@
 </div>
 </div>
 </div>
+
+
+
+
+

@@ -10,9 +10,10 @@ use Illuminate\Http\Request;
 
 class EnquiryController extends Controller
 {
-    public function EnquiryCategory(){
+    public function EnquiryCategory(Request $request){
+        $currentRoute = $request->route()->getName();
         $enquiry_category = EnquiryCategory::latest()->get();
-        return view('backend.enquiryCategory.enquiry_category',compact('enquiry_category'));
+        return view('backend.enquiryCategory.enquiry_category',compact('enquiry_category', 'currentRoute'));
     }//end method
 
 

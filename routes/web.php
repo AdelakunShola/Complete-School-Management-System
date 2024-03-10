@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\CircularController;
 use App\Http\Controllers\Backend\EnquiryController;
 use App\Http\Controllers\Backend\SchoolClubController;
 use App\Http\Controllers\Backend\SettingsController;
@@ -88,6 +89,20 @@ Route::controller(SchoolClubController::class)->group(function(){
     Route::get('/edit/school/club/{id}', 'EditSchoolClub');
     Route::post('/update/school/club', 'UpdateSchoolClub')->name('update.school.club');
     Route::get('/delete/school/club/{id}', 'DeleteSchoolClub')->name('delete.school.club');
+
+});
+
+
+
+
+///MANAGE CIRCULARS  All Route 
+Route::controller(CircularController::class)->group(function(){
+    Route::get('/manage/circular', 'ManageCircular')->name('manage.circular');
+    Route::post('/store/circular', 'StoreCircular')->name('store.circular');
+    Route::get('/edit/circular/{id}', 'EditCircular');
+    Route::post('/update/circular', 'UpdateCircular')->name('update.circular');
+    Route::get('/delete/circular/{id}', 'DeleteCircular')->name('delete.circular');
+
 
 });
 

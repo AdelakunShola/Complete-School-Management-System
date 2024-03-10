@@ -151,3 +151,12 @@ $adminData = App\Models\User::find($id);
 </ul>
 
 </div>
+
+
+<script>
+$(document).ready(function () {
+    $("#toggle_btn").on("click", function () {
+        $(".sidebar").toggleClass("active");
+    });
+});
+</script>
