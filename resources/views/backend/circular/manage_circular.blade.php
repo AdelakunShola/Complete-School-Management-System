@@ -52,7 +52,7 @@
 <td>{{ $key+1 }}</td>
 <td>{{ $item->circular_title }}</td>
 <td>{{ $item->reference_number }}</td>
-<td>{{ $item->content }}</td>
+<td>{{ Str::limit($item->content, 55) }}</td>
 <td>{{ $item->circular_date }}</td>
 
 <td class="text-end">

@@ -67,7 +67,7 @@
 <td class="text-end">
 <div class="actions">
 
-<button type="button" class="btn btn-sm text-success bg-success-light me-2" data-bs-toggle="modal" data-bs-target="#con-close-modal" id="{{ $item->id }}" onclick="enquirylist(this.id)"><i class="feather-eye"></i></button>
+<button type="button" class="btn btn-sm text-success bg-success-light me-2" data-bs-toggle="modal" data-bs-target="#con-close-modal" id="{{ $item->id }}" onclick="enquirylist(this.id)"><i class="feather-edit"></i></button>
 
 
 <a class="btn btn-sm text-danger" onclick="confirmDelete('{{ route('delete.enquiry.list', $item->id) }}')">

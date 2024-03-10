@@ -23,11 +23,11 @@
 <link href="{{asset('backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
 <!-- DataTable-->
 
-<!--<link rel="stylesheet" href="{{asset('backend/assets/plugins/select2/css/select2.min.css')}}">
+<!--<link rel="stylesheet" href="{{asset('backend/assets/plugins/select2/css/select2.min.css')}}">--->
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 
-<link rel="stylesheet" href="{{asset('backend/assets/plugins/datatables/datatables.min.css')}}">--->
+<!--<link rel="stylesheet" href="{{asset('backend/assets/plugins/datatables/datatables.min.css')}}">--->
 
 
 

@@ -49,6 +49,15 @@
 
 
 <li class="submenu">
+<a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Manage Parent</span> <span class="menu-arrow"></span></a>
+<ul>
+<li><a href="{{ route('all.parent') }}">Parent List</a></li>
+<li><a href="{{ route('add.parent') }}">Add Parent</a></li>
+</ul>
+</li>
+
+
+<li class="submenu">
 <a href="#"><i class="fas fa-graduation-cap"></i> <span> Task Manager</span> <span class="menu-arrow"></span></a>
 <ul>
 <li><a href="students.html">Running Tasks</a></li>

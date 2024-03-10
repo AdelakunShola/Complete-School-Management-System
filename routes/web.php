@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\CircularController;
 use App\Http\Controllers\Backend\EnquiryController;
+use App\Http\Controllers\Backend\ParentController;
 use App\Http\Controllers\Backend\SchoolClubController;
 use App\Http\Controllers\Backend\SettingsController;
 use App\Http\Controllers\ProfileController;
@@ -102,9 +103,20 @@ Route::controller(CircularController::class)->group(function(){
     Route::get('/edit/circular/{id}', 'EditCircular');
     Route::post('/update/circular', 'UpdateCircular')->name('update.circular');
     Route::get('/delete/circular/{id}', 'DeleteCircular')->name('delete.circular');
-
-
 });
 
+
+
+///MANAGE PARENT  All Route 
+Route::controller(ParentController::class)->group(function(){
+    Route::get('/all/parent', 'AllParent')->name('all.parent');
+    Route::get('/add/parent', 'AddParent')->name('add.parent');
+    Route::post('/store/parent', 'StoreParent')->name('store.parent');
+    Route::get('/edit/parent/{id}', 'EditParent')->name('edit.parent');
+    Route::post('/update/parent', 'UpdateParent')->name('update.parent');
+    Route::get('/delete/parent/{id}', 'DeleteParent')->name('delete.parent');
+
+    Route::post('/parent/update/password', 'ParentUpdatePassword')->name('parent.update.password');
+});
 
 });

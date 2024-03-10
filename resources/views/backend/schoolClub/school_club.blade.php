@@ -49,7 +49,7 @@
 <tr>
 <td>{{ $key+1 }}</td>
 <td>{{ $item->club_name }}</td>
-<td>{{ $item->description }}</td>
+<td>{{ Str::limit($item->description, 55) }}</td>
 <td>{{ $item->created_at->format('d M Y H:i:s') }}</td>
 
 <td class="text-end">
