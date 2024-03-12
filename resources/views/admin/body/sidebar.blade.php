@@ -51,8 +51,45 @@
 <li class="submenu">
 <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Manage Parent</span> <span class="menu-arrow"></span></a>
 <ul>
-<li><a href="{{ route('all.parent') }}">Parent List</a></li>
-<li><a href="{{ route('add.parent') }}">Add Parent</a></li>
+<li><a class="{{ $currentRoute == 'all.parent' ? 'active' : '' }}" href="{{ route('all.parent') }}">Parent List</a></li>
+<li><a class="{{ $currentRoute == 'add.parent' ? 'active' : '' }}" href="{{ route('add.parent') }}">Add Parent</a></li>
+</ul>
+</li>
+
+
+<li class="submenu">
+<a href="#"><i class="fas fa-chalkboard-teacher"></i> <span>Librarian</span> <span class="menu-arrow"></span></a>
+<ul>
+<li><a class="{{ $currentRoute == 'all.librarian' ? 'active' : '' }}" href="{{ route('all.librarian') }}">All Librarian</a></li>
+<li><a class="{{ $currentRoute == 'add.librarian' ? 'active' : '' }}" href="{{ route('add.librarian') }}">Add Librarian</a></li>
+</ul>
+</li>
+
+
+<li class="submenu">
+<a href="#"><i class="fas fa-chalkboard-teacher"></i> <span>Hostel Manager</span> <span class="menu-arrow"></span></a>
+<ul>
+<li><a class="{{ $currentRoute == 'all.hostelmanager' ? 'active' : '' }}" href="{{ route('all.hostelmanager') }}">All Hostel Manager</a></li>
+<li><a class="{{ $currentRoute == 'add.hostelmanager' ? 'active' : '' }}" href="{{ route('add.hostelmanager') }}">Add Hostel Manager</a></li>
+</ul>
+</li>
+
+
+<li class="submenu">
+<a href="#"><i class="fas fa-chalkboard-teacher"></i> <span>HRM</span> <span class="menu-arrow"></span></a>
+<ul>
+<li><a class="{{ $currentRoute == 'all.hrm' ? 'active' : '' }}" href="{{ route('all.hrm') }}">All HRM</a></li>
+<li><a class="{{ $currentRoute == 'add.hrm' ? 'active' : '' }}" href="{{ route('add.hrm') }}">Add HRM</a></li>
+</ul>
+</li>
+
+
+
+<li class="submenu">
+<a href="#"><i class="fas fa-chalkboard-teacher"></i> <span>Accountant</span> <span class="menu-arrow"></span></a>
+<ul>
+<li><a class="{{ $currentRoute == 'all.accountant' ? 'active' : '' }}" href="{{ route('all.accountant') }}">All Accountant</a></li>
+<li><a class="{{ $currentRoute == 'add.accountant' ? 'active' : '' }}" href="{{ route('add.accountant') }}">Add Accountant</a></li>
 </ul>
 </li>
 
@@ -182,7 +219,7 @@
 </ul>
 </li>
 <li>
-<a href="{{ route('settings') }}"><i class="fas fa-cog"></i> <span>Settings</span></a>
+<a class="{{ $currentRoute == 'settings' ? 'active' : '' }}" href="{{ route('settings') }}"><i class="fas fa-cog"></i> <span>Settings</span></a>
 </li>
 <li class="menu-title">
 <span>Pages</span>

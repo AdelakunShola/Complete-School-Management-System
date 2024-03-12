@@ -1,11 +1,15 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\AccountantController;
 use App\Http\Controllers\Backend\CircularController;
 use App\Http\Controllers\Backend\EnquiryController;
+use App\Http\Controllers\Backend\HostelManagerController;
+use App\Http\Controllers\Backend\HRMController;
 use App\Http\Controllers\Backend\ParentController;
 use App\Http\Controllers\Backend\SchoolClubController;
 use App\Http\Controllers\Backend\SettingsController;
+use App\Http\Controllers\Backend\LibrarianController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -116,7 +120,60 @@ Route::controller(ParentController::class)->group(function(){
     Route::post('/update/parent', 'UpdateParent')->name('update.parent');
     Route::get('/delete/parent/{id}', 'DeleteParent')->name('delete.parent');
 
-    Route::post('/parent/update/password', 'ParentUpdatePassword')->name('parent.update.password');
+ //   Route::post('/parent/update/password', 'ParentUpdatePassword')->name('parent.update.password');
 });
+
+
+///MANAGE LIBRARIAN  All Route 
+Route::controller(LibrarianController ::class)->group(function(){
+    Route::get('/all/librarian', 'AllLibrarian')->name('all.librarian');
+    Route::get('/add/librarian', 'AddLibrarian')->name('add.librarian');
+    Route::post('/store/librarian', 'StoreLibrarian')->name('store.librarian');
+    Route::get('/edit/librarian/{id}', 'EditLibrarian')->name('edit.librarian');
+    Route::post('/update/librarian', 'UpdateLibrarian')->name('update.librarian');
+   Route::get('/delete/librarian/{id}', 'DeleteLibrarian')->name('delete.librarian');
+
+});
+
+
+///MANAGE Hostel Manager  All Route 
+Route::controller(HostelManagerController ::class)->group(function(){
+    Route::get('/all/hostel/manager', 'AllHostelManager')->name('all.hostelmanager');
+    Route::get('/add/hostel/manager', 'AddHostelManager')->name('add.hostelmanager');
+    Route::post('/store/hostel/manager', 'StoreHostelManager')->name('store.hostelmanager');
+    Route::get('/edit/hostel/manager/{id}', 'EditHostelManager')->name('edit.hostelmanager');
+    Route::post('/update/hostel/manager', 'UpdateHostelManager')->name('update.hostelmanager');
+   Route::get('/delete/hostel/manager/{id}', 'DeleteHostelManager')->name('delete.hostelmanager');
+
+});
+
+
+///MANAGE HRM  All Route 
+Route::controller(HRMController ::class)->group(function(){
+    Route::get('/all/hrm', 'AllHrm')->name('all.hrm');
+    Route::get('/add/hrm', 'AddHrm')->name('add.hrm');
+    Route::post('/store/hrm', 'StoreHrm')->name('store.hrm');
+    Route::get('/edit/hrm/{id}', 'EditHrm')->name('edit.hrm');
+    Route::post('/update/hrm', 'UpdateHrm')->name('update.hrm');
+   Route::get('/delete/hrm/{id}', 'DeleteHrm')->name('delete.hrm');
+
+   // Inside your routes/web.php
+  Route::get('/download', 'Download')->name('download');
+
+
+});
+
+
+///MANAGE ACCOUNTANT  All Route 
+Route::controller(AccountantController ::class)->group(function(){
+    Route::get('/all/accountant', 'AllAccountant')->name('all.accountant');
+    Route::get('/add/accountant', 'AddAccountant')->name('add.accountant');
+    Route::post('/store/accountant', 'StoreAccountant')->name('store.accountant');
+    Route::get('/edit/accountant/{id}', 'EditAccountant')->name('edit.accountant');
+    Route::post('/update/accountant', 'UpdateAccountant')->name('update.accountant');
+   Route::get('/delete/accountant/{id}', 'DeleteAccountant')->name('delete.accountant');
+
+});
+
 
 });

@@ -12,14 +12,12 @@ use Intervention\Image\Facades\Image;
 
 class ParentController extends Controller
 {
-    public function AllParent()
-    {
+    public function AllParent(){
         $all_parent = User::where('role', 'parent')->latest()->get();
         return view('backend.manageparent.all_parent', compact('all_parent'));
     }
 
-    public function AddParent()
-    {
+    public function AddParent(){
         return view('backend.manageparent.add_parent');
     }
 
@@ -56,7 +54,7 @@ class ParentController extends Controller
     }
 
     public function EditParent($id){
-        $parent = User::find($id);
+        $parent = User::where('role', 'parent')->find($id);
         return view('backend.manageparent.edit_parent', compact('parent'));
     }
 
@@ -92,7 +90,7 @@ class ParentController extends Controller
             'alert-type' => 'success',
         ];
     
-        return redirect()->back()->with($notification);
+        return redirect()->route('all.parent')->with($notification);
     }
     
 
@@ -123,8 +121,7 @@ class ParentController extends Controller
 
     
 
-    public function DeleteParent($id)
-    {
+    public function DeleteParent($id){
         $user = User::find($id);
 
         // Check if the user exists
@@ -149,5 +146,5 @@ class ParentController extends Controller
         ];
 
         return redirect()->back()->with($notification);
-    }
+    }//end method
 }
