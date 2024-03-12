@@ -130,6 +130,7 @@ Route::controller(LibrarianController ::class)->group(function(){
     Route::get('/add/librarian', 'AddLibrarian')->name('add.librarian');
     Route::post('/store/librarian', 'StoreLibrarian')->name('store.librarian');
     Route::get('/edit/librarian/{id}', 'EditLibrarian')->name('edit.librarian');
+    Route::get('/view/librarian/{id}', 'ViewLibrarian')->name('view.librarian');
     Route::post('/update/librarian', 'UpdateLibrarian')->name('update.librarian');
    Route::get('/delete/librarian/{id}', 'DeleteLibrarian')->name('delete.librarian');
 
@@ -142,6 +143,7 @@ Route::controller(HostelManagerController ::class)->group(function(){
     Route::get('/add/hostel/manager', 'AddHostelManager')->name('add.hostelmanager');
     Route::post('/store/hostel/manager', 'StoreHostelManager')->name('store.hostelmanager');
     Route::get('/edit/hostel/manager/{id}', 'EditHostelManager')->name('edit.hostelmanager');
+    Route::get('/view/hostel/manager/{id}', 'ViewHostelManager')->name('view.HostelManager');
     Route::post('/update/hostel/manager', 'UpdateHostelManager')->name('update.hostelmanager');
    Route::get('/delete/hostel/manager/{id}', 'DeleteHostelManager')->name('delete.hostelmanager');
 
@@ -154,6 +156,7 @@ Route::controller(HRMController ::class)->group(function(){
     Route::get('/add/hrm', 'AddHrm')->name('add.hrm');
     Route::post('/store/hrm', 'StoreHrm')->name('store.hrm');
     Route::get('/edit/hrm/{id}', 'EditHrm')->name('edit.hrm');
+    Route::get('/view/hrm/{id}', 'ViewHrm')->name('view.hrm');
     Route::post('/update/hrm', 'UpdateHrm')->name('update.hrm');
    Route::get('/delete/hrm/{id}', 'DeleteHrm')->name('delete.hrm');
 
@@ -170,6 +173,7 @@ Route::controller(AccountantController ::class)->group(function(){
     Route::get('/add/accountant', 'AddAccountant')->name('add.accountant');
     Route::post('/store/accountant', 'StoreAccountant')->name('store.accountant');
     Route::get('/edit/accountant/{id}', 'EditAccountant')->name('edit.accountant');
+    Route::get('/view/accountant/{id}', 'ViewAccountant')->name('view.accountant');
     Route::post('/update/accountant', 'UpdateAccountant')->name('update.accountant');
    Route::get('/delete/accountant/{id}', 'DeleteAccountant')->name('delete.accountant');
 

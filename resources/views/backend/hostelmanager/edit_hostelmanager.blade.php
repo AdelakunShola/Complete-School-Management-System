@@ -38,6 +38,15 @@
 </div>
 <div class="col-12 col-sm-4">
 <div class="form-group local-forms">
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <label>E-Mail <span class="login-danger">*</span></label>
 <input class="form-control" type="email" value="email" value="{{ $hostelmanager->email }}">
 </div>
@@ -127,7 +136,7 @@
 
 
 
-
+ 
 <div class="col-12 col-sm-4">
 <div class="form-group students-up-files">
 <label>Upload Your Photo </label>
@@ -136,7 +145,7 @@
 Choose File <input type="file" id="image" name="photo">
 </label>
 </div>
-<img id="showImage" src="{{ (!empty($hostelmanager->photo)) ? url('upload/hostelmanager/'.$hostelmanager->photo):url('upload/no_image.jpg') }}" alt="Admin"style="width: 100px; height:100px;" >
+<img id="showImage" src="{{ asset($hostelmanager->photo) }}" alt="Admin"style="width: 100px; height:100px;" >
 </div>
 </div>
 
@@ -145,10 +154,11 @@ Choose File <input type="file" id="image" name="photo">
 <label>Upload Certificate</label>
 <div class="uplod">
 <label class="file-upload image-upbtn mb-0">
-Choose File <input type="file" id="image" name="certificate">
+Choose File <input type="file" id="certificate" name="certificate" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
 </label>
 </div>
-<img id="showImage" src="" alt="Admin"style="width: 100px; height:100px;" >
+<a href="{{ asset($hostelmanager->certificate) }}" id="showCertificate">Download Certificate</a>
+<span id="certificateFileName"><br>File Name: {{ $hostelmanager->certificate ? basename($hostelmanager->certificate) : 'No file selected' }}</span>
 </div>
 </div>
 
@@ -157,10 +167,11 @@ Choose File <input type="file" id="image" name="certificate">
 <label>Upload NYSC Certificate</label>
 <div class="uplod">
 <label class="file-upload image-upbtn mb-0">
-Choose File <input type="file" id="image" name="nysc_certificate">
+Choose File <input type="file" id="nysc_certificate" name="nysc_certificate" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
 </label>
 </div>
-<img id="showImage" src="" alt="Admin"style="width: 100px; height:100px;" >
+<a href="{{ asset($hostelmanager->nysc_certificate) }}" id="showNyscCertificate" id="downloadLink">Download NYSC Certificate</a>
+<span id="nyscCertificateFileName"><br>File Name: {{ $hostelmanager->nysc_certificate ? basename($hostelmanager->nysc_certificate) : 'No file selected' }}</span>
 </div>
 </div>
 
@@ -169,10 +180,11 @@ Choose File <input type="file" id="image" name="nysc_certificate">
 <label>Upload Additional Document</label>
 <div class="uplod">
 <label class="file-upload image-upbtn mb-0">
-Choose File <input type="file" id="image" name="additional_document">
+Choose File <input type="file" id="additional_document" name="additional_document" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
 </label>
 </div>
-<img id="showImage" src="" alt="Admin"style="width: 100px; height:100px;" >
+<a id="showAdditionalDocument" href="{{ asset($hostelmanager->additional_document) }}" id="downloadLink">Download Addition Document</a>
+<span id="additionalDocumentFileName"><br>File Name: {{ $hostelmanager->additional_document ? basename($hostelmanager->additional_document) : 'No file selected' }}</span>
 </div>
 </div>
 
@@ -181,10 +193,11 @@ Choose File <input type="file" id="image" name="additional_document">
 <label>Upload Second Additional Document</label>
 <div class="uplod">
 <label class="file-upload image-upbtn mb-0">
-Choose File <input type="file" id="image" name="additional_document2">
+Choose File <input type="file" id="additional_document2" name="additional_document2" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
 </label>
 </div>
-<img id="showImage" src="" alt="Admin"style="width: 100px; height:100px;" >
+<a id="showAdditionalDocument2" href="{{ asset($hostelmanager->additional_document2) }}" id="downloadLink">Download Addition Document</a>
+<span id="additionalDocument2FileName"><br>File Name: {{ $hostelmanager->additional_document2 ? basename($hostelmanager->additional_document2) : 'No file selected' }}</span>
 </div>
 </div>
 
@@ -220,6 +233,59 @@ Choose File <input type="file" id="image" name="additional_document2">
 			reader.readAsDataURL(e.target.files['0']);
 		});
 	});
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    // Function to handle file input change for certificate
+    $('#certificate').change(function (e) {
+        var fileName = e.target.files[0].name;
+        $('#certificateFileName').text('File Name: ' + fileName);
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#showCertificate').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    });
+
+    // Function to handle file input change for NYSC Certificate
+    $('#nysc_certificate').change(function (e) {
+		var fileName = e.target.files[0].name;
+        $('#nyscCertificateFileName').text('File Name: ' + fileName);
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#showNyscCertificate').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(e.target.files['0']);
+    });
+
+    // Function to handle file input change for Additional Document
+    $('#additional_document').change(function (e) {
+		var fileName = e.target.files[0].name;
+        $('#additionalDocumentFileName').text('File Name: ' + fileName);
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#showAdditionalDocument').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(e.target.files['0']);
+    });
+
+    // Function to handle file input change for Second Additional Document
+    $('#additional_document2').change(function (e) {
+		var fileName = e.target.files[0].name;
+        $('#additionalDocument2FileName').text('File Name: ' + fileName);
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#showAdditionalDocument2').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(e.target.files['0']);
+    });
+});
 </script>
 
 

@@ -37,6 +37,15 @@
 </div>
 <div class="col-12 col-sm-4">
 <div class="form-group local-forms">
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <label>E-Mail <span class="login-danger">*</span></label>
 <input class="form-control" type="email" name="email">
 </div>
@@ -152,7 +161,6 @@ Choose File <input type="file" id="image" name="photo">
 Choose File <input type="file" id="certificate" name="certificate" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
 </label>
 </div>
-<a href="#" id="showCertificate">Download Certificate</a>
 <span id="certificateFileName"></span>
 </div>
 </div>
@@ -165,8 +173,7 @@ Choose File <input type="file" id="certificate" name="certificate" accept=".pdf,
 Choose File <input type="file" id="nysc_certificate" name="nysc_certificate" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
 </label>
 </div>
-
-<a href="#" id="showNYSCCertificate" id="downloadLink">Download NYSC Certificate</a>
+<span id="nyscCertificateFileName"></span>
 </div>
 </div>
 
@@ -178,7 +185,7 @@ Choose File <input type="file" id="nysc_certificate" name="nysc_certificate" acc
 Choose File <input type="file" id="additional_document" name="additional_document" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
 </label>
 </div>
-<a id="showAdditionalDocument" href="#" id="downloadLink">Download Addition Document</a>
+<span id="showAdditionalDocumentFileName"></span>
 </div>
 </div>
 
@@ -190,6 +197,7 @@ Choose File <input type="file" id="additional_document" name="additional_documen
 Choose File <input type="file" id="additional_document2" name="additional_document2" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
 </label>
 </div>
+<span id="showAdditionalDocument2FileName"></span>
 </div>
 </div>
 
@@ -225,55 +233,6 @@ Choose File <input type="file" id="additional_document2" name="additional_docume
 			reader.readAsDataURL(e.target.files['0']);
 		});
 	});
-</script>
-
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        // Function to handle file input change for certificate
-		$('#certificate').change(function (e) {
-    var fileName = e.target.files[0].name;
-    $('#certificateFileName').text('File Name: ' + fileName);
-
-    var reader = new FileReader();
-    reader.onload = function (e) {
-        $('#showCertificate').attr('src', e.target.result);
-    }
-    reader.readAsDataURL(e.target.files[0]);
-});
-
-		
-
-        // Function to handle file input change for NYSC Certificate
-        $('#nysc_certificate').change(function (e) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#showNYSCCertificate').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(e.target.files['0']);
-
-        });
-
-        // Function to handle file input change for NYSC Certificate
-        $('#additional_document').change(function (e) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#showAdditionalDocument').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(e.target.files['0']);
-        });
-
-
-		// Function to handle file input change for NYSC Certificate
-        $('#additional_document2').change(function (e) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#showAdditionalDocument2').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(e.target.files['0']);
-        });
-
-    });
 </script>
 
 

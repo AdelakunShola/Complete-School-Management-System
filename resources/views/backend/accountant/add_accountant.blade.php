@@ -37,6 +37,15 @@
 </div>
 <div class="col-12 col-sm-4">
 <div class="form-group local-forms">
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <label>E-Mail <span class="login-danger">*</span></label>
 <input class="form-control" type="email" name="email">
 </div>
@@ -132,7 +141,7 @@
 
 
 
-<div class="col-12 col-sm-4">
+<<div class="col-12 col-sm-4">
 <div class="form-group students-up-files">
 <label>Upload Your Photo </label>
 <div class="uplod">
@@ -149,10 +158,10 @@ Choose File <input type="file" id="image" name="photo">
 <label>Upload Certificate</label>
 <div class="uplod">
 <label class="file-upload image-upbtn mb-0">
-Choose File <input type="file" id="image" name="certificate">
+Choose File <input type="file" id="certificate" name="certificate" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
 </label>
 </div>
-<img id="showImage" src="" alt="Admin"style="width: 100px; height:100px;" >
+<span id="certificateFileName"></span>
 </div>
 </div>
 
@@ -161,10 +170,10 @@ Choose File <input type="file" id="image" name="certificate">
 <label>Upload NYSC Certificate</label>
 <div class="uplod">
 <label class="file-upload image-upbtn mb-0">
-Choose File <input type="file" id="image" name="nysc_certificate">
+Choose File <input type="file" id="nysc_certificate" name="nysc_certificate" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
 </label>
 </div>
-<img id="showImage" src="" alt="Admin"style="width: 100px; height:100px;" >
+<span id="nyscCertificateFileName"></span>
 </div>
 </div>
 
@@ -173,10 +182,10 @@ Choose File <input type="file" id="image" name="nysc_certificate">
 <label>Upload Additional Document</label>
 <div class="uplod">
 <label class="file-upload image-upbtn mb-0">
-Choose File <input type="file" id="image" name="additional_document">
+Choose File <input type="file" id="additional_document" name="additional_document" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
 </label>
 </div>
-<img id="showImage" src="" alt="Admin"style="width: 100px; height:100px;" >
+<span id="showAdditionalDocumentFileName"></span>
 </div>
 </div>
 
@@ -185,10 +194,10 @@ Choose File <input type="file" id="image" name="additional_document">
 <label>Upload Second Additional Document</label>
 <div class="uplod">
 <label class="file-upload image-upbtn mb-0">
-Choose File <input type="file" id="image" name="additional_document2">
+Choose File <input type="file" id="additional_document2" name="additional_document2" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
 </label>
 </div>
-<img id="showImage" src="" alt="Admin"style="width: 100px; height:100px;" >
+<span id="showAdditionalDocument2FileName"></span>
 </div>
 </div>
 
@@ -226,5 +235,50 @@ Choose File <input type="file" id="image" name="additional_document2">
 	});
 </script>
 
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Function to handle file input change for certificate
+		$('#certificate').change(function (e) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#certificateFileName').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(e.target.files['0']);
+        });
+
+		
+
+        // Function to handle file input change for NYSC Certificate
+        $('#certificate').change(function (e) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#nyscCertificateFileName').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(e.target.files['0']);
+        });
+
+
+		// Function to handle file input change for Additional Document
+        $('#additional_document').change(function (e) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#showAdditionalDocumentFileName').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(e.target.files['0']);
+        });
+
+
+		// Function to handle file input change for Additional Document2
+        $('#additional_document2').change(function (e) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#showAdditionalDocument2FileName').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(e.target.files['0']);
+        });
+
+    });
+</script>
 
 @endsection

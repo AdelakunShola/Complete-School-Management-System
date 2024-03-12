@@ -29,40 +29,55 @@ class HRMController extends Controller
 
 
     public function StoreHrm(Request $request) {
-        //$request->validate([
-          //  'name' => 'required|string|max:255',
-          //  'email' => 'required|email|unique:hrms',
-          //  'gender' => 'required|string|max:255',
-          //  'dob' => 'required|date',
-            // Add more specific validation rules as needed
-        //]);
+        $request->validate([
+              'name' => 'required|string|max:255',
+              'email' => 'required|email|unique:users',
+        
+        ]);
+
+
+        if ($request->file('photo')) {
+            $image = $request->file('photo');
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $save_url = 'upload/hrm/' . $name_gen;
+            Image::make($image)->resize(300, 300)->save($save_url);
+        
+
     
         // Generate HRM ID
         $hrm_number = IdGenerator::generate([
             'table' => 'users',
             'field' => 'hrm_id',
-            'length' => 10,
+            'length' => 7,
             'prefix' => 'HRM'
         ]);
-    
-        $image = $request->file('photo');
-        $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-        $save_url = 'upload/hrm/' . $name_gen; // Include the directory in the path
-        Image::make($image)->resize(300, 300)->save($save_url);
 
-// For documents, use a common upload path
-$documentUploadPath = 'public';
 
-$certificatePath = $request->file('certificate')->storeAs($documentUploadPath, 'certificate_' . uniqid() . '.' . $request->file('certificate')->getClientOriginalExtension() );
+// For documents, use different upload paths
+$certificateUploadPath = 'public/certificates';
+$nyscCertificateUploadPath = 'public/nysc_certificates';
+$additionalDocumentUploadPath = 'public/additional_documents';
+$additionalDocument2UploadPath = 'public/additional_documents2';
 
-$nyscCertificatePath = $request->file('nysc_certificate')->storeAs($documentUploadPath, 'nysc_certificate_' . uniqid() . '.' . $request->file('nysc_certificate')->getClientOriginalExtension());
+$certificatePath = $request->file('certificate') ? $request->file('certificate')->storeAs($certificateUploadPath, 'certificate_' . uniqid() . '.' . $request->file('certificate')->getClientOriginalExtension()) : null;
 
-$additionalDocumentPath = $request->file('additional_document')->storeAs($documentUploadPath, 'additional_document_' . uniqid() . '.' . $request->file('additional_document')->getClientOriginalExtension());
+$nyscCertificatePath = $request->file('nysc_certificate') ? $request->file('nysc_certificate')->storeAs($nyscCertificateUploadPath, 'nysc_certificate_' . uniqid() . '.' . $request->file('nysc_certificate')->getClientOriginalExtension()) : null;
 
-$additionalDocument2Path = $request->file('additional_document2')->storeAs($documentUploadPath, 'additional_document2_' . uniqid() . '.' . $request->file('additional_document2')->getClientOriginalExtension());
+$additionalDocumentPath = $request->file('additional_document') ? $request->file('additional_document')->storeAs($additionalDocumentUploadPath, 'additional_document_' . uniqid() . '.' . $request->file('additional_document')->getClientOriginalExtension()) : null;
 
-//dd($certificatePath, $nyscCertificatePath, $additionalDocumentPath, $additionalDocument2Path);
+$additionalDocument2Path = $request->file('additional_document2') ? $request->file('additional_document2')->storeAs($additionalDocument2UploadPath, 'additional_document2_' . uniqid() . '.' . $request->file('additional_document2')->getClientOriginalExtension()) : null;
 
+// Now you can use these variables in your User creation
+
+
+
+
+$existingUser = User::where('email', $request->input('email'))->first();
+
+if ($existingUser) {
+    return redirect()->route('add.hrm')->withErrors(['email' => 'This email is already in use. Please use another email.']);
+} else {
+    // Proceed with the insertion or update
         // Create a new HRM instance using dependency injection
         $hrm = new User([
             'hrm_id' => $hrm_number,
@@ -91,13 +106,91 @@ $additionalDocument2Path = $request->file('additional_document2')->storeAs($docu
     
         // Save the HRM instance to the database
         $hrm->save();
+
     
         $notification = [
-            'message' => 'HRM Data Inserted Successfully',
+            'message' => 'HRM Data Inserted With Image Successfully',
             'alert-type' => 'success',
         ];
     
         return redirect()->route('all.hrm')->with($notification);
+
+    }
+}else{
+
+// Generate HRM ID
+$hrm_number = IdGenerator::generate([
+    'table' => 'users',
+    'field' => 'hrm_id',
+    'length' => 7,
+    'prefix' => 'HRM'
+]);
+
+
+// For documents, use different upload paths
+$certificateUploadPath = 'public/certificates';
+$nyscCertificateUploadPath = 'public/nysc_certificates';
+$additionalDocumentUploadPath = 'public/additional_documents';
+$additionalDocument2UploadPath = 'public/additional_documents2';
+
+$certificatePath = $request->file('certificate') ? $request->file('certificate')->storeAs($certificateUploadPath, 'certificate_' . uniqid() . '.' . $request->file('certificate')->getClientOriginalExtension()) : null;
+
+$nyscCertificatePath = $request->file('nysc_certificate') ? $request->file('nysc_certificate')->storeAs($nyscCertificateUploadPath, 'nysc_certificate_' . uniqid() . '.' . $request->file('nysc_certificate')->getClientOriginalExtension()) : null;
+
+$additionalDocumentPath = $request->file('additional_document') ? $request->file('additional_document')->storeAs($additionalDocumentUploadPath, 'additional_document_' . uniqid() . '.' . $request->file('additional_document')->getClientOriginalExtension()) : null;
+
+$additionalDocument2Path = $request->file('additional_document2') ? $request->file('additional_document2')->storeAs($additionalDocument2UploadPath, 'additional_document2_' . uniqid() . '.' . $request->file('additional_document2')->getClientOriginalExtension()) : null;
+
+// Now you can use these variables in your User creation
+
+
+
+
+$existingUser = User::where('email', $request->input('email'))->first();
+
+if ($existingUser) {
+return redirect()->route('add.hrm')->withErrors(['email' => 'This email is already in use. Please use another email.']);
+} else {
+// Proceed with the insertion or update
+// Create a new HRM instance using dependency injection
+$hrm = new User([
+    'hrm_id' => $hrm_number,
+    'name' => $request->input('name'),
+    'email' => $request->input('email'),
+    'gender' => $request->input('gender'),
+    'dob' => $request->input('dob'),
+    'qualification' => $request->input('qualification'),
+    'blood_group' => $request->input('blood_group'),
+    'religion' => $request->input('religion'),
+    'phone' => $request->input('phone'),
+    'marital_status' => $request->input('marital_status'),
+    'school_attended' => $request->input('school_attended'),
+    'graduation_year' => $request->input('graduation_year'),
+    'password' => Hash::make($request->input('password')),
+    'facebook' => $request->input('facebook'),
+    'twitter' => $request->input('twitter'),
+    'linkedin' => $request->input('linkedin'),
+    'certificate' => $certificatePath,
+    'nysc_certificate' => $nyscCertificatePath,
+    'additional_document' => $additionalDocumentPath,
+    'additional_document2' => $additionalDocument2Path,
+    'role' => 'hrm',
+]);
+
+// Save the HRM instance to the database
+$hrm->save();
+
+
+$notification = [
+    'message' => 'HRM Data Inserted Without Image Successfully',
+    'alert-type' => 'success',
+];
+
+return redirect()->route('all.hrm')->with($notification);
+
+}
+
+}
     }//end method
     
 
@@ -109,20 +202,22 @@ $additionalDocument2Path = $request->file('additional_document2')->storeAs($docu
     }//end method
 
 
+    public function ViewHrm($id){
+        $hrm = User::where('role', 'hrm')->findOrFail($id);
+        return view('backend.hrm.view_hrm', compact('hrm'));
+    }//end method
 
-
-
-
-
-        //$this->updateFile($request, $hrm, 'certificate', $documentUploadPath);
-        //$this->updateFile($request, $hrm, 'nysc_certificate', $documentUploadPath);
-        //$this->updateFile($request, $hrm, 'additional_document', $documentUploadPath);
-        //$this->updateFile($request, $hrm, 'additional_document2', $documentUploadPath);
-
-    
+ 
      public function updateHrm(Request $request){
+
         $hrm_id = $request->id;
         $data = User::findOrFail($hrm_id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $hrm_id,
+            // Other validation rules...
+        ]);
     
         $data->update([
             'name' => $request->input('name'),
@@ -158,19 +253,51 @@ $additionalDocument2Path = $request->file('additional_document2')->storeAs($docu
         // Check if a new certificate has been uploaded
         if ($request->file('certificate')) {
             $file = $request->file('certificate');
-            @unlink(public_path('public/' . $data->photo));
+            @unlink(public_path('public/certificates/' . $data->certificate));
             $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('public'), $filename);
+            $file->move(public_path('public/certificates'), $filename);
     
-            // Update the photo field with the full path
-            $data->update(['certificate' => 'public/' . $filename]);
+            // Update the certificate field with the full path
+            $data->update(['certificate' => 'public/certificates/' . $filename]);
+        }
+
+
+        // Check if a new nysc_certificate has been uploaded
+        if ($request->file('nysc_certificate')) {
+            $file = $request->file('nysc_certificate');
+            @unlink(public_path('public/nysc_certificates/' . $data->nysc_certificate));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('public/nysc_certificates'), $filename);
+    
+            // Update the nysc_certificate field with the full path
+            $data->update(['nysc_certificate' => 'public/nysc_certificates/' . $filename]);
+        }
+
+
+        // Check if a new additional_document has been uploaded
+        if ($request->file('additional_document')) {
+            $file = $request->file('additional_document');
+            @unlink(public_path('public/additional_documents/' . $data->additional_document));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('public/additional_documents'), $filename);
+    
+            // Update the additional_document field with the full path
+            $data->update(['additional_document' => 'public/additional_documents/' . $filename]);
         }
 
 
 
-
-
+        // Check if a new additional_document2 has been uploaded
+        if ($request->file('additional_document2')) {
+            $file = $request->file('additional_document2');
+            @unlink(public_path('public/additional_documents2/' . $data->additional_document2));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('public/additional_documents2'), $filename);
     
+            // Update the additional_document2 field with the full path
+            $data->update(['additional_document2' => 'public/additional_documents2/' . $filename]);
+        }
+
         $notification = [
             'message' => 'HRM Profile Updated Successfully',
             'alert-type' => 'success',
@@ -178,13 +305,6 @@ $additionalDocument2Path = $request->file('additional_document2')->storeAs($docu
     
         return redirect()->route('all.hrm')->with($notification);
     }//end method
-
-
-
-
-   
-
-
 
 
     public function DeleteHrm($id){

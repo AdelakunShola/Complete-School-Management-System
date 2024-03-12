@@ -36,8 +36,18 @@
 <input class="form-control" type="text" name="name" value="{{ $hrm->name }}">
 </div>
 </div>
+
 <div class="col-12 col-sm-4">
 <div class="form-group local-forms">
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <label>E-Mail <span class="login-danger">*</span></label>
 <input class="form-control" type="email" name="email" value="{{ $hrm->email }}">
 </div>
@@ -148,7 +158,7 @@ Choose File <input type="file" id="image" name="photo">
 Choose File <input type="file" id="certificate" name="certificate" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
 </label>
 </div>
-<a href="#" id="showCertificate">Download Certificate</a>
+<a href="{{ asset($hrm->certificate) }}" id="showCertificate">Download Certificate</a>
 <span id="certificateFileName"><br>File Name: {{ $hrm->certificate ? basename($hrm->certificate) : 'No file selected' }}</span>
 </div>
 </div>
@@ -161,8 +171,8 @@ Choose File <input type="file" id="certificate" name="certificate" accept=".pdf,
 Choose File <input type="file" id="nysc_certificate" name="nysc_certificate" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
 </label>
 </div>
-
-<a href="#" id="showNYSCCertificate" id="downloadLink">Download NYSC Certificate</a>
+<a href="{{ asset($hrm->nysc_certificate) }}" id="showNyscCertificate" id="downloadLink">Download NYSC Certificate</a>
+<span id="nyscCertificateFileName"><br>File Name: {{ $hrm->nysc_certificate ? basename($hrm->nysc_certificate) : 'No file selected' }}</span>
 </div>
 </div>
 
@@ -174,7 +184,8 @@ Choose File <input type="file" id="nysc_certificate" name="nysc_certificate" acc
 Choose File <input type="file" id="additional_document" name="additional_document" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
 </label>
 </div>
-<a id="showAdditionalDocument" href="#" id="downloadLink">Download Addition Document</a>
+<a id="showAdditionalDocument" href="{{ asset($hrm->additional_document) }}" id="downloadLink">Download Addition Document</a>
+<span id="additionalDocumentFileName"><br>File Name: {{ $hrm->additional_document ? basename($hrm->additional_document) : 'No file selected' }}</span>
 </div>
 </div>
 
@@ -186,6 +197,8 @@ Choose File <input type="file" id="additional_document" name="additional_documen
 Choose File <input type="file" id="additional_document2" name="additional_document2" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
 </label>
 </div>
+<a id="showAdditionalDocument2" href="{{ asset($hrm->additional_document2) }}" id="downloadLink">Download Addition Document</a>
+<span id="additionalDocument2FileName"><br>File Name: {{ $hrm->additional_document2 ? basename($hrm->additional_document2) : 'No file selected' }}</span>
 </div>
 </div>
 
@@ -240,15 +253,21 @@ Choose File <input type="file" id="additional_document2" name="additional_docume
 
     // Function to handle file input change for NYSC Certificate
     $('#nysc_certificate').change(function (e) {
+		var fileName = e.target.files[0].name;
+        $('#nyscCertificateFileName').text('File Name: ' + fileName);
+
         var reader = new FileReader();
         reader.onload = function (e) {
-            $('#showNYSCCertificate').attr('src', e.target.result);
+            $('#showNyscCertificate').attr('src', e.target.result);
         }
         reader.readAsDataURL(e.target.files['0']);
     });
 
     // Function to handle file input change for Additional Document
     $('#additional_document').change(function (e) {
+		var fileName = e.target.files[0].name;
+        $('#additionalDocumentFileName').text('File Name: ' + fileName);
+
         var reader = new FileReader();
         reader.onload = function (e) {
             $('#showAdditionalDocument').attr('src', e.target.result);
@@ -258,6 +277,9 @@ Choose File <input type="file" id="additional_document2" name="additional_docume
 
     // Function to handle file input change for Second Additional Document
     $('#additional_document2').change(function (e) {
+		var fileName = e.target.files[0].name;
+        $('#additionalDocument2FileName').text('File Name: ' + fileName);
+
         var reader = new FileReader();
         reader.onload = function (e) {
             $('#showAdditionalDocument2').attr('src', e.target.result);
@@ -266,6 +288,5 @@ Choose File <input type="file" id="additional_document2" name="additional_docume
     });
 });
 </script>
-
 
 @endsection

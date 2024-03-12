@@ -69,6 +69,10 @@
     <i class="feather-edit"></i>
 </a>
 
+<a href="{{ route('view.librarian', $item->id) }}" class="btn btn-sm text-success bg-success-light me-2" >
+    <i class="feather-eye"></i>
+</a>
+
 <a class="btn btn-sm text-danger" onclick="confirmDelete('{{ route('delete.librarian', $item->id) }}')">
     <i class="feather-trash"></i>
 </a>
