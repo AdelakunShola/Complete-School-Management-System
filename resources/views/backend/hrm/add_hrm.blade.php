@@ -19,6 +19,10 @@
 </div>
 </div>
 
+<h3 class="page-title">{{ __('messages.welcome') }}</h3>
+<h3 class="page-title">{{ __('messages.greeting') }}</h3>
+<h3 class="page-title">{{ __('messages.submit') }}</h3>
+
 <div class="row">
 <div class="col-sm-12">
 <div class="card comman-shadow">

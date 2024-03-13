@@ -41,9 +41,9 @@ $setting = App\Models\Settings::find(1);
 <div class="dropdown-menu ">
 <div class="noti-content">
 <div>
-<a class="dropdown-item" href="javascript:;"><i class="flag flag-lr me-2"></i>English</a>
-<a class="dropdown-item" href="javascript:;"><i class="flag flag-bl me-2"></i>Francais</a>
-<a class="dropdown-item" href="javascript:;"><i class="flag flag-cn me-2"></i>Turkce</a>
+<a class="dropdown-item" href="{{ url('en/') }}"><i class="flag flag-lr me-2"></i>English</a>
+<a class="dropdown-item" href="{{ url('fr/') }}"><i class="flag flag-bl me-2"></i>Francais</a>
+<a class="dropdown-item" href="{{ url('es/') }}"><i class="flag flag-cn me-2"></i>Spanish</a>
 </div>
 </div>
 </div>

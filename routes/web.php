@@ -12,6 +12,10 @@ use App\Http\Controllers\Backend\SettingsController;
 use App\Http\Controllers\Backend\LibrarianController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +27,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => ['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
+    ], function(){ //...
+   
+	/** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
 
+
+	
 Route::get('/', function () {
     return view('welcome');
 });
@@ -38,7 +51,11 @@ Route::get('/', function () {
     //Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 //});
 
+
+
 require __DIR__.'/auth.php';
+
+
 
 /// Admin Dashboard
 Route::middleware(['auth', 'role:admin'])->group(function(){
@@ -181,3 +198,7 @@ Route::controller(AccountantController ::class)->group(function(){
 
 
 });
+
+
+
+});////localization

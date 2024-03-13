@@ -25,7 +25,7 @@
 </li>
 
 <li>
-<a class="{{ $currentRoute == 'admin.dashboard' ? 'active' : '' }}" href="{{ route('admin.dashboard') }}"><i class="feather-grid"></i> <span>Dashboard</span></a>
+<a class="{{ $currentRoute == 'admin.dashboard' ? 'active' : '' }}" href="{{ LaravelLocalization::localizeUrl(route('admin.dashboard')) }}"><i class="feather-grid"></i> <span>Dashboard</span></a>
 </li>
 
 
@@ -79,7 +79,7 @@
 <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span>HRM</span> <span class="menu-arrow"></span></a>
 <ul>
 <li><a class="{{ $currentRoute == 'all.hrm' ? 'active' : '' }}" href="{{ route('all.hrm') }}">All HRM</a></li>
-<li><a class="{{ $currentRoute == 'add.hrm' ? 'active' : '' }}" href="{{ route('add.hrm') }}">Add HRM</a></li>\
+<li><a class="{{ $currentRoute == 'add.hrm' ? 'active' : '' }}" href="{{ route('add.hrm') }}">Add HRM</a></li>
 </ul>
 </li>
 
