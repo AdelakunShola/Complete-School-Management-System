@@ -72,7 +72,6 @@ class SettingsController extends Controller
 
                 'website_name' => $request->website_name,
                 'academic_session' => $request->academic_session,
-                'academic_session' => $request->academic_session,
                 'address' => $request->address,
                 'city' => $request->city,
                 'state' => $request->state,
