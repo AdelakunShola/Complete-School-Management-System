@@ -9,10 +9,10 @@
 <div class="row align-items-center">
 <div class="col-sm-12">
 <div class="page-sub-header">
-<h3 class="page-title">Edit Parent</h3>
+<h3 class="page-title">Edit Alumni</h3>
 <ul class="breadcrumb">
-<li class="breadcrumb-item"><a href="students.html">Parent</a></li>
-<li class="breadcrumb-item active">Edit Parents</li>
+<li class="breadcrumb-item"><a href="students.html">Alumni</a></li>
+<li class="breadcrumb-item active">Edit Alumni</li>
 </ul>
 </div>
 </div>
@@ -23,46 +23,68 @@
 <div class="col-sm-12">
 <div class="card comman-shadow">
 <div class="card-body">
-<form method="post" action="{{ route('update.parent') }}" enctype="multipart/form-data">
+<form method="post" action="{{ route('update.alumni') }}" enctype="multipart/form-data">
 @csrf
-<input type="hidden" name="id" value="{{ $parent->id }}">
+<input type="hidden" name="id" value="{{ $alumni->id }}">
 <div class="row">
 <div class="col-12">
-<h5 class="form-title student-info">Parent Information <span><a href="javascript:;"><i class="feather-more-vertical"></i></a></span></h5>
+<h5 class="form-title student-info">Alumni Information <span><a href="javascript:;"><i class="feather-more-vertical"></i></a></span></h5>
 </div>
 <div class="col-12 col-sm-4">
 <div class="form-group local-forms">
 <label>Full Name <span class="login-danger">*</span></label>
-<input class="form-control" type="text" name="name" value="{{ $parent->name }}">
+<input class="form-control" type="text" name="name" value="{{ $alumni->name }}">
 </div>
 </div>
 <div class="col-12 col-sm-4">
 <div class="form-group local-forms">
 <label>Email <span class="login-danger">*</span></label>
-<input class="form-control" type="email" name="email" value="{{ $parent->email }}">
+<input class="form-control" type="email" name="email" value="{{ $alumni->email }}">
 </div>
 </div>
-
-
 <div class="col-12 col-sm-4">
 <div class="form-group local-forms">
 <label>Gender<span class="login-danger">*</span></label>
-<input class="form-control" type="text" name="gender" value="{{ $parent->gender }}">
+<input class="form-control" type="text" name="gender" value="{{ $alumni->gender }}">
 </div>
 </div>
 
-
+<div class="col-12 col-sm-4">
+<div class="form-group local-forms">
+<label>Marital Status<span class="login-danger">*</span></label>
+<input class="form-control" type="text" name="marital_status" value="{{ $alumni->marital_status }}">
+</div>
+</div>
 <div class="col-12 col-sm-4">
 <div class="form-group local-forms">
 <label>Profession <span class="login-danger">*</span></label>
-<input class="form-control" type="text" name="profession" value="{{ $parent->profession }}" >
+<input class="form-control" type="text" name="profession" value="{{ $alumni->profession }}" >
 </div>
 </div>
-
 <div class="col-12 col-sm-4">
 <div class="form-group local-forms">
 <label>Phone No. <span class="login-danger">*</span></label>
-<input class="form-control" type="text" name="phone" value="{{ $parent->phone }}">
+<input class="form-control" type="text" name="phone" value="{{ $alumni->phone }}">
+</div>
+</div>
+
+
+<div class="col-12 col-sm-4">
+<div class="form-group local-forms">
+<label>Graduation Year<span class="login-danger">*</span></label>
+<input class="form-control" type="text" name="graduation_year" value="{{ $alumni->graduation_year }}">
+</div>
+</div>
+<div class="col-12 col-sm-4">
+<div class="form-group local-forms">
+<label>Club<span class="login-danger">*</span></label>
+<input class="form-control" type="text" name="club" value="{{ $alumni->club }}">
+</div>
+</div>
+<div class="col-12 col-sm-4">
+<div class="form-group local-forms">
+<label>Interest<span class="login-danger">*</span></label>
+<input class="form-control" type="text" name="interest" value="{{ $alumni->interest }}">
 </div>
 </div>
 
@@ -70,19 +92,19 @@
 <div class="col-12 col-sm-4">
 <div class="form-group local-forms">
 <label>Address<span class="login-danger">*</span></label>
-<input class="form-control" type="text" name="address" value="{{ $parent->address }}">
+<input class="form-control" type="text" name="address" value="{{ $alumni->address }}">
 </div>
 </div>
 <div class="col-12 col-sm-4">
 <div class="form-group local-forms">
 <label>State<span class="login-danger">*</span></label>
-<input class="form-control" type="text" name="state" value="{{ $parent->state }}">
+<input class="form-control" type="text" name="state" value="{{ $alumni->state }}">
 </div>
 </div>
 <div class="col-12 col-sm-4">
 <div class="form-group local-forms">
 <label>Country<span class="login-danger">*</span></label>
-<input class="form-control" type="text" name="country" value="{{ $parent->country }}">
+<input class="form-control" type="text" name="country" value="{{ $alumni->country }}">
 </div>
 </div>
 
@@ -93,7 +115,7 @@
 
 <div class="row mb-3">
 <div class="form-group students-up-files">
-<label>Upload Parent Photo (150px X 150px)</label>
+<label>Upload Alumni Photo (150px X 150px)</label>
 <div class="uplod">
 <label class="file-upload image-upbtn mb-0">
 Choose File <input type="file" name="photo" id="image">
@@ -108,7 +130,7 @@ Choose File <input type="file" name="photo" id="image">
 </div>
 <div class="col-sm-9 text-secondary">
 
-<img id="showImage" src="{{ asset($parent->photo) }}" alt="Parent Photo" style="width: 100px; height:100px;" >
+<img id="showImage" src="{{ asset($alumni->photo) }}" alt="alumni Photo" style="width: 100px; height:100px;" >
 </div>
 </div>
 

@@ -9,10 +9,10 @@
 <div class="page-header">
 <div class="row align-items-center">
 <div class="col">
-<h3 class="page-title">MANAGE PARENT LIST</h3>
+<h3 class="page-title">MANAGE ALUMNI LIST</h3>
 <ul class="breadcrumb">
 <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-<li class="breadcrumb-item active">ALL PARENT </li>
+<li class="breadcrumb-item active">ALL ALUMNI </li>
 </ul>
 </div>
 </div>
@@ -26,7 +26,7 @@
 <div class="page-header">
 <div class="row align-items-center">
 <div class="col">
-<a href="{{ route('add.parent') }}" class="btn btn-outline-primary me-2"><i class="fas fa-plus"></i> ADD PARENT </a>
+<a href="{{ route('add.alumni') }}" class="btn btn-outline-primary me-2"><i class="fas fa-plus"></i> ADD ALUMNI </a>
 </div>
 <div class="col-auto text-end float-end ms-auto download-grp">
 <a href="#" class="btn btn-outline-primary me-2"><i class="fas fa-download"></i> Download</a>
@@ -43,35 +43,41 @@
 <th>Name </th>
 <th>Email</th>
 <th>Mobile No.</th>
+<th>Graduation Year</th>
 <th>Address</th>
+<th>Gender</th>
+<th>Profession</th>
 
 
 <th class="text-end">Action</th>
 </tr>
 </thead>
 <tbody>
-@foreach ($all_parent as $key=> $item ) 
+@foreach ($all_alumni as $key=> $item ) 
 <tr>
 <td>{{ $key+1 }}</td>
 <td> <img src="{{ asset($item->photo) }}" style="width: 50px; height:50px;" >  </td>
 <td>{{ $item->name }}</td>
 <td>{{ $item->email }}</td>
 <td>{{ $item->phone }}</td>
+<td>{{ $item->graduation_year }}</td>
 <td>{{ $item->address }}</td>
+<td>{{ $item->gender }}</td>
+<td>{{ $item->profession }}</td>
 
 <td class="text-end">
 <div class="actions">
 
 
-<a href="{{ route('edit.parent', $item->id) }}" class="btn btn-sm text-success bg-success-light me-2" >
+<a href="{{ route('edit.alumni', $item->id) }}" class="btn btn-sm text-success bg-success-light me-2" >
     <i class="feather-edit"></i>
 </a>
 
-<a href="{{ route('view.parent', $item->id) }}" class="btn btn-sm text-success bg-success-light me-2" >
+<a href="{{ route('view.alumni', $item->id) }}" class="btn btn-sm text-success bg-success-light me-2" >
     <i class="feather-eye"></i>
 </a>
 
-<a class="btn btn-sm text-danger" onclick="confirmDelete('{{ route('delete.parent', $item->id) }}')">
+<a class="btn btn-sm text-danger" onclick="confirmDelete('{{ route('delete.alumni', $item->id) }}')">
     <i class="feather-trash"></i>
 </a>
 

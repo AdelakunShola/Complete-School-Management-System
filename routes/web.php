@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AccountantController;
+use App\Http\Controllers\Backend\AlumniController;
 use App\Http\Controllers\Backend\CircularController;
 use App\Http\Controllers\Backend\EnquiryController;
+use App\Http\Controllers\Backend\ExpenseCategoryController;
 use App\Http\Controllers\Backend\HostelManagerController;
 use App\Http\Controllers\Backend\HRMController;
 use App\Http\Controllers\Backend\ParentController;
@@ -27,11 +29,11 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::group(
-    [
-        'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => ['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
-    ], function(){ //...
+///Route::group(
+   // [
+     //   'prefix' => LaravelLocalization::setLocale(),
+      //  'middleware' => ['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
+   // ], function(){ //...
    
 	/** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
 
@@ -134,6 +136,7 @@ Route::controller(ParentController::class)->group(function(){
     Route::get('/add/parent', 'AddParent')->name('add.parent');
     Route::post('/store/parent', 'StoreParent')->name('store.parent');
     Route::get('/edit/parent/{id}', 'EditParent')->name('edit.parent');
+    Route::get('/view/parent/{id}', 'ViewParent')->name('view.parent');
     Route::post('/update/parent', 'UpdateParent')->name('update.parent');
     Route::get('/delete/parent/{id}', 'DeleteParent')->name('delete.parent');
 
@@ -197,8 +200,34 @@ Route::controller(AccountantController ::class)->group(function(){
 });
 
 
+
+///MANAGE ALUMNI  All Route 
+Route::controller(AlumniController::class)->group(function(){
+    Route::get('/all/alumni', 'AllAlumni')->name('all.alumni');
+    Route::get('/add/alumni', 'AddAlumni')->name('add.alumni');
+    Route::post('/store/alumni', 'StoreAlumni')->name('store.alumni');
+    Route::get('/edit/alumni/{id}', 'EditAlumni')->name('edit.alumni');
+    Route::get('/view/alumni/{id}', 'ViewAlumni')->name('view.alumni');
+    Route::post('/update/alumni', 'UpdateAlumni')->name('update.alumni');
+    Route::get('/delete/alumni/{id}', 'DeleteAlumni')->name('delete.alumni');
+
 });
 
 
 
-});////localization
+///Expense Category All Route 
+Route::controller(ExpenseCategoryController::class)->group(function(){
+    Route::get('/expense/category', 'ExpenseCategory')->name('expense.category');
+    Route::post('/store/expense/category', 'StoreExpenseCategory')->name('store.expense.category');
+    Route::get('/edit/expense/category/{id}', 'EditExpenseCategory');
+    Route::post('/update/expense/category', 'UpdateExpenseCategory')->name('update.expense.category');
+    Route::get('/delete/expense/category/{id}', 'DeleteExpenseCategory')->name('delete.expense.category');
+
+});
+
+
+});///END GROUP ADMIN MIDDLEWARE
+
+
+
+//});////localization

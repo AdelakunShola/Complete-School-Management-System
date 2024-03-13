@@ -84,8 +84,6 @@
 </li>
 
 
-
-
 <li class="submenu">
 <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span>Accountant</span> <span class="menu-arrow"></span></a>
 <ul>
@@ -184,6 +182,7 @@
 <a href="#"><i class="fas fa-file-invoice-dollar"></i> <span> Accounts</span> <span class="menu-arrow"></span></a>
 <ul>
 <li><a href="fees-collections.html">Fees Collection</a></li>
+<li><a class="{{ $currentRoute == 'expense.category' ? 'active' : '' }}" href="{{ route('expense.category') }}">Expense Category</a></li>
 <li><a href="expenses.html">Expenses</a></li>
 <li><a href="salary.html">Salary</a></li>
 <li><a href="add-fees-collection.html">Add Fees</a></li>
@@ -219,6 +218,15 @@
 <li><a href="edit-blog.html">Edit Blog</a></li>
 </ul>
 </li>
+
+<li class="submenu">
+<a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Manage Alumni</span> <span class="menu-arrow"></span></a>
+<ul>
+<li><a class="{{ $currentRoute == 'all.alumni' ? 'active' : '' }}" href="{{ route('all.alumni') }}">Alumni List</a></li>
+<li><a class="{{ $currentRoute == 'add.alumni' ? 'active' : '' }}" href="{{ route('add.alumni') }}">Add Alumni</a></li>
+</ul>
+</li>
+
 <li>
 <a class="{{ $currentRoute == 'settings' ? 'active' : '' }}" href="{{ route('settings') }}"><i class="fas fa-cog"></i> <span>Settings</span></a>
 </li>

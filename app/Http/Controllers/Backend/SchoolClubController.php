@@ -48,7 +48,7 @@ class SchoolClubController extends Controller
         return redirect()->back()->with($notification);
 
 
-    }// End Method 
+    }// End Method  
 
 
     public function DeleteSchoolClub($id){

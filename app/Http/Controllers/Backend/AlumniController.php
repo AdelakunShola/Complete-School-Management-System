@@ -3,77 +3,82 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Alumni;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 
-class ParentController extends Controller
+class AlumniController extends Controller
 {
-    public function AllParent(){
-        $all_parent = User::where('role', 'parent')->latest()->get();
-        return view('backend.manageparent.all_parent', compact('all_parent'));
+    public function AllAlumni(){
+        $all_alumni = Alumni::latest()->get();
+        return view('backend.alumni.all_alumni', compact('all_alumni'));
     }
 
-    public function AddParent(){
-        return view('backend.manageparent.add_parent');
+    public function AddAlumni(){
+        return view('backend.alumni.add_alumni');
     }
 
-    public function StoreParent(Request $request) {
+    public function StoreAlumni(Request $request) {
 
         $image = $request->file('photo');
         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-        $save_url = 'upload/parent/' . $name_gen; // Include the directory in the path
+        $save_url = 'upload/alumni/' . $name_gen; // Include the directory in the path
         Image::make($image)->resize(300, 300)->save($save_url);
 
        
-
-        User::create([
+ 
+        Alumni::create([
             'name' => $request->name,
             'email' => $request->email,
-            'profession' => $request->profession,
             'gender' => $request->gender,
+            'marital_status' => $request->marital_status,
+            'profession' => $request->profession,
             'phone' => $request->phone,
+            'graduation_year' => $request->graduation_year,
+            'club' => $request->club,
+            'interest' => $request->interest,
             'address' => $request->address,
             'state' => $request->state,
             'country' => $request->country,
-            'password' => Hash::make($request->input('password')),
             'photo' => $save_url,
-            'role' => 'parent',
             'created_at' => Carbon::now(),
         ]);
 
         $notification = [
-            'message' => 'Parent Data Inserted Successfully',
+            'message' => 'Alumni Data Inserted Successfully',
             'alert-type' => 'success',
         ];
 
-        return redirect()->route('all.parent')->with($notification);
+        return redirect()->route('all.alumni')->with($notification);
     }
 
-    public function EditParent($id){
-        $parent = User::where('role', 'parent')->find($id);
-        return view('backend.manageparent.edit_parent', compact('parent'));
+    public function EditAlumni($id){
+        $alumni = Alumni::find($id);
+        return view('backend.alumni.edit_alumni', compact('alumni'));
+    }
+
+    public function ViewAlumni($id){
+        $alumni = Alumni::find($id);
+        return view('backend.alumni.view_alumni', compact('alumni'));
     }
 
 
-    public function ViewParent($id){
-        $parent = User::where('role', 'parent')->find($id);
-        return view('backend.manageparent.view_parent', compact('parent'));
-    }
-
-    public function UpdateParent(Request $request){
-        $parent_id = $request->id;
-        $data = User::findOrFail($parent_id);
+    public function UpdateAlumni(Request $request){
+        $alumni_id = $request->id;
+        $data = Alumni::findOrFail($alumni_id);
     
         $data->update([
             'name' => $request->name,
             'email' => $request->email,
-            'profession' => $request->profession,
             'gender' => $request->gender,
+            'marital_status' => $request->marital_status,
+            'profession' => $request->profession,
             'phone' => $request->phone,
+            'graduation_year' => $request->graduation_year,
+            'club' => $request->club,
+            'interest' => $request->interest,
             'address' => $request->address,
             'state' => $request->state,
             'country' => $request->country,
@@ -83,20 +88,20 @@ class ParentController extends Controller
         // Check if a new photo has been uploaded
         if ($request->file('photo')) {
             $file = $request->file('photo');
-            @unlink(public_path('upload/parent/' . $data->photo));
+            @unlink(public_path('upload/alumni/' . $data->photo));
             $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('upload/parent'), $filename);
+            $file->move(public_path('upload/alumni'), $filename);
     
             // Update the photo field with the full path
-            $data->update(['photo' => 'upload/parent/' . $filename]);
+            $data->update(['photo' => 'upload/alumni/' . $filename]);
         }
     
         $notification = [
-            'message' => 'Parent Profile Updated Successfully',
+            'message' => 'Alumni Profile Updated Successfully',
             'alert-type' => 'success',
         ];
     
-        return redirect()->route('all.parent')->with($notification);
+        return redirect()->route('all.alumni')->with($notification);
     }
     
 
@@ -127,19 +132,19 @@ class ParentController extends Controller
 
     
 
-    public function DeleteParent($id){
-        $user = User::find($id);
+    public function DeleteAlumni($id){
+        $user = Alumni::find($id);
 
         // Check if the user exists
         if ($user) {
             // Delete the user's photo file
-            @unlink(public_path('upload/parent/' . $user->photo));
+            @unlink(public_path('upload/alumni/' . $user->photo));
 
             // Delete the user
             $user->delete();
 
             $notification = [
-                'message' => 'Parent Deleted Successfully',
+                'message' => 'Alumni Deleted Successfully',
                 'alert-type' => 'success',
             ];
 
@@ -147,7 +152,7 @@ class ParentController extends Controller
         }
 
         $notification = [
-            'message' => 'Parent not found',
+            'message' => 'Alumni not found',
             'alert-type' => 'error',
         ];
 
