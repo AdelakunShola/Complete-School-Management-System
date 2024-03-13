@@ -67,6 +67,27 @@
 <input type="text" class="form-control" name="website_name" value="{{ $site->website_name }}">
 </div>
 
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label>Academic Session <span class="star-red">*</span></label>
+        <select class="select form-control" name="academic_session">
+            @if(empty($site->academic_session))
+                <option value="" selected disabled>Select Academic Session</option>
+            @endif
+
+            @for ($i = 2019; $i < 2029; $i++)
+                @php
+                    $sessionValue = $i . '-' . ($i + 1);
+                @endphp
+                <option value="{{ $sessionValue }}" {{ old('academic_session', $site->academic_session) === $sessionValue ? 'selected' : '' }}>
+                    {{ $sessionValue }}
+                </option>
+            @endfor
+        </select>
+    </div>
+</div>
+
 <div class="form-group">
 <p class="settings-label">Logo <span class="star-red">*</span></p>
 <div class="settings-btn">

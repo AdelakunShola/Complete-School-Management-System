@@ -43,6 +43,7 @@ class SettingsController extends Controller
                $site->update([
 
                 'website_name' => $request->website_name,
+                'academic_session' => $request->academic_session,
                 'address' => $request->address,
                 'city' => $request->city,
                 'state' => $request->state,
@@ -70,6 +71,8 @@ class SettingsController extends Controller
             Settings::findOrFail($site_id)->update([
 
                 'website_name' => $request->website_name,
+                'academic_session' => $request->academic_session,
+                'academic_session' => $request->academic_session,
                 'address' => $request->address,
                 'city' => $request->city,
                 'state' => $request->state,
