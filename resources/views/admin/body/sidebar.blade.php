@@ -80,8 +80,35 @@
 <ul>
 <li><a class="{{ $currentRoute == 'all.hrm' ? 'active' : '' }}" href="{{ route('all.hrm') }}">All HRM</a></li>
 <li><a class="{{ $currentRoute == 'add.hrm' ? 'active' : '' }}" href="{{ route('add.hrm') }}">Add HRM</a></li>
+
+<li class="submenu"><a class="" href="">Department<span class="menu-arrow"></span></a>
+<ul>
+    <li>
+    <a class="{{ $currentRoute == 'all.department' ? 'active' : '' }}" href="{{ route('all.department') }}">All Department</a>
+    </li>
+    <li>
+    <a class="{{ $currentRoute == 'add.department' ? 'active' : '' }}" href="{{ route('add.department') }}">All Department</a>
+    </li>
 </ul>
 </li>
+<li class="submenu"><a class="" href="">Recruitment<span class="menu-arrow"></span></a>
+<ul>
+<li><a href="javascript:void(0);"><span>Vacancies</span></a></li>
+<li><a href="javascript:void(0);"> <span>Application</span></a></li>
+</ul>
+</li>
+<li><a class="" href="">Leave</a></li>
+<li class="submenu">
+    <a class="" href="">Payroll<span class="menu-arrow"></span></a>
+<ul>
+<li><a href="javascript:void(0);"><span>All Payroll</span></a></li>
+<li><a href="javascript:void(0);"> <span>Add Payslip</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+
+
 
 
 <li class="submenu">

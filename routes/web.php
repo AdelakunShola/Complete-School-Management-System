@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\ParentController;
 use App\Http\Controllers\Backend\SchoolClubController;
 use App\Http\Controllers\Backend\SettingsController;
 use App\Http\Controllers\Backend\LibrarianController;
+use App\Http\Controllers\Backend\DepartmentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -222,6 +223,19 @@ Route::controller(ExpenseCategoryController::class)->group(function(){
     Route::get('/edit/expense/category/{id}', 'EditExpenseCategory');
     Route::post('/update/expense/category', 'UpdateExpenseCategory')->name('update.expense.category');
     Route::get('/delete/expense/category/{id}', 'DeleteExpenseCategory')->name('delete.expense.category');
+
+});
+
+
+
+///DEPARTMENT All Route 
+Route::controller(DepartmentController::class)->group(function(){
+    Route::get('/all/department', 'AllDepartment')->name('all.department');
+    Route::get('/add/department', 'AddDepartment')->name('add.department');
+    Route::post('/store/expense/category', 'StoreDepartment')->name('store.department');
+    Route::get('/edit/department/{id}', 'EditDepartment')->name('edit.department');
+    Route::post('/update/department/{id}', 'UpdateDepartment')->name('update.department');
+    Route::get('/delete/department/{id}', 'DeleteDepartment')->name('delete.department');
 
 });
 

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('designations', function (Blueprint $table) {
             $table->id();
+            $table->string('designation_name')->nullable();
+            $table->integer('department_id')->nullable();
             $table->timestamps();
         });
     }

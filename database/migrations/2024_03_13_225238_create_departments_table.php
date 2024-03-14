@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
+            $table->string('department_id')->nullable();
+            $table->string('name')->nullable();
+            $table->string('hod')->nullable();
+            $table->string('year_started')->nullable();
+            $table->string('students')->nullable();
+            $table->string('employees')->nullable();
             $table->timestamps();
         });
     }
