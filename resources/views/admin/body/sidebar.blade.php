@@ -81,13 +81,13 @@
 <li><a class="{{ $currentRoute == 'all.hrm' ? 'active' : '' }}" href="{{ route('all.hrm') }}">All HRM</a></li>
 <li><a class="{{ $currentRoute == 'add.hrm' ? 'active' : '' }}" href="{{ route('add.hrm') }}">Add HRM</a></li>
 
-<li class="submenu"><a class="" href="">Department<span class="menu-arrow"></span></a>
+<li class="submenu"><a class="{{ $currentRoute == 'all.department' ? 'active' : '' }} {{ $currentRoute == 'add.department' ? 'active' : '' }}" href="">Department<span class="menu-arrow"></span></a>
 <ul>
     <li>
     <a class="{{ $currentRoute == 'all.department' ? 'active' : '' }}" href="{{ route('all.department') }}">All Department</a>
     </li>
     <li>
-    <a class="{{ $currentRoute == 'add.department' ? 'active' : '' }}" href="{{ route('add.department') }}">All Department</a>
+    <a class="{{ $currentRoute == 'add.department' ? 'active' : '' }}" href="{{ route('add.department') }}">Add Department</a>
     </li>
 </ul>
 </li>
@@ -210,10 +210,10 @@
 <ul>
 <li><a href="fees-collections.html">Fees Collection</a></li>
 <li><a class="{{ $currentRoute == 'expense.category' ? 'active' : '' }}" href="{{ route('expense.category') }}">Expense Category</a></li>
-<li><a href="expenses.html">Expenses</a></li>
+<li><a class="{{ $currentRoute == 'all.expense' ? 'active' : '' }}" href="{{ route('all.expense') }}">All Expenses</a></li>
+<li><a class="{{ $currentRoute == 'add.expense' ? 'active' : '' }}" href="{{ route('add.expense') }}">Add Expenses</a></li>
 <li><a href="salary.html">Salary</a></li>
 <li><a href="add-fees-collection.html">Add Fees</a></li>
-<li><a href="add-expenses.html">Add Expenses</a></li>
 <li><a href="add-salary.html">Add Salary</a></li>
 </ul>
 </li>

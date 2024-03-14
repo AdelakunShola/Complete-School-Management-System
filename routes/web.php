@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\SchoolClubController;
 use App\Http\Controllers\Backend\SettingsController;
 use App\Http\Controllers\Backend\LibrarianController;
 use App\Http\Controllers\Backend\DepartmentController;
+use App\Http\Controllers\Backend\ExpenseController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -223,6 +224,20 @@ Route::controller(ExpenseCategoryController::class)->group(function(){
     Route::get('/edit/expense/category/{id}', 'EditExpenseCategory');
     Route::post('/update/expense/category', 'UpdateExpenseCategory')->name('update.expense.category');
     Route::get('/delete/expense/category/{id}', 'DeleteExpenseCategory')->name('delete.expense.category');
+
+});
+
+
+
+///Expenses All Route 
+Route::controller(ExpenseController::class)->group(function(){
+    Route::get('/all/expense', 'AllExpense')->name('all.expense');
+    Route::get('/add/expense', 'AddExpense')->name('add.expense');
+    Route::post('/store/expense', 'StoreExpense')->name('store.expense');
+    Route::get('/edit/expense/{id}', 'EditExpense')->name('edit.expense');
+    Route::get('/view/expense/{id}', 'ViewExpense')->name('view.expense');
+    Route::post('/update/expense', 'UpdateExpense')->name('update.expense');
+    Route::get('/delete/expense/{id}', 'DeleteExpense')->name('delete.expense');
 
 });
 

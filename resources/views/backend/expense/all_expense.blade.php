@@ -9,10 +9,10 @@
 <div class="page-header">
 <div class="row align-items-center">
 <div class="col">
-<h3 class="page-title">MANAGE DEPARTMENTS</h3>
+<h3 class="page-title">MANAGE EXPENSES</h3>
 <ul class="breadcrumb">
 <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-<li class="breadcrumb-item active">ALL DEPARTMENTS </li>
+<li class="breadcrumb-item active">ALL EXPENSES </li>
 </ul>
 </div>
 </div> 
@@ -26,7 +26,7 @@
 <div class="page-header">
 <div class="row align-items-center">
 <div class="col">
-<a href="{{ route('add.department') }}" class="btn btn-outline-primary me-2"><i class="fas fa-plus"></i> ADD DEPARTMENTS </a>
+<a href="{{ route('add.expense') }}" class="btn btn-outline-primary me-2"><i class="fas fa-plus"></i> ADD EXPENSES </a>
 </div>
 <div class="col-auto text-end float-end ms-auto download-grp">
 <a href="#" class="btn btn-outline-primary me-2"><i class="fas fa-download"></i> Download</a>
@@ -39,39 +39,44 @@
 <thead class="student-thread">
 <tr>
 <th>S/N</th>
-<th>Department ID</th>
-<th>Department Name</th>
-<th>Designation </th>
-<th>HOD </th>
-<th>Year Started</th>
-<th>Total Teachers</th>
-<th>No of Students</th>
+<th>Expense ID</th>
+<th>Expense Category</th>
+<th>Item Name </th>
+<th>Item Quantity </th>
+<th>Amount</th>
+<th>Purchased Date</th>
+<th>Purchased By</th>
+
 
 
 <th class="text-end">Action</th>
 </tr>
 </thead>
 <tbody>
-@foreach ($department as $key=> $item ) 
+@foreach ($expense as $key=> $item ) 
 <tr>
 <td>{{ $key+1 }}</td>
-<td>{{ $item->department_id }}</td>
-<td>{{ $item->name }}</td>
-<td>{{ $item->designation_name }}</td>
-<td>{{ $item->hod }}</td>
-<td>{{ $item->year_started }}</td>
-<td>{{ $item->teachers()->count() }}</td> <!-- Count of teachers -->
-<td>{{ $item->students()->count() }}</td>
+<td>{{ $item->expense_id }}</td>
+<td>{{ $item->category_id }}</td>
+<td>{{ $item->item_name }}</td>
+<td>{{ $item->quantity }}</td>
+<td>{{ $item->amount }}</td>
+<td>{{ $item->purchase_date }}</td>
+<td>{{ $item->purchase_by }}</td> 
 
 <td class="text-end">
 <div class="actions">
 
 
-<a href="{{ route('edit.department', $item->id) }}" class="btn btn-sm text-success bg-success-light me-2" >
+<a href="{{ route('edit.expense', $item->id) }}" class="btn btn-sm text-success bg-success-light me-2" >
     <i class="feather-edit"></i>
 </a>
 
-<a class="btn btn-sm text-danger" onclick="confirmDelete('{{ route('delete.department', $item->id) }}')">
+<a href="{{ route('view.expense', $item->id) }}" class="btn btn-sm text-success bg-success-light me-2" >
+    <i class="feather-eye"></i>
+</a>
+
+<a class="btn btn-sm text-danger" onclick="confirmDelete('{{ route('delete.expense', $item->id) }}')">
     <i class="feather-trash"></i>
 </a>
 
