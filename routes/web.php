@@ -219,7 +219,7 @@ Route::controller(AlumniController::class)->group(function(){
 
 ///Expense Category All Route 
 Route::controller(ExpenseCategoryController::class)->group(function(){
-    Route::get('/expense/category', 'ExpenseCategory')->name('expense.category');
+    Route::get('/all/expense/category', 'AllExpenseCategory')->name('all.expense.category');
     Route::post('/store/expense/category', 'StoreExpenseCategory')->name('store.expense.category');
     Route::get('/edit/expense/category/{id}', 'EditExpenseCategory');
     Route::post('/update/expense/category', 'UpdateExpenseCategory')->name('update.expense.category');

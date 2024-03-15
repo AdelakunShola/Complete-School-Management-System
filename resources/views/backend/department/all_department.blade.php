@@ -61,7 +61,7 @@
 <td>{{ $item->hod }}</td>
 <td>{{ $item->year_started }}</td>
 <td>{{ $item->teachers()->count() }}</td> <!-- Count of teachers -->
-<td>{{ $item->students()->count() }}</td>
+<td>{{ $item->teachers()->count() }}</td>
 
 <td class="text-end">
 <div class="actions">

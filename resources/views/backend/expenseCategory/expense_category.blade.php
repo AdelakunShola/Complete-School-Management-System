@@ -44,7 +44,7 @@
 </tr>
 </thead>
 <tbody>
-@foreach ($expense_category as $key=> $item ) 
+@foreach ($all_expense_category as $key=> $item ) 
 <tr>
 <td>{{ $key+1 }}</td>
 <td>{{ $item->name }}</td>
@@ -81,7 +81,7 @@
 <div id="con-close-modal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 <div class="modal-dialog">
 
-<form method="post" action="{{ route('store.expense.category') }}" enctype="multipart/form-data">
+<form method="post" action="{{ route('store.expense.category') }}" >
 @csrf
 
 <div class="modal-content">

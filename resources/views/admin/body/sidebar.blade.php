@@ -209,7 +209,7 @@
 <a href="#"><i class="fas fa-file-invoice-dollar"></i> <span> Accounts</span> <span class="menu-arrow"></span></a>
 <ul>
 <li><a href="fees-collections.html">Fees Collection</a></li>
-<li><a class="{{ $currentRoute == 'expense.category' ? 'active' : '' }}" href="{{ route('expense.category') }}">Expense Category</a></li>
+<li><a class="{{ $currentRoute == 'all.expense.category' ? 'active' : '' }}" href="{{ route('all.expense.category') }}">Expense Category</a></li>
 <li><a class="{{ $currentRoute == 'all.expense' ? 'active' : '' }}" href="{{ route('all.expense') }}">All Expenses</a></li>
 <li><a class="{{ $currentRoute == 'add.expense' ? 'active' : '' }}" href="{{ route('add.expense') }}">Add Expenses</a></li>
 <li><a href="salary.html">Salary</a></li>

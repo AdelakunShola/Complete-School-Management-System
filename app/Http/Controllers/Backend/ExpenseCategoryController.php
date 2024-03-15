@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 
 class ExpenseCategoryController extends Controller
 {
-    public function ExpenseCategory(){
-        $expense_category = ExpenseCategory::latest()->get();
-        return view('backend.expenseCategory.expense_category',compact('expense_category'));
+    public function AllExpenseCategory(){
+        $all_expense_category = ExpenseCategory::latest()->get();
+        return view('backend.expensecategory.expense_category',compact('all_expense_category'));
     }//end method
 
 

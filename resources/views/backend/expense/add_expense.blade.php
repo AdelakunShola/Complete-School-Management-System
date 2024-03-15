@@ -26,14 +26,9 @@
 <h5 class="form-title"><span>Expense Information</span></h5>
 </div>
 
-<div class="col-12 col-sm-4">
-<div class="form-group local-forms">
-<label>Category Name<span class="login-danger">*</span></label>
-<input type="text" class="form-control" name="category_id">
-</div>
-</div>
 
 <div class="col-12 col-sm-4">
+<div class="form-group local-forms">
 <label for="inputVendor" class="form-label">Category Name</label>
 <select name="category_id" class="form-select" id="inputVendor">
 <option></option>
@@ -41,6 +36,7 @@
 <option value="{{ $cat->id }}">{{ $cat->name }}</option>
 @endforeach
 </select>
+</div>
 </div>
 
 
