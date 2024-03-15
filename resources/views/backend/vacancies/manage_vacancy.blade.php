@@ -1,6 +1,10 @@
 @extends('admin.admin_dashboard')
 @section('admin')
 
+@php
+$vacancy = App\Models\Vacancy::get();
+@endphp
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <div class="content container-fluid">
@@ -64,7 +68,7 @@
 
 <td class="text-end">
 <div class="actions">
-<button type="button" class="btn btn-sm text-success bg-success-light me-2" data-bs-toggle="modal" data-bs-target="#con-close-modal" id="{{ $item->id }}" onclick="schoolclub(this.id)"><i class="feather-edit"></i></button>
+<button type="button" class="btn btn-sm text-success bg-success-light me-2" data-bs-toggle="modal" data-bs-target="#con-close-modal" id="{{ $item->id }}" onclick="vacancy(this.id)"><i class="feather-edit"></i></button>
 
 
 <a href="#" class="btn btn-sm text-danger" onclick="confirmDelete('{{ route('delete.vacancy', $item->id) }}')">
@@ -223,23 +227,23 @@
 
 
 <script>
-        function schoolclub(id){
-    $.ajax({
+        function vacancy(id){
+            $.ajax({
         type: 'GET',
         url: '/edit/vacancy/'+id,
         dataType: 'json',
-
         success:function(data){
-            // console.log(data)  
             $('#edit-name').val(data.name);
             $('#edit-number_of_vacancy').val(data.number_of_vacancy);
             $('#edit-description').val(data.description);
             $('#edit-deadline').val(data.deadline);
             $('#edit-status').val(data.status);
             $('#name_id').val(data.id);
+            $('#con-close-modal').modal('show'); // Show the modal after data is populated
         }
     });
 }
+
 
     </script>
 

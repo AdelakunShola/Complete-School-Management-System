@@ -21,6 +21,7 @@ class VacancyController extends Controller
     }// End Method 
 
 
+
     public function StoreVacancy(Request $request){
         Vacancy::insert([
 

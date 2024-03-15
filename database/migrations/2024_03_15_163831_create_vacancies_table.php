@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('number_of_vacancy')->nullable();
             $table->string('deadline')->nullable();
             $table->text('description')->nullable();
-            $table->integer('status')->default(1);
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }
