@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AccountantController;
 use App\Http\Controllers\Backend\AlumniController;
+use App\Http\Controllers\Backend\AwardController;
 use App\Http\Controllers\Backend\CircularController;
 use App\Http\Controllers\Backend\EnquiryController;
 use App\Http\Controllers\Backend\ExpenseCategoryController;
@@ -14,6 +15,8 @@ use App\Http\Controllers\Backend\SettingsController;
 use App\Http\Controllers\Backend\LibrarianController;
 use App\Http\Controllers\Backend\DepartmentController;
 use App\Http\Controllers\Backend\ExpenseController;
+use App\Http\Controllers\Backend\SchoolLeaveController;
+use App\Http\Controllers\Backend\VacancyController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -253,6 +256,42 @@ Route::controller(DepartmentController::class)->group(function(){
     Route::get('/delete/department/{id}', 'DeleteDepartment')->name('delete.department');
 
 });
+
+
+///School Leave All Route 
+Route::controller(SchoolLeaveController::class)->group(function(){
+    Route::get('/school/leave', 'SchoolLeave')->name('school.leave');
+    Route::post('/store/school/leave', 'StoreSchoolClub')->name('store.school.leave');
+    Route::get('/edit/school/leave/{id}', 'EditSchoolLeave');
+    Route::post('/update/school/leave', 'UpdateSchoolLeave')->name('update.school.leave');
+    Route::get('/delete/school/leave/{id}', 'DeleteSchoolLeave')->name('delete.school.leave');
+
+});
+
+
+///MANAGE AWARD All Route 
+Route::controller(AwardController::class)->group(function(){
+    Route::get('/manage/award', 'ManageAward')->name('manage.award');
+    Route::post('/store/award', 'StoreAward')->name('store.award');
+    Route::get('/edit/award/{id}', 'EditAward');
+    Route::post('/update/award', 'UpdateAward')->name('update.award');
+    Route::get('/delete/award/{id}', 'DeleteAward')->name('delete.award');
+
+});
+
+
+
+
+///MANAGE VACANCIES All Route 
+Route::controller(VacancyController::class)->group(function(){
+    Route::get('/manage/vacancy', 'ManageVacancy')->name('manage.vacancy');
+    Route::post('/store/vacancy', 'StoreVacancy')->name('store.vacancy');
+    Route::get('/edit/vacancy/{id}', 'EditVacancy');
+    Route::post('/update/vacancy', 'UpdateVacancy')->name('update.vacancy');
+    Route::get('/delete/vacancy/{id}', 'DeleteVacancy')->name('delete.vacancy');
+
+});
+
 
 
 });///END GROUP ADMIN MIDDLEWARE

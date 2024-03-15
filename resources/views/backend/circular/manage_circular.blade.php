@@ -189,22 +189,7 @@
 </div>
 
 
-<!-- Bootstrap JS (if using Bootstrap) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 
-<!-- Bootstrap Datepicker -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
-
-<!-- Your Custom Script -->
-<script>
-    $(document).ready(function () {
-        $('.datetimepicker').datepicker({
-            format: 'dd-mm-yyyy hh:ii',
-            autoclose: true
-        });
-    });
-</script>
 
 
 <script>

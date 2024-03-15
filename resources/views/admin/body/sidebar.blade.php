@@ -93,11 +93,10 @@
 </li>
 <li class="submenu"><a class="" href="">Recruitment<span class="menu-arrow"></span></a>
 <ul>
-<li><a href="javascript:void(0);"><span>Vacancies</span></a></li>
+<li><a class="{{ $currentRoute == 'manage.vacancy' ? 'active' : '' }}" href="{{ route('manage.vacancy') }}" ><span>Vacancies</span></a></li>
 <li><a href="javascript:void(0);"> <span>Application</span></a></li>
 </ul>
 </li>
-<li><a class="" href="">Leave</a></li>
 <li class="submenu">
     <a class="" href="">Payroll<span class="menu-arrow"></span></a>
 <ul>
@@ -105,6 +104,8 @@
 <li><a href="javascript:void(0);"> <span>Add Payslip</span></a></li>
 </ul>
 </li>
+<li><a class="{{ $currentRoute == 'manage.award' ? 'active' : '' }}" href="{{ route('manage.award') }}">Manage Awards</a></li>
+<li><a class="{{ $currentRoute == 'school.leave' ? 'active' : '' }}" href="{{ route('school.leave') }}">Manage Leave</a></li>
 </ul>
 </li>
 
