@@ -129,6 +129,18 @@ class DepartmentController extends Controller
         
         return redirect()->back()->with($notification);
     }/// End Method
+
+
+
+
+
+
+    public function GetDesignation($department_id){
+        $subcat = Designation::where('department_id',$department_id)->orderBy('designation_name','ASC')->get();
+            return json_encode($subcat);
+
+    }// End Method 
+
     
     
 

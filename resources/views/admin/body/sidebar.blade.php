@@ -124,6 +124,15 @@
 
 
 <li class="submenu">
+<a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Teachers</span> <span class="menu-arrow"></span></a>
+<ul>
+<li><a class="{{ $currentRoute == 'all.teacher' ? 'active' : '' }}" href="{{ route('all.teacher') }}">All Teacher</a></li>
+<li><a class="{{ $currentRoute == 'add.teacher' ? 'active' : '' }}" href="{{ route('add.teacher') }}">Add Teacher </a></li>
+</ul>
+</li>
+
+
+<li class="submenu">
 <a href="#"><i class="fas fa-graduation-cap"></i> <span> Task Manager</span> <span class="menu-arrow"></span></a>
 <ul>
 <li><a href="students.html">Running Tasks</a></li>
@@ -167,16 +176,6 @@
 </ul>
 </li>
 
-
-<li class="submenu">
-<a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Teachers</span> <span class="menu-arrow"></span></a>
-<ul>
-<li><a href="teachers.html">Teacher List</a></li>
-<li><a href="teacher-details.html">Teacher View</a></li>
-<li><a href="add-teacher.html">Teacher Add</a></li>
-<li><a href="edit-teacher.html">Teacher Edit</a></li>
-</ul>
-</li>
 
 <li class="submenu">
 <a href="#"><i class="fas fa-building"></i> <span> Departments</span> <span class="menu-arrow"></span></a>

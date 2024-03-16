@@ -44,22 +44,21 @@
 </div>
 </div>
 
- <!-- Add Designation -->
- <div class="col-lg-6 col-md-8">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h5 class="card-title">Add Designations</h5>
-                                        </div>
-                                        <div class="card-body pt-0" id="designation-container">
-                                            <!-- Designation input fields will be added dynamically here -->
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="button" id="add-designation" class="btn btn-primary"><i class="fas fa-plus me-1"></i> Add More</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+<!-- Add Designation -->
+<div class="col-lg-6 col-md-8">
+<div class="card">
+<div class="card-header">
+<h5 class="card-title">Add Designations</h5>
+</div>
+<div class="card-body pt-0" id="designation-container">
+<!-- Designation input fields will be added dynamically here -->
+</div>
+<div class="form-group">
+<button type="button" id="add-designation" class="btn btn-primary"><i class="fas fa-plus me-1"></i> Add More</button>
+</div>
+</div>
+</div>
+                            
 
 
 <div class="col-12">

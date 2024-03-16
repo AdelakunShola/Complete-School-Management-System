@@ -9,30 +9,29 @@
 <div class="row align-items-center">
 <div class="col-sm-12">
 <div class="page-sub-header">
-<h3 class="page-title">Add HRM</h3>
+<h3 class="page-title">Add Teacher</h3>
 <ul class="breadcrumb">
-<li class="breadcrumb-item"><a href="students.html">HRM</a></li>
-<li class="breadcrumb-item active">Add HRM</li>
+<li class="breadcrumb-item"><a href="students.html">TEACHER</a></li>
+<li class="breadcrumb-item active">Add Teacher</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 
-<h3 class="page-title">{{ __('messages.welcome') }}</h3>
-<h3 class="page-title">{{ __('messages.greeting') }}</h3>
-<h3 class="page-title">{{ __('messages.submit') }}</h3>
-
 <div class="row">
 <div class="col-sm-12">
 <div class="card comman-shadow">
 <div class="card-body">
-<form method="post" action="{{ route('store.hrm') }}" enctype="multipart/form-data">
+<form method="post" action="{{ route('store.teacher') }}" enctype="multipart/form-data">
 @csrf
 <div class="row">
 <div class="col-12">
-<h5 class="form-title student-info">HRM Information <span><a href="javascript:;"><i class="feather-more-vertical"></i></a></span></h5>
+<h5 class="form-title student-info">Teacher Information <span><a href="javascript:;"><i class="feather-more-vertical"></i></a></span></h5>
 </div>
+
+
+
 <div class="col-12 col-sm-4">
 <div class="form-group local-forms">
 <label>Full Name <span class="login-danger">*</span></label>
@@ -61,8 +60,6 @@
 </div>
 </div>
 
-
-
 <div class="col-12 col-sm-4">
 <div class="form-group local-forms calendar-icon">
 <label for="field-1">Date Of Birth <span class="login-danger">*</span></label>
@@ -81,8 +78,6 @@
 <input class="form-control" type="text" name="blood_group" >
 </div>
 </div>
-
-
 
 <div class="col-12 col-sm-4">
 <div class="form-group local-forms ">
@@ -142,6 +137,109 @@
 </div>
 </div>
 
+
+
+
+
+
+
+
+
+<div class="row">
+<div class="col-md-6">
+<div class="card">
+<div class="card-header">
+<h5 class="card-title">Human Resource Information</h5>
+</div>
+<div class="card-body pt-0">
+
+
+<div class="settings-form">
+
+
+<div class="form-group local-forms calendar-icon">
+<label for="field-1">Employment Date <span class="login-danger">*</span></label>
+<input class="form-control datetimepicker" type="text" name="employment_date" placeholder="DD-MM-YYYY">
+</div>
+
+
+<div class="form-group local-forms">
+<label>End Of Employment Date </label>
+<input class="form-control" type="text" name="end_of_employment_date" placeholder="Bsc Engineering">
+</div>
+
+
+<div class="form-group local-forms ">
+<label>Starting Salary <span class="login-danger">*</span></label>
+<input class="form-control" type="text" name="starting_salary" >
+</div>
+
+<div class="form-group local-forms">
+    <label for="department">Department <span class="login-danger">*</span></label>
+    <select class="form-control" id="department" name="department_id">
+        <option value="">Select Department</option>
+        <!-- Populate departments dynamically from backend -->
+        @foreach($departments as $department)
+            <option value="{{ $department->id }}">{{ $department->name }}</option>
+        @endforeach
+    </select>
+</div>
+
+
+<div class="form-group local-forms">
+    <label for="designation">Designation <span class="login-danger">*</span></label>
+    <select class="form-control" id="designation" name="designation_id">
+        <option value="">Select Designation</option>
+    </select>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div class="col-md-6">
+<div class="card">
+<div class="card-header">
+<h5 class="card-title">Bank Details</h5>
+</div>
+<div class="card-body pt-0">
+<div class="settings-form">
+
+
+<div class="form-group local-forms">
+<label>Account Holder Name</label>
+<input class="form-control" type="text" name="account_holder_name" placeholder="">
+</div>
+
+<div class="form-group local-forms">
+<label>Account Number</label>
+<input class="form-control" type="text" name="account_number" placeholder="">
+</div>
+
+<div class="form-group local-forms ">
+<label>Bank Name <span class="login-danger">*</span></label>
+<input class="form-control" type="text" name="bank_name" >
+</div>
+
+<div class="form-group local-forms ">
+<label>Account Type <span class="login-danger">*</span></label>
+<input class="form-control" type="text" name="account_type" >
+</div>
+
+<div class="form-group local-forms ">
+<label>Branch name<span class="login-danger">*</span></label>
+<input class="form-control" type="text" name="branch" >
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 
@@ -268,6 +366,37 @@ Choose File <input type="file" id="additional_document2" name="additional_docume
         });
     });
 </script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+  		
+  		$(document).ready(function(){
+  			$('select[name="department_id"]').on('change', function(){
+  				var department_id = $(this).val();
+  				if (department_id) {
+  					$.ajax({
+  						url: "{{ url('/designation/ajax') }}/"+department_id,
+  						type: "GET",
+  						dataType:"json",
+  						success:function(data){
+  							$('select[name="designation_id"]').html('');
+  							var d =$('select[name="designation_id"]').empty();
+  							$.each(data, function(key, value){
+  								$('select[name="designation_id"]').append('<option value="'+ value.id + '">' + value.designation_name + '</option>');
+  							});
+  						},
+  					});
+  				} else {
+  					alert('danger');
+  				}
+  			});
+  		});
+  </script>
 
 
 @endsection

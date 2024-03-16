@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\DepartmentController;
 use App\Http\Controllers\Backend\ExpenseController;
 use App\Http\Controllers\Backend\JobApplicantController;
 use App\Http\Controllers\Backend\SchoolLeaveController;
+use App\Http\Controllers\Backend\TeacherController;
 use App\Http\Controllers\Backend\VacancyController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -193,6 +194,23 @@ Route::controller(HRMController ::class)->group(function(){
 });
 
 
+///MANAGE TEACHER  All Route 
+Route::controller(TeacherController ::class)->group(function(){
+    Route::get('/all/teacher', 'AllTeacher')->name('all.teacher');
+    Route::get('/add/teacher', 'AddTeacher')->name('add.teacher');
+    Route::post('/store/teacher', 'StoreTeacher')->name('store.teacher');
+    Route::get('/edit/teacher/{id}', 'EditTeacher')->name('edit.teacher');
+    Route::get('/view/teacher/{id}', 'ViewTeacher')->name('view.teacher');
+    Route::post('/update/teacher', 'UpdateTeacher')->name('update.teacher');
+   Route::get('/delete/teacher/{id}', 'DeleteTeacher')->name('delete.teacher');
+
+   // Inside your routes/web.php
+  Route::get('/download', 'Download')->name('download');
+
+
+});
+
+
 ///MANAGE ACCOUNTANT  All Route 
 Route::controller(AccountantController ::class)->group(function(){
     Route::get('/all/accountant', 'AllAccountant')->name('all.accountant');
@@ -255,6 +273,9 @@ Route::controller(DepartmentController::class)->group(function(){
     Route::get('/edit/department/{id}', 'EditDepartment')->name('edit.department');
     Route::post('/update/department/{id}', 'UpdateDepartment')->name('update.department');
     Route::get('/delete/department/{id}', 'DeleteDepartment')->name('delete.department');
+
+    Route::get('/designation/ajax/{department_id}' , 'GetDesignation');
+
 
 });
 
