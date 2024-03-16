@@ -1,6 +1,12 @@
 @extends('admin.admin_dashboard')
 @section('admin')
 
+<style type="text/css">
+option.primary {
+    border: 1px solid green;
+}
+</style>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <div class="content container-fluid">
@@ -56,7 +62,7 @@
 <td>{{ $item->gift }}</td>
 <td>{{ $item->amount }}</td>
 <td>{{ $item->date }}</td>
-<td>{{ $item->employee_id }}</td>
+<td>{{ optional($item->employee)->name }}</td>
 
 <td class="text-end">
 <div class="actions">
@@ -140,14 +146,33 @@
 
 
 <div class="row">
-<div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">AMOUNT</label>
-<input type="text" class="form-control" id="description" name="employee_id"  >
+    <div class="col-md-12">
+        <div class="mb-3">
+            <label for="employee_id" class="form-label">Awarded Employee</label>
+            <div class="accordion" id="employeeAccordion">
+                @foreach($employeeNamesByRole as $role => $employees)
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ $role }}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $role }}" aria-expanded="false" aria-controls="collapse{{ $role }}">
+                                {{ $role }}
+                            </button>
+                        </h2>
+                        <div id="collapse{{ $role }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $role }}" data-bs-parent="#employeeAccordion">
+                            <div class="accordion-body">
+                                <select class="form-select" name="employee_id">
+                                    <option value="">Select Employee</option>
+                                    @foreach($employees as $employee)
+                                        <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-</div>
-
 
 
 
@@ -206,22 +231,22 @@
 
 <div class="row">
 <div class="col-md-12">
-<div class="mb-3 form-group local-forms calendar-icon">
-<label for="field-1" class="login-danger form-label">CIRCULAR DATE</label>
-<input class="form-control datetimepicker" type="text" id="edit-date" name="date" placeholder="29-04-2022">
-</div>
-</div>
-</div>
+                            <div class="mb-3">
+                                <label for="edit-employee_id" class="form-label">EMPLOYEE</label>
+                                <select class="form-select" id="edit-employee_id" name="employee_id">
+                                    <option value="">Select Employee</option>
+                                    @foreach($employeeNamesByRole as $role => $employees)
+                                        <optgroup label="{{ $role }}">
+                                            @foreach($employees as $employee)
+                                                <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                            @endforeach
+                                        </optgroup>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
-
-<div class="row">
-<div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">EMPLOYEE</label>
-<input type="text" class="form-control" id="edit-employee_id" name="employee_id"  >
-</div>
-</div>
-</div>
 
 
 
@@ -255,6 +280,27 @@
         }
     });
 }
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Get the select element
+    var selectElement = document.getElementById('edit-employee_id');
+
+    // Add change event listener
+    selectElement.addEventListener('change', function() {
+        var selectedOption = selectElement.options[selectElement.selectedIndex];
+        if (selectedOption) {
+            // Remove primary class from all options
+            selectElement.querySelectorAll('option').forEach(function(option) {
+                option.classList.remove('primary');
+            });
+            // Add primary class to the selected option
+            selectedOption.classList.add('primary');
+        }
+    });
+});
 
     </script>
 

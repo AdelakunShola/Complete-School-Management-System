@@ -91,10 +91,12 @@
     </li>
 </ul>
 </li>
-<li class="submenu"><a class="" href="">Recruitment<span class="menu-arrow"></span></a>
+<li class="{{ $currentRoute == 'manage.vacancy' ? 'active' : '' }} {{ $currentRoute == 'all.application' ? 'active' : '' }}  {{ $currentRoute == 'add.application' ? 'active' : '' }} submenu"><a class="" href="">Recruitment<span class="menu-arrow"></span></a>
 <ul>
 <li><a class="{{ $currentRoute == 'manage.vacancy' ? 'active' : '' }}" href="{{ route('manage.vacancy') }}" ><span>Vacancies</span></a></li>
-<li><a href="javascript:void(0);"> <span>Application</span></a></li>
+<li><a class="{{ $currentRoute == 'all.application' ? 'active' : '' }}" href="{{ route('all.application') }}"> <span>Add Application</span></a></li>
+<li><a class="{{ $currentRoute == 'add.application' ? 'active' : '' }}" href="{{ route('add.application') }}"> <span>All Application</span></a></li>
+
 </ul>
 </li>
 <li class="submenu">

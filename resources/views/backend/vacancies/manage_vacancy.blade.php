@@ -110,7 +110,7 @@ $vacancy = App\Models\Vacancy::get();
 <div class="row">
 <div class="col-md-12">
 <div class="mb-3">
-<label for="field-1" class="form-label">Title</label>
+<label for="field-1" class="form-label">Position</label>
 <input type="text" class="form-control" id="name" name="name"  >
 </div>
 </div>
@@ -171,7 +171,7 @@ $vacancy = App\Models\Vacancy::get();
                 <div class="row">
 <div class="col-md-12">
 <div class="mb-3">
-<label for="field-1" class="form-label">Title</label>
+<label for="field-1" class="form-label">Position</label>
 <input type="text" class="form-control" id="edit-name" name="name"  >
 </div>
 </div>

@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\SettingsController;
 use App\Http\Controllers\Backend\LibrarianController;
 use App\Http\Controllers\Backend\DepartmentController;
 use App\Http\Controllers\Backend\ExpenseController;
+use App\Http\Controllers\Backend\JobApplicantController;
 use App\Http\Controllers\Backend\SchoolLeaveController;
 use App\Http\Controllers\Backend\VacancyController;
 use App\Http\Controllers\ProfileController;
@@ -289,6 +290,24 @@ Route::controller(VacancyController::class)->group(function(){
     Route::get('/edit/vacancy/{id}', 'EditVacancy');
     Route::post('/update/vacancy', 'UpdateVacancy')->name('update.vacancy');
     Route::get('/delete/vacancy/{id}', 'DeleteVacancy')->name('delete.vacancy');
+
+});
+
+
+
+///ALL JOB APPLICATIONS  All Route 
+Route::controller(JobApplicantController ::class)->group(function(){
+    Route::get('/all/application', 'AllApplication')->name('all.application');
+    Route::get('/add/application', 'AddApplication')->name('add.application');
+    Route::post('/store/application', 'StoreApplication')->name('store.application');
+    Route::get('/view/application', 'ViewApplication')->name('view.application');
+    Route::get('/edit/application', 'EditApplication')->name('edit.application');
+
+    Route::get('/delete/application/{id}', 'DeleteApplication')->name('delete.application');
+
+    Route::get('download/cover_letter/{id}', 'downloadCoverLetter')->name('download.cover_letter');
+    Route::get('download/cv/{id}', 'downloadCV')->name('download.cv');
+    
 
 });
 
