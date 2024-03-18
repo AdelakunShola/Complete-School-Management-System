@@ -43,4 +43,9 @@ class User extends Authenticatable
     public function bank() {
         return $this->hasOne(Bank::class);
     }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
 }

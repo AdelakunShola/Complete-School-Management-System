@@ -147,23 +147,45 @@ Version      : 1.0
 	
 	// Experience Add More
 	
-    $(".settings-form").on('click','.trash', function () {
-		$(this).closest('.links-cont').remove();
-		return false;
-    });
+//    $(".settings-form").on('click','.delete-allowance', function () {
+//		$(this).closest('.links-cont').remove();
+//		return false;
+ //   });
 
-    $(document).on("click",".add-links",function () {
-		var experiencecontent = '<div class="row form-row links-cont">' +
-			'<div class="form-group d-flex">' +
-				'<button class="btn social-icon"><i class="feather-github"></i></button>' +
-				'<input type="text" class="form-control" placeholder="Social Link">' +
-				'<div><a href="#" class="btn trash"><i class="feather-trash-2"></i></a></div>' +
-			'</div>' +
-		'</div>';
-		
-        $(".settings-form").append(experiencecontent);
-        return false;
-    });
+//	$(document).on("click", ".allowances-add-link", function () {
+//		var experiencecontent = '<div class="row form-row links-cont">' +
+//		'<div class="form-group local-forms form-placeholder d-flex">' +
+//		'<label style="color: black;" for="inputVendor" class="form-label">Allowance Type</label>' +
+//		'<input type="text" class="form-control me-2" name="allowance_type[]" placeholder="Allowance type">' +
+//		'<input type="number" min="0" class="form-control allowance-amount" name="allowance_amount[]" placeholder="Allowance Amount">' +
+//		'<div><a href="#" class="btn trash delete-allowance"><i class="feather-trash-2"></i></a></div>' +
+//	'</div>' +
+//	'</div>';
+
+
+
+
+
+	
+//		$(".allowances-form .links-info").append(experiencecontent);
+//		return false;
+//	});
+	
+//	$(document).on("click", ".deductions-add-link", function () {
+//		var experiencecontent = '<div class="row form-row links-cont">' +
+//			'<div class="form-group form-placeholder d-flex">' +
+//			'<input type="text" class="form-control me-2" placeholder="deduction type">' +
+//			'<input type="number" min="0" class="form-control" placeholder="0">' +
+//			'<div><a href="#" class="btn trash"><i class="feather-trash-2"></i></a></div>' +
+//			'</div>' +
+//			'</div>';
+	
+//		$(".deductions-form .links-info").append(experiencecontent);
+//		return false;
+//	});
+	
+
+	
 	
 	// Datetimepicker
 	

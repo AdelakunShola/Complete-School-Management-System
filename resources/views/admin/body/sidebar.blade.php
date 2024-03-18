@@ -102,8 +102,8 @@
 <li class="submenu">
     <a class="" href="">Payroll<span class="menu-arrow"></span></a>
 <ul>
-<li><a href="javascript:void(0);"><span>All Payroll</span></a></li>
-<li><a href="javascript:void(0);"> <span>Add Payslip</span></a></li>
+<li><a class="{{ $currentRoute == 'all.payroll' ? 'active' : '' }}" href="{{ route('all.payroll') }}"><span>All Payroll</span></a></li>
+<li><a class="{{ $currentRoute == 'add.payroll' ? 'active' : '' }}" href="{{ route('add.payroll') }}"> <span>Add Payslip</span></a></li>
 </ul>
 </li>
 <li><a class="{{ $currentRoute == 'manage.award' ? 'active' : '' }}" href="{{ route('manage.award') }}">Manage Awards</a></li>

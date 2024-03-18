@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\LibrarianController;
 use App\Http\Controllers\Backend\DepartmentController;
 use App\Http\Controllers\Backend\ExpenseController;
 use App\Http\Controllers\Backend\JobApplicantController;
+use App\Http\Controllers\Backend\PayrollController;
 use App\Http\Controllers\Backend\SchoolLeaveController;
 use App\Http\Controllers\Backend\TeacherController;
 use App\Http\Controllers\Backend\VacancyController;
@@ -329,6 +330,25 @@ Route::controller(JobApplicantController ::class)->group(function(){
     Route::get('download/cover_letter/{id}', 'downloadCoverLetter')->name('download.cover_letter');
     Route::get('download/cv/{id}', 'downloadCV')->name('download.cv');
     
+
+});
+
+
+
+///MANAGE PAYROLL All Route 
+Route::controller(PayrollController::class)->group(function(){
+    Route::get('/all/payroll', 'AllPayroll')->name('all.payroll');
+    Route::get('/add/payroll', 'AddPayroll')->name('add.payroll');
+    Route::post('/store/payroll', 'StorePayroll')->name('store.payroll');
+    Route::post('/update/payrolls/mark-as-paid/{payroll}', 'MarkAsPaid')->name('payroll.paid');
+    Route::post('/update/payroll/mark-as-unpaid/{payroll}', 'MarkAsUnpaid')->name('payroll.unpaid');
+
+
+
+    Route::get('/getTeacher/ajax/{department_id}', 'GetEmployeeName');
+
+    Route::get('/getSalary/ajax/{user_id}', 'GetSalary');
+
 
 });
 
