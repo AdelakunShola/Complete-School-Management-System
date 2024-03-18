@@ -53,7 +53,7 @@
 <tr>
 <td>{{ $key+1 }}</td>
 <td>{{ $item->users->name }}</td>
-<td>Basic Salary{{ $item->net_salary }}<br>Allowances{{ $item->allowances }}<br>Deductions{{ $item->deductions }}<br>Net Salary{{ $item->net_salary }}</td>
+<td>Basic Salary:: {{ $item->net_salary }}<br>Allowances:: {{ $item->allowances }}<br>Deductions:: {{ $item->deductions }}<br>Net Salary:: {{ $item->net_salary }}</td>
 <td>{{ DateTime::createFromFormat('!m', $item->month)->format('F') }} - {{ $item->year }}</td>
 @if ($item->status == 'unpaid')
 <td><button type="button" class="btn btn-rounded btn-danger">{{ $item->status }}</button></td>
