@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\Payroll;
+use App\Models\Settings;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
 class PayrollController extends Controller
@@ -40,29 +42,25 @@ class PayrollController extends Controller
             // Add more validation rules for other fields if needed
         ]);
     
-        // Process allowances and deductions
+        // Combine allowance types and amounts into an array
         $allowances = [];
-        foreach ($request->allowance_type as $key => $type) {
-            if (!empty($type) && !empty($request->allowance_amount[$key])) {
-                // Append allowance to the array
-                $allowances[] = [
-                    'type' => $type,
-                    'amount' => $request->allowance_amount[$key]
-                ];
+        for ($i = 1; $i <= 4; $i++) {
+            $allowanceType = $request->input("allowance_type$i");
+            $allowanceAmount = $request->input("allowance_amount$i");
+    
+            if ($allowanceType && $allowanceAmount) {
+                $allowances[] = ["type" => $allowanceType, "amount" => $allowanceAmount];
             }
         }
-
-        
     
-    
+        // Combine deduction types and amounts into an array
         $deductions = [];
-        foreach ($request->deduction_type as $key => $type) {
-            if (!empty($type) && !empty($request->deduction_amount[$key])) {
-                // Append deduction to the array
-                $deductions[] = [
-                    'type' => $type,
-                    'amount' => $request->deduction_amount[$key]
-                ];
+        for ($i = 1; $i <= 4; $i++) {
+            $deductionType = $request->input("deduction_type$i");
+            $deductionAmount = $request->input("deduction_amount$i");
+    
+            if ($deductionType && $deductionAmount) {
+                $deductions[] = ["type" => $deductionType, "amount" => $deductionAmount];
             }
         }
     
@@ -74,8 +72,11 @@ class PayrollController extends Controller
             'year' => $request->year,
             'status' => $request->status,
             'net_salary' => $request->net_salary,
-            'allowances' => json_encode($allowances), // Store allowances as JSON
-            'deductions' => json_encode($deductions), // Store deductions as JSON
+            'allowances' => json_encode($allowances), // Encode allowances array as JSON
+            'deductions' => json_encode($deductions), // Encode deductions array as JSON
+            'total_allowance' =>  $request->total_allowance, 
+            'total_deduction' =>  $request->total_deduction, 
+            'tax_percentage' => $request->tax_percentage, // Store tax percentage
             'created_at' => Carbon::now(),
         ]);
     
@@ -87,6 +88,89 @@ class PayrollController extends Controller
         // Redirect to a success page or return a response as needed
         return redirect()->route('all.payroll')->with($notification);
     }
+    
+
+
+    public function EditPayroll($id){
+        $setting = Settings::find(1);
+        $payroll_detail = Payroll::latest()->get();
+        $payroll_data = Payroll::find($id);
+        $departments = Department::all(); // Fetch all departments
+        $users = User::all(); // Fetch all users
+        return view('backend.payroll.edit_payroll', compact('setting', 'payroll_detail', 'payroll_data', 'departments', 'users'));
+    }
+    
+
+
+    public function PayrollDetail($id){
+
+        $setting = Settings::find(1);
+        $payroll_detail = Payroll::latest()->get();
+        $payroll_id = Payroll::find($id);
+        return view('backend.payroll.payroll_detail',compact('setting','payroll_detail','payroll_id'));
+    }//end method
+
+
+
+
+    public function update(Request $request, $id) {
+        // Validate the incoming request data
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'department_id' => 'required|exists:departments,id',
+            'month' => 'required',
+            'year' => 'required',
+            'status' => 'required|in:paid,unpaid',
+            // Add more validation rules for other fields if needed
+        ]);
+    
+        // Combine allowance types and amounts into an array
+        $allowances = [];
+        for ($i = 1; $i <= 4; $i++) {
+            $allowanceType = $request->input("allowance_type$i");
+            $allowanceAmount = $request->input("allowance_amount$i");
+    
+            if ($allowanceType && $allowanceAmount) {
+                $allowances[] = ["type" => $allowanceType, "amount" => $allowanceAmount];
+            }
+        }
+    
+        // Combine deduction types and amounts into an array
+        $deductions = [];
+        for ($i = 1; $i <= 4; $i++) {
+            $deductionType = $request->input("deduction_type$i");
+            $deductionAmount = $request->input("deduction_amount$i");
+    
+            if ($deductionType && $deductionAmount) {
+                $deductions[] = ["type" => $deductionType, "amount" => $deductionAmount];
+            }
+        }
+    
+        // Update data in the database
+        $payroll = Payroll::findOrFail($id);
+        $payroll->update([
+            'user_id' => $request->user_id,
+            'department_id' => $request->department_id,
+            'month' => $request->month,
+            'year' => $request->year,
+            'status' => $request->status,
+            'net_salary' => $request->net_salary,
+            'allowances' => json_encode($allowances), // Encode allowances array as JSON
+            'deductions' => json_encode($deductions), // Encode deductions array as JSON
+            'total_allowance' =>  $request->total_allowance, 
+            'total_deduction' =>  $request->total_deduction, 
+            'tax_percentage' => $request->tax_percentage, // Store tax percentage
+        ]);
+    
+        $notification = [
+            'message' => 'Payroll Data Updated Successfully',
+            'alert-type' => 'success',
+        ];    
+    
+        // Redirect to a success page or return a response as needed
+        return redirect()->route('all.payroll')->with($notification);
+    }
+    
     
 
     

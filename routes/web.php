@@ -340,10 +340,14 @@ Route::controller(PayrollController::class)->group(function(){
     Route::get('/all/payroll', 'AllPayroll')->name('all.payroll');
     Route::get('/add/payroll', 'AddPayroll')->name('add.payroll');
     Route::post('/store/payroll', 'StorePayroll')->name('store.payroll');
-    Route::post('/update/payrolls/mark-as-paid/{payroll}', 'MarkAsPaid')->name('payroll.paid');
-    Route::post('/update/payroll/mark-as-unpaid/{payroll}', 'MarkAsUnpaid')->name('payroll.unpaid');
+    Route::post('/update/payroll/mark-as-paid', 'MarkAsPaid')->name('update.paid');
+    Route::post('/update/payroll/mark-as-unpaid', 'MarkAsUnpaid')->name('update.unpaid');
 
+    Route::get('/payroll/details/{id}', 'PayrollDetail')->name('payroll.detail');
+    Route::get('/edit/payroll/{id}', 'EditPayroll')->name('payroll.edit');
+    Route::post('/update/payroll/{id}', 'UpdatePayroll')->name('update.payroll');
 
+    
 
     Route::get('/getTeacher/ajax/{department_id}', 'GetEmployeeName');
 

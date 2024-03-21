@@ -48,4 +48,21 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Department::class);
     }
+
+
+    public function designation()
+     {
+        return $this->belongsTo(Designation::class, 'department_id');
+     }
+
+
+     public function users()
+{
+    return $this->belongsTo(User::class, 'user_id');
+}
+
+
+
+
+     
 }

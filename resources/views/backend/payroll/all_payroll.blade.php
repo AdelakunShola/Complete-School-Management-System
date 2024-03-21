@@ -53,7 +53,13 @@
 <tr>
 <td>{{ $key+1 }}</td>
 <td>{{ $item->users->name }}</td>
-<td>Basic Salary:: {{ $item->net_salary }}<br>Allowances:: {{ $item->allowances }}<br>Deductions:: {{ $item->deductions }}<br>Net Salary:: {{ $item->net_salary }}</td>
+<td>
+<strong>Basic Salary::</strong> {{ $item->users->starting_salary }}<br>
+<strong>Total-Allowances::</strong> {{ $item->total_allowance }}<br>
+<strong>Total-Deductions::</strong> {{ $item->total_deduction }}<br>
+<strong>Tax-Percentage::</strong> {{ $item->tax_percentage }}%<br>
+<strong>Net Salary::</strong> {{ $item->net_salary }}
+</td>
 <td>{{ DateTime::createFromFormat('!m', $item->month)->format('F') }} - {{ $item->year }}</td>
 @if ($item->status == 'unpaid')
 <td><button type="button" class="btn btn-rounded btn-danger">{{ $item->status }}</button></td>
@@ -66,21 +72,26 @@
 <div class="actions">
 
 
-<a href="" class="btn btn-sm text-success bg-success-light me-2" >
+<a href="{{ route('payroll.detail', $item->id) }}" class="btn btn-sm text-success bg-success-light me-2" >
     <i class="feather-eye"></i>
 </a>
 
-@if($item->status === 'unpaid')
-<form action="{{ route('payroll.paid', $item->id) }}" method="POST">
+
+<a href="{{ route('payroll.edit', $item->id) }}" class="btn btn-sm text-success bg-success-light me-2" >
+    <i class="feather-edit"></i>
+</a>
+
+<!---@if($item->status === 'unpaid')
+<form action="{{ route('update.paid', $item->id) }}" method="POST">
 @csrf
 <button type="submit" class="btn btn-success">Mark as Paid</button>
 </form>
 @else
-<form action="{{ route('payroll.unpaid', $item->id) }}" method="POST">
+<form action="{{ route('update.unpaid', $item->id) }}" method="POST">
 @csrf
 <button type="submit" class="btn btn-warning">Mark as Unpaid</button>
 </form>
-@endif
+@endif--->
 
 
 </div>

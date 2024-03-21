@@ -121,12 +121,58 @@ echo "<option value=\"$year\">$year</option>";
 </div>
 <div class="card-body pt-0">
 <div class="settings-form allowances-form">
+
 <div class="links-info">
 <div class="row form-row links-cont" id="allowances-container">
 <div class="form-group local-forms form-placeholder d-flex">
 <label style="color: black;" for="inputVendor" class="form-label">Allowance Type</label>
-<input type="text" class="form-control me-2" name="allowance_type[]" placeholder="Allowance type">
-<input type="number" min="0" class="form-control allowance-amount" name="allowance_amount[]" placeholder="Allowance Amount">
+<input type="text" class="form-control me-2" name="allowance_type1" placeholder="Allowance type">
+<input type="number" min="0" class="form-control allowance-amount" name="allowance_amount1" placeholder="Allowance Amount">
+<div>
+<a href="#" class="btn trash delete-allowance">
+<i class="feather-trash-2"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="links-info">
+<div class="row form-row links-cont" id="allowances-container">
+<div class="form-group local-forms form-placeholder d-flex">
+<label style="color: black;" for="inputVendor" class="form-label">Allowance Type</label>
+<input type="text" class="form-control me-2" name="allowance_type2" placeholder="Allowance type">
+<input type="number" min="0" class="form-control allowance-amount" name="allowance_amount2" placeholder="Allowance Amount">
+<div>
+<a href="#" class="btn trash delete-allowance">
+<i class="feather-trash-2"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="links-info">
+<div class="row form-row links-cont" id="allowances-container">
+<div class="form-group local-forms form-placeholder d-flex">
+<label style="color: black;" for="inputVendor" class="form-label">Allowance Type</label>
+<input type="text" class="form-control me-2" name="allowance_type3" placeholder="Allowance type">
+<input type="number" min="0" class="form-control allowance-amount" name="allowance_amount3" placeholder="Allowance Amount">
+<div>
+<a href="#" class="btn trash delete-allowance">
+<i class="feather-trash-2"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="links-info">
+<div class="row form-row links-cont" id="allowances-container">
+<div class="form-group local-forms form-placeholder d-flex">
+<label style="color: black;" for="inputVendor" class="form-label">Allowance Type</label>
+<input type="text" class="form-control me-2" name="allowance_type4" placeholder="Allowance type">
+<input type="number" min="0" class="form-control allowance-amount" name="allowance_amount4" placeholder="Allowance Amount">
 <div>
 <a href="#" class="btn trash delete-allowance">
 <i class="feather-trash-2"></i>
@@ -136,12 +182,6 @@ echo "<option value=\"$year\">$year</option>";
 </div>
 </div>
 </div>
-<div class="form-group">
-<button type="button" class="btn add-links allowances-add-link" id="add-allowance">
-<i class="fas fa-plus me-1"></i> Add More
-</button>
-</div>
-
 
 </div>
 </div>
@@ -155,39 +195,116 @@ echo "<option value=\"$year\">$year</option>";
 
 <!-- DEDUCTIONS -->
 <div class="col-md-6">
-    <div class="card">
-        <div class="card-header">
-            <h5 class="card-title">ADD DEDUCTIONS</h5>
-        </div>
-        <div class="card-body pt-0">
-          
-                <div class="settings-form deductions-form">
-                    <div class="links-info">
-                        <div class="row form-row links-cont" id="deductions-container">
-                            <div class="form-group local-forms form-placeholder d-flex">
-                                <label style="color: black;" for="inputVendor" class="form-label">Deduction Type</label>
-                                <input type="text" class="form-control me-2" name="deduction_type[]" placeholder="Deduction type">
-                                <input type="number" min="0" class="form-control deduction-amount" name="deduction_amount[]" placeholder="Deduction Amount">
-                                <div>
-                                    <a href="#" class="btn trash delete-deduction">
-                                        <i class="feather-trash-2"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <button type="button" class="btn add-links deductions-add-link" id="add-deduction">
-                        <i class="fas fa-plus me-1"></i> Add More
-                    </button>
-                </div>
-               
-           
-        </div>
-    </div>
+<div class="card">
+<div class="card-header">
+<h5 class="card-title">ADD DEDUCTIONS</h5>
 </div>
+<div class="card-body pt-0">
+
+<div class="settings-form deductions-form">
+
+<div class="links-info">
+<div class="row form-row links-cont" id="deductions-container">
+<div class="form-group local-forms form-placeholder d-flex">
+<label style="color: black;" for="inputVendor" class="form-label">Deduction Type</label>
+<input type="text" class="form-control me-2" name="deduction_type1" placeholder="Deduction type">
+<input type="number" min="0" class="form-control deduction-amount" name="deduction_amount1" placeholder="Deduction Amount">
+<div>
+<a href="#" class="btn trash delete-deduction">
+<i class="feather-trash-2"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="links-info">
+<div class="row form-row links-cont" id="deductions-container">
+<div class="form-group local-forms form-placeholder d-flex">
+<label style="color: black;" for="inputVendor" class="form-label">Deduction Type</label>
+<input type="text" class="form-control me-2" name="deduction_type2" placeholder="Deduction type">
+<input type="number" min="0" class="form-control deduction-amount" name="deduction_amount2" placeholder="Deduction Amount">
+<div>
+<a href="#" class="btn trash delete-deduction">
+<i class="feather-trash-2"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="links-info">
+<div class="row form-row links-cont" id="deductions-container">
+<div class="form-group local-forms form-placeholder d-flex">
+<label style="color: black;" for="inputVendor" class="form-label">Deduction Type</label>
+<input type="text" class="form-control me-2" name="deduction_type3" placeholder="Deduction type">
+<input type="number" min="0" class="form-control deduction-amount" name="deduction_amount3" placeholder="Deduction Amount">
+<div>
+<a href="#" class="btn trash delete-deduction">
+<i class="feather-trash-2"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="links-info">
+<div class="row form-row links-cont" id="deductions-container">
+<div class="form-group local-forms form-placeholder d-flex">
+<label style="color: black;" for="inputVendor" class="form-label">Deduction Type</label>
+<input type="text" class="form-control me-2" name="deduction_type4" placeholder="Deduction type">
+<input type="number" min="0" class="form-control deduction-amount" name="deduction_amount4" placeholder="Deduction Amount">
+<div>
+<a href="#" class="btn trash delete-deduction">
+<i class="feather-trash-2"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+
+<!-- Tax -->
+<div class="col-md-6">
+<div class="card">
+<div class="card-header">
+<h5 class="card-title">ADD PERSONAL INCOME TAX</h5>
+</div>
+<div class="card-body pt-0">
+<div class="settings-form deductions-form">
+<div class="links-info">
+<div class="row form-row links-cont" id="tax-container">
+<div class="form-group local-forms form-placeholder d-flex">
+<label style="color: black;" for="inputVendor" class="form-label">Tax Percentage</label>
+<input type="number" min="0" class="form-control me-2" id="tax_percentage" name="tax_percentage" placeholder="Tax Percentage">
+<span class="input-group-text" id="sizing-addon3">%</span>
+<div>
+<a href="#" class="btn trash delete-tax">
+<i class="feather-trash-2"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="form-group">
+<button type="button" class="btn add-links deductions-add-link" id="add-tax">
+<i class="fas fa-plus me-1"></i> Add More
+</button>
+</div>
+</div>
+</div>
+
+
 
 
 
@@ -264,10 +381,6 @@ echo "<option value=\"$year\">$year</option>";
 </div>
 </div>
 
-
-
-
-
 </form>
 
 
@@ -276,33 +389,34 @@ echo "<option value=\"$year\">$year</option>";
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 
 
 <script type="text/javascript">
   		
   		$(document).ready(function(){
-  			$('select[name="department_id"]').on('change', function(){
-  				var department_id = $(this).val();
-  				if (department_id) {
-  					$.ajax({
-                        type: 'GET',
-                        url: "{{url('/getTeacher/ajax')}}/" + department_id,
-  						dataType:"json",
-  						success:function(data){
-  							$('select[name="user_id"]').html('');
-  							var d =$('select[name="user_id"]').empty();
-  							$.each(data, function(key, value){
-  								$('select[name="user_id"]').append('<option value="'+ value.id + '">' + value.name + '</option>');
-  							});
-  						},
-  					});
-  				} else {
-  					alert('danger');
-  				}
-  			});
-  		});
+    $('select[name="department_id"]').on('change', function(){
+        var department_id = $(this).val();
+        if (department_id) {
+            $.ajax({
+                type: 'GET',
+                url: "{{url('/getTeacher/ajax')}}/" + department_id,
+                dataType: "json",
+                success:function(data){
+                    var userDropdown = $('select[name="user_id"]');
+                    userDropdown.html(''); // Clear existing options
+                    userDropdown.append('<option value="">Select Employee</option>'); // Add default option
+                    $.each(data, function(key, value){
+                        userDropdown.append('<option value="'+ value.id + '">' + value.name + '</option>');
+                    });
+                },
+            });
+        } else {
+            // If no department is selected, reset the employee dropdown
+            $('select[name="user_id"]').html('<option value="">Select Employee</option>');
+        }
+    });
+});
+
   </script>
 
 
@@ -331,148 +445,86 @@ echo "<option value=\"$year\">$year</option>";
         }
     });
 });
-  </script>
+</script>
+
 
 
 <script>
-$(document).ready(function() {
-    // Counter to keep track of the number of allowance input fields
-    var allowanceCounter = 1;
-
-    // Trigger calculation of total allowance on page load
-    calculateAndDisplayTotalAllowance();
-
-    // Add More button click event handler
-    $('#add-allowance').click(function() {
-        // Increment the counter
-        allowanceCounter++;
-
-        // HTML code for new allowance input fields
-        var newAllowanceField = `
-            <div class="form-group local-forms form-placeholder d-flex">
-                <label style="color: black;" for="inputVendor" class="form-label">Allowance Type</label>
-                <input type="text" class="form-control me-2" name="allowance_type[]" placeholder="Allowance type">
-                <input type="number" min="0" class="form-control allowance-amount" name="allowance_amount[]" placeholder="Allowance Amount">
-                <div>
-                    <a href="#" class="btn trash delete-allowance">
-                        <i class="feather-trash-2"></i>
-                    </a>
-                </div>
-            </div>`;
-
-        // Append the new allowance input fields to the container
-        $('#allowances-container').append(newAllowanceField);
-        calculateAndDisplayTotalAllowance(); // Recalculate total allowance
-    });
-
-    // Calculate total allowance when typing allowance amount
     $(document).on('input', '.allowance-amount', function() {
-        calculateAndDisplayTotalAllowance();
+    var totalAllowance = 0;
+    $('.allowance-amount').each(function() {
+        var amount = parseFloat($(this).val()) || 0;
+        totalAllowance += amount;
     });
-
-    // Delete allowance event handler
-    $(document).on('click', '.delete-allowance', function(event) {
-    event.preventDefault(); // Prevent default action of anchor tag
-    $(this).closest('.form-group.local-forms').remove(); // Remove the allowance field
-    calculateAndDisplayTotalAllowance(); // Recalculate total allowance
-});
-
-// Delete allowance event handler
-$(document).on('click', '.delete-allowance', function(event) {
-    event.preventDefault(); // Prevent default action of anchor tag
-    $(this).closest('.form-group.local-forms').remove(); // Remove the allowance field
-    calculateAndDisplayTotalAllowance(); // Recalculate total allowance
-});
-
-
-    // Function to calculate and display total allowance
-    function calculateAndDisplayTotalAllowance() {
-        var totalAllowance = 0;
-        $('.allowance-amount').each(function() {
-            var amount = parseFloat($(this).val());
-            if (!isNaN(amount)) {
-                totalAllowance += amount;
-            }
-        });
-        $('#total_allowance').val(totalAllowance.toFixed(2));
-    }
+    $('#total_allowance').val(totalAllowance.toFixed(2)); // Update total allowance field
+    updateNetSalary(); // Update net salary
 });
 
 
 </script>
 
 
+
+
 <script>
-$(document).ready(function() {
-    // Counter to keep track of the number of deduction input fields
-    var deductionCounter = 1;
-
-    // Trigger calculation of total deduction on page load
-    calculateAndDisplayTotalDeduction();
-
-    // Add More button click event handler for deductions
-    $('#add-deduction').click(function() {
-        // Increment the counter
-        deductionCounter++;
-
-        // HTML code for new deduction input fields
-        var newDeductionField = `
-            <div class="form-group local-forms form-placeholder d-flex">
-                <label style="color: black;" for="inputVendor" class="form-label">Deduction Type</label>
-                <input type="text" class="form-control me-2" name="deduction_type[]" placeholder="Deduction type">
-                <input type="number" min="0" class="form-control deduction-amount" name="deduction_amount[]" placeholder="Deduction Amount">
-                <div>
-                    <a href="#" class="btn trash delete-deduction">
-                        <i class="feather-trash-2"></i>
-                    </a>
-                </div>
-            </div>`;
-
-        // Append the new deduction input fields to the container
-        $('#deductions-container').append(newDeductionField);
-        calculateAndDisplayTotalDeduction(); // Recalculate total deduction
-    });
-
-    // Calculate total deduction when typing deduction amount
     $(document).on('input', '.deduction-amount', function() {
-        calculateAndDisplayTotalDeduction();
+    var totalDeduction = 0;
+    $('.deduction-amount').each(function() {
+        var amount = parseFloat($(this).val()) || 0;
+        totalDeduction += amount;
     });
-
-    // Delete deduction event handler
-    $(document).on('click', '.delete-deduction', function(event) {
-        event.preventDefault(); // Prevent default action of anchor tag
-        $(this).closest('.form-group.local-forms').remove(); // Remove the deduction field
-        calculateAndDisplayTotalDeduction(); // Recalculate total deduction
-    });
-
-    // Function to calculate and display total deduction
-    function calculateAndDisplayTotalDeduction() {
-        var totalDeduction = 0;
-        $('.deduction-amount').each(function() {
-            var amount = parseFloat($(this).val());
-            if (!isNaN(amount)) {
-                totalDeduction += amount;
-            }
-        });
-        $('#total_deduction').val(totalDeduction.toFixed(2));
-    }
+    $('#total_deduction').val(totalDeduction.toFixed(2)); // Update total deduction field
+    updateNetSalary(); // Update net salary
 });
 
 
 </script>
 
+
+
+
+
+
+<script>
+    // Function to update hidden input field with allowances data
+function updateAllowances() {
+    var allowancesData = [];
+    $('.allowance-amount').each(function() {
+        var type = $(this).prev('input[type="text"]').val();
+        var amount = $(this).val();
+        allowancesData.push({ "type": type, "amount": amount });
+    });
+    $('#allowances').val(JSON.stringify(allowancesData));
+}
+
+// Function to update hidden input field with deductions data
+function updateDeductions() {
+    var deductionsData = [];
+    $('.deduction-amount').each(function() {
+        var type = $(this).prev('input[type="text"]').val();
+        var amount = $(this).val();
+        deductionsData.push({ "type": type, "amount": amount });
+    });
+    $('#deductions').val(JSON.stringify(deductionsData));
+}
+
+// Call these functions whenever an allowance or deduction is added or changed
+$(document).on('input', '.allowance-amount', updateAllowances);
+$(document).on('input', '.deduction-amount', updateDeductions);
+
+</script>
+
+
+
+
+
 <script>
 
 $(document).ready(function() {
-    
-
-
     // Set the decimal separator to dot
 Number.prototype.toLocaleString = function () {
     return this.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 };
-
-
 
 // Function to update net salary
 function updateNetSalary() {
@@ -483,8 +535,6 @@ function updateNetSalary() {
     var netSalary = basicSalary + totalAllowance - totalDeduction;
     $('#net_salary').val(netSalary.toLocaleString()); // Format net salary for display
 }
-
-
 
     // Trigger net salary update when an employee is selected
     $('select[name="user_id"]').on('change', function() {
@@ -516,6 +566,38 @@ function updateNetSalary() {
 
 
 </script>
+
+
+<script>
+
+// Function to update net salary
+function updateNetSalary() {
+    var basicSalary = parseFloat($('#starting_salary').val().replace(',', '')) || 0; // Remove commas and convert to float
+    var totalAllowance = parseFloat($('#total_allowance').val().replace(',', '.')) || 0; // Replace commas with dots for consistency
+    var totalDeduction = parseFloat($('#total_deduction').val().replace(',', '.')) || 0; // Replace commas with dots for consistency
+    var taxPercentage = parseFloat($('#tax_percentage').val()) || 0; // Get tax percentage
+    
+    // Calculate net salary before tax
+    var netSalaryBeforeTax = basicSalary + totalAllowance - totalDeduction;
+    
+    // Calculate total tax amount
+    var totalTaxAmount = (netSalaryBeforeTax * (taxPercentage / 100)).toFixed(2);
+    
+    // Calculate net salary after tax deduction
+    var netSalaryAfterTax = netSalaryBeforeTax - totalTaxAmount;
+    
+    // Update net salary input field with the calculated value
+    $('#net_salary').val(netSalaryAfterTax.toLocaleString()); // Format net salary for display
+}
+
+// Trigger net salary update when allowances, deductions, or tax percentage change
+$(document).on('input', '.allowance-amount, .deduction-amount, #tax_percentage', function() {
+    updateNetSalary(); // Update net salary
+});
+
+
+</script>
+
 
 
 @endsection
