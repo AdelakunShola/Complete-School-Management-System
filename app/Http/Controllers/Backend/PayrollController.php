@@ -113,7 +113,7 @@ class PayrollController extends Controller
 
 
 
-    public function update(Request $request, $id) {
+    public function UpdatePayroll(Request $request, $id) {
         // Validate the incoming request data
         $request->validate([
             'user_id' => 'required|exists:users,id',

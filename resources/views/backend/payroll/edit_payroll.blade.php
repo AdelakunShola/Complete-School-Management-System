@@ -22,7 +22,7 @@
                 <div class="card-body">
                     <form id="department-form" method="post" action="{{ route('update.payroll', $payroll_data->id) }}" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT') <!-- Add method spoofing for PUT request -->
+                        <input type="hidden" name="id" value="{{ $payroll_data->id }}">
                         <div class="row">
                             <div class="col-12">
                                 <h5 class="form-title"><span>Payroll Information</span></h5>
