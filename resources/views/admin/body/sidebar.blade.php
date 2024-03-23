@@ -100,7 +100,7 @@
 </ul>
 </li>
 <li class="submenu">
-    <a class="" href="">Payroll<span class="menu-arrow"></span></a>
+    <a class="{{ $currentRoute == 'all.payroll' ? 'active' : '' }} {{ $currentRoute == 'add.payroll' ? 'active' : '' }}" href="">Payroll<span class="menu-arrow"></span></a>
 <ul>
 <li><a class="{{ $currentRoute == 'all.payroll' ? 'active' : '' }}" href="{{ route('all.payroll') }}"><span>All Payroll</span></a></li>
 <li><a class="{{ $currentRoute == 'add.payroll' ? 'active' : '' }}" href="{{ route('add.payroll') }}"> <span>Add Payslip</span></a></li>
@@ -115,7 +115,7 @@
 
 
 <li class="submenu">
-<a href="#"><i class="fas fa-chalkboard-teacher"></i> <span>Accountant</span> <span class="menu-arrow"></span></a>
+<a class="{{ $currentRoute == 'all.accountant' ? 'active' : '' }}   {{ $currentRoute == 'add.accountant' ? 'active' : '' }}" href=""><i class="fas fa-chalkboard-teacher"></i> <span>Accountant</span> <span class="menu-arrow"></span></a>
 <ul>
 <li><a class="{{ $currentRoute == 'all.accountant' ? 'active' : '' }}" href="{{ route('all.accountant') }}">All Accountant</a></li>
 <li><a class="{{ $currentRoute == 'add.accountant' ? 'active' : '' }}" href="{{ route('add.accountant') }}">Add Accountant</a></li>
@@ -124,11 +124,27 @@
 
 
 <li class="submenu">
-<a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Teachers</span> <span class="menu-arrow"></span></a>
+<a href="" class="{{ $currentRoute == 'all.teacher' ? 'active' : '' }}  {{ $currentRoute == 'add.teacher' ? 'active' : '' }}"><i class="fas fa-chalkboard-teacher"></i> <span> Teachers</span> <span class="menu-arrow"></span></a>
 <ul>
 <li><a class="{{ $currentRoute == 'all.teacher' ? 'active' : '' }}" href="{{ route('all.teacher') }}">All Teacher</a></li>
 <li><a class="{{ $currentRoute == 'add.teacher' ? 'active' : '' }}" href="{{ route('add.teacher') }}">Add Teacher </a></li>
 </ul>
+</li>
+
+
+<li class="submenu">
+<a href="#"><i class="fas fa-graduation-cap"></i> <span>Class Information</span> <span class="menu-arrow"></span></a>
+<ul>
+<li><a href="{{ route('manage.classes') }}">Manage Classes</a></li>
+<li><a href="{{ route('manage.section') }}">Manage Sections</a></li>
+<li><a href="students.html">Add Timetable</a></li>
+<li><a href="student-details.html">List Timetable</a></li>
+</ul>
+</li>
+
+
+<li>
+<a class="{{ $currentRoute == 'settings' ? 'active' : '' }}" href="{{ route('manage.subject') }}"><i class="fas fa-cog"></i> <span>MANAGE SUBJECT</span></a>
 </li>
 
 
@@ -210,7 +226,7 @@
 <li class="submenu">
 <a href="#"><i class="fas fa-file-invoice-dollar"></i> <span> Accounts</span> <span class="menu-arrow"></span></a>
 <ul>
-<li><a href="fees-collections.html">Fees Collection</a></li>
+<li><a href="" >Fees Collection</a></li>
 <li><a class="{{ $currentRoute == 'all.expense.category' ? 'active' : '' }}" href="{{ route('all.expense.category') }}">Expense Category</a></li>
 <li><a class="{{ $currentRoute == 'all.expense' ? 'active' : '' }}" href="{{ route('all.expense') }}">All Expenses</a></li>
 <li><a class="{{ $currentRoute == 'add.expense' ? 'active' : '' }}" href="{{ route('add.expense') }}">Add Expenses</a></li>
@@ -249,7 +265,7 @@
 </li>
 
 <li class="submenu">
-<a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Manage Alumni</span> <span class="menu-arrow"></span></a>
+<a href="" class="{{ $currentRoute == 'all.alumni' ? 'active' : '' }}  {{ $currentRoute == 'add.alumni' ? 'active' : '' }}" ><i class="fas fa-chalkboard-teacher"></i> <span> Manage Alumni</span> <span class="menu-arrow"></span></a>
 <ul>
 <li><a class="{{ $currentRoute == 'all.alumni' ? 'active' : '' }}" href="{{ route('all.alumni') }}">Alumni List</a></li>
 <li><a class="{{ $currentRoute == 'add.alumni' ? 'active' : '' }}" href="{{ route('add.alumni') }}">Add Alumni</a></li>

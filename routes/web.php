@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\AccountantController;
 use App\Http\Controllers\Backend\AlumniController;
 use App\Http\Controllers\Backend\AwardController;
 use App\Http\Controllers\Backend\CircularController;
+use App\Http\Controllers\Backend\ClassController;
 use App\Http\Controllers\Backend\EnquiryController;
 use App\Http\Controllers\Backend\ExpenseCategoryController;
 use App\Http\Controllers\Backend\HostelManagerController;
@@ -18,6 +19,8 @@ use App\Http\Controllers\Backend\ExpenseController;
 use App\Http\Controllers\Backend\JobApplicantController;
 use App\Http\Controllers\Backend\PayrollController;
 use App\Http\Controllers\Backend\SchoolLeaveController;
+use App\Http\Controllers\Backend\SectionController;
+use App\Http\Controllers\Backend\SubjectController;
 use App\Http\Controllers\Backend\TeacherController;
 use App\Http\Controllers\Backend\VacancyController;
 use App\Http\Controllers\ProfileController;
@@ -340,21 +343,59 @@ Route::controller(PayrollController::class)->group(function(){
     Route::get('/all/payroll', 'AllPayroll')->name('all.payroll');
     Route::get('/add/payroll', 'AddPayroll')->name('add.payroll');
     Route::post('/store/payroll', 'StorePayroll')->name('store.payroll');
-    Route::post('/update/payroll/mark-as-paid', 'MarkAsPaid')->name('update.paid');
-    Route::post('/update/payroll/mark-as-unpaid', 'MarkAsUnpaid')->name('update.unpaid');
-
     Route::get('/payroll/details/{id}', 'PayrollDetail')->name('payroll.detail');
     Route::get('/edit/payroll/{id}', 'EditPayroll')->name('payroll.edit');
     Route::post('/update/payroll/{id}', 'UpdatePayroll')->name('update.payroll');
 
-    
-
     Route::get('/getTeacher/ajax/{department_id}', 'GetEmployeeName');
-
     Route::get('/getSalary/ajax/{user_id}', 'GetSalary');
+
+    Route::post('/update/payroll/mark-as-paid', 'MarkAsPaid')->name('update.paid');
+    Route::post('/update/payroll/mark-as-unpaid', 'MarkAsUnpaid')->name('update.unpaid');
 
 
 });
+
+
+
+
+///Manage SECTION All Route 
+Route::controller(SectionController::class)->group(function(){
+    Route::get('/manage/section', 'ManageSection')->name('manage.section');
+    Route::post('/store/section', 'StoreSection')->name('store.section');
+    Route::get('/edit/section/{id}', 'EditSection');
+    Route::post('/update/section', 'UpdateSection')->name('update.section');
+    Route::get('/delete/section/{id}', 'DeleteSection')->name('delete.section');
+
+});
+
+
+
+///Manage Classes All Route 
+Route::controller(ClassController::class)->group(function(){
+    Route::get('/manage/class', 'ManageClasses')->name('manage.classes');
+    Route::post('/store/class', 'StoreClass')->name('store.class');
+    Route::get('/edit/class/{id}', 'EditClass');
+    Route::post('/update/class', 'UpdateClass')->name('update.class');
+    Route::get('/delete/class/{id}', 'DeleteClass')->name('delete.class');
+
+});
+
+
+
+///Manage Subject All Route 
+Route::controller(SubjectController::class)->group(function(){
+    Route::get('/manage/subject', 'ManageSubject')->name('manage.subject');
+    Route::post('/store/subject', 'StoreSubject')->name('store.subject');
+    Route::get('/edit/subject/{id}', 'EditSubject');
+    Route::post('/update/subject', 'UpdateSubject')->name('update.subject');
+    Route::get('/delete/subject/{id}', 'DeleteSubject')->name('delete.subject');
+
+});
+
+
+
+
 
 
 
