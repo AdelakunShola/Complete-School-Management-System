@@ -8,10 +8,10 @@
 <div class="page-header">
 <div class="row align-items-center">
 <div class="col">
-<h3 class="page-title">MANAGE SCHOOL CLUB</h3>
+<h3 class="page-title">MANAGE HOSTEL CATEGORY</h3>
 <ul class="breadcrumb">
 <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-<li class="breadcrumb-item active">SCHOOL CLUB</li>
+<li class="breadcrumb-item active">HOSTEL CATEGORY</li>
 </ul>
 </div>
 </div>
@@ -25,7 +25,7 @@
 <div class="page-header">
 <div class="row align-items-center">
 <div class="col">
-<a href="#" data-bs-toggle="modal" data-bs-target="#con-close-modal1" class="btn btn-outline-primary me-2"><i class="fas fa-plus"></i> ADD SCHOOL CLUB </a>
+<a href="#" data-bs-toggle="modal" data-bs-target="#con-close-modal1" class="btn btn-outline-primary me-2"><i class="fas fa-plus"></i> ADD HOSTEL CATEGORY </a>
 </div>
 <div class="col-auto text-end float-end ms-auto download-grp">
 <a href="#" class="btn btn-outline-primary me-2"><i class="fas fa-download"></i> Download</a>
@@ -38,26 +38,24 @@
 <thead class="student-thread">
 <tr>
 <th>S/N</th>
-<th>Club Name</th>
+<th>Name</th>
 <th>Description</th>
-<th>Date</th>
 <th class="text-end">Action</th>
 </tr>
 </thead>
 <tbody>
-@foreach ($school_club as $key=> $item ) 
+@foreach ($hostelcategory as $key=> $item ) 
 <tr>
 <td>{{ $key+1 }}</td>
-<td>{{ $item->club_name }}</td>
+<td>{{ $item->name }}</td>
 <td>{{ Str::limit($item->description, 55) }}</td>
-<td>{{ $item->created_at->format('d M Y H:i:s') }}</td>
 
 <td class="text-end">
 <div class="actions">
-<button type="button" class="btn btn-sm text-success bg-success-light me-2" data-bs-toggle="modal" data-bs-target="#con-close-modal" id="{{ $item->id }}" onclick="schoolclub(this.id)"><i class="feather-edit"></i></button>
+<button type="button" class="btn btn-sm text-success bg-success-light me-2" data-bs-toggle="modal" data-bs-target="#con-close-modal" id="{{ $item->id }}" onclick="hostelcategory(this.id)"><i class="feather-edit"></i></button>
 
 
-<a href="#" class="btn btn-sm text-danger" onclick="confirmDelete('{{ route('delete.school.club', $item->id) }}')">
+<a href="#" class="btn btn-sm text-danger" onclick="confirmDelete('{{ route('delete.hostel.category', $item->id) }}')">
 <i class="feather-trash"></i>
 </a>
 
@@ -78,17 +76,17 @@
 
 
 
-<!-- ADD SCHOOL CLUB --->
+<!-- ADD HOSTEL CATEGORY --->
 
 <div id="con-close-modal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 <div class="modal-dialog">
 
-<form method="post" action="{{ route('store.school.club') }}" enctype="multipart/form-data">
+<form method="post" action="{{ route('store.hostel.category') }}" enctype="multipart/form-data">
 @csrf
 
 <div class="modal-content">
 <div class="modal-header">
-<h4 class="modal-title">Add School Club</h4>
+<h4 class="modal-title">Add Hostel Category</h4>
 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body p-4">
@@ -96,8 +94,8 @@
 <div class="row">
 <div class="col-md-12">
 <div class="mb-3">
-<label for="field-1" class="form-label">CLUB NAME</label>
-<input type="text" class="form-control" id="club_name" name="club_name"  >
+<label for="field-1" class="form-label">HOSTEL CATEGORY NAME</label>
+<input type="text" class="form-control" id="name" name="name"  >
 </div>
 </div>
 </div>
@@ -126,12 +124,12 @@
 
 
 
-<!-- EDIT SCHOOL CLUB --->
+<!-- EDIT HOSTEL CATEGORY --->
 <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 <div class="modal-dialog">
-<form method="post" action="{{ route('update.school.club') }}" enctype="multipart/form-data">
+<form method="post" action="{{ route('update.hostel.category') }}" enctype="multipart/form-data">
 @csrf
-<input type="hidden" name="club_name_id" id="club_name_id">
+<input type="hidden" name="hostel_category_id" id="hostel_category_id">
 <div class="modal-content">
 <div class="modal-header">
 <h4 class="modal-title">Edit School Club</h4>
@@ -141,8 +139,8 @@
 <div class="row">
 <div class="col-md-12">
 <div class="mb-3">
-<label for="edit-club_name" class="form-label">CLUB NAME</label>
-<input type="text" class="form-control" id="edit-club_name" name="club_name">
+<label for="edit-club_name" class="form-label">HOSTEL CATEGORY NAME</label>
+<input type="text" class="form-control" id="edit-name" name="name">
 </div>
 </div>
 </div>
@@ -164,17 +162,17 @@
 
 
 <script>
-function schoolclub(id){
+function hostelcategory(id){
 $.ajax({
 type: 'GET',
-url: '/edit/school/club/'+id,
+url: '/edit/hostel/category/'+id,
 dataType: 'json',
 
 success:function(data){
 // console.log(data)  
-$('#edit-club_name').val(data.club_name);
+$('#edit-name').val(data.name);
 $('#edit-description').val(data.description);
-$('#club_name_id').val(data.id);
+$('#hostel_category_id').val(data.id);
 }
 });
 }

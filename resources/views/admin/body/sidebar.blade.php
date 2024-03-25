@@ -149,6 +149,16 @@
 
 
 <li class="submenu">
+<a href="#"><i class="fas fa-graduation-cap"></i> <span>School Hostel</span> <span class="menu-arrow"></span></a>
+<ul>
+<li><a href="students.html">Manage Hostel</a></li>
+<li><a class="{{ $currentRoute == 'hostel.category' ? 'active' : '' }}" href="{{ route('hostel.category') }}">Hotel Category</a></li>
+<li><a class="{{ $currentRoute == 'hostel.room' ? 'active' : '' }}" href="{{ route('hostel.room') }}">Hotel Room</a></li>
+</ul>
+</li>
+
+
+<li class="submenu">
 <a href="#"><i class="fas fa-graduation-cap"></i> <span> Task Manager</span> <span class="menu-arrow"></span></a>
 <ul>
 <li><a href="students.html">Running Tasks</a></li>

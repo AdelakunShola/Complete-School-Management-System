@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\DepartmentController;
 use App\Http\Controllers\Backend\ExpenseController;
 use App\Http\Controllers\Backend\JobApplicantController;
 use App\Http\Controllers\Backend\PayrollController;
+use App\Http\Controllers\Backend\SchoolHostelController;
 use App\Http\Controllers\Backend\SchoolLeaveController;
 use App\Http\Controllers\Backend\SectionController;
 use App\Http\Controllers\Backend\SubjectController;
@@ -417,7 +418,27 @@ Route::controller(TimetableController::class)->group(function(){
 
 
 
+///hostel CATEGORY All Route 
+Route::controller(SchoolHostelController::class)->group(function(){
+    Route::get('/hostel/category', 'HostelCategory')->name('hostel.category');
+    Route::post('/store/hostel/category', 'StoreHostelCategory')->name('store.hostel.category');
+    Route::get('/edit/hostel/category/{id}', 'EditHostelCategory');
+    Route::post('/update/hostel/category', 'UpdateHostelCategory')->name('update.hostel.category');
+    Route::get('/delete/hostel/category/{id}', 'DeleteHostelCategory')->name('delete.hostel.category');
 
+});
+
+
+
+///hostel ROOM All Route 
+Route::controller(SchoolHostelController::class)->group(function(){
+    Route::get('/hostel/room', 'HostelRoom')->name('hostel.room');
+    Route::post('/store/hostel/room', 'StoreHostelRoom')->name('store.hostel.room');
+    Route::get('/edit/hostel/room/{id}', 'EditHostelRoom');
+    Route::post('/update/hostel/room', 'UpdateHostelRoom')->name('update.hostel.room');
+    Route::get('/delete/hostel/room/{id}', 'DeleteHostelRoom')->name('delete.hostel.room');
+
+});
 
 
 
