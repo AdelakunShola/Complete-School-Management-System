@@ -20,4 +20,21 @@ class SchoolSubject extends Model
     {
         return $this->belongsTo(Classes::class, 'class_id');
     }
+
+
+    public function teacher()
+    {
+        return $this->belongsTo(User::class, 'teacher_id');
+    }
+
+
+    public function timetables()
+    {
+        return $this->hasMany(Timetable::class, 'subjects_id', 'id');
+    }
+
+
 }
+
+
+

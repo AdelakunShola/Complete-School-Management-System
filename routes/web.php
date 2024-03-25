@@ -22,6 +22,7 @@ use App\Http\Controllers\Backend\SchoolLeaveController;
 use App\Http\Controllers\Backend\SectionController;
 use App\Http\Controllers\Backend\SubjectController;
 use App\Http\Controllers\Backend\TeacherController;
+use App\Http\Controllers\Backend\TimetableController;
 use App\Http\Controllers\Backend\VacancyController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -390,6 +391,27 @@ Route::controller(SubjectController::class)->group(function(){
     Route::get('/edit/subject/{id}', 'EditSubject');
     Route::post('/update/subject', 'UpdateSubject')->name('update.subject');
     Route::get('/delete/subject/{id}', 'DeleteSubject')->name('delete.subject');
+
+});
+
+
+
+
+///Manage TIMETABLE or CLASS ROUTINE All Route 
+Route::controller(TimetableController::class)->group(function(){
+    Route::get('/all/timetable', 'AllTimetable')->name('all.timetable');
+    Route::get('/add/timetable', 'AddTimetable')->name('add.timetable');
+    Route::post('/store/timetable', 'StoreTimetable')->name('store.timetable');
+    Route::get('/edit/timetable/{id}', 'EditTimetable')->name('edit.timetable');
+    Route::post('/update/timetable', 'UpdateTimetable')->name('update.timetable');
+    Route::get('/view/timetable/{class_id}/{section_id}', 'ViewTimetable')->name('view.timetable');
+    Route::get('/delete/timetable/{id}', 'DeleteTimetable')->name('delete.timetable');
+   
+    Route::get('/class/details/{class_id}', 'ShowDetails')->name('class.details');
+
+    Route::get('/subject/ajax/{class_id}' , 'GetSubject');
+    Route::get('/section/ajax/{class_id}' , 'getSectionsByClass');
+    Route::get('/get/timetable', 'GetTimetable');
 
 });
 

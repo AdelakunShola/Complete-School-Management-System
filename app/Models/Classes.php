@@ -14,4 +14,11 @@ class Classes extends Model
 {
     return $this->belongsTo(User::class, 'teacher_id');
 }
+
+public function sections()
+{
+    return $this->hasMany(Section::class, 'class_id');
+}
+
+
 }

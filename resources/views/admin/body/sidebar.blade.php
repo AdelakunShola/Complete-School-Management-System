@@ -135,10 +135,10 @@
 <li class="submenu">
 <a href="#"><i class="fas fa-graduation-cap"></i> <span>Class Information</span> <span class="menu-arrow"></span></a>
 <ul>
-<li><a href="{{ route('manage.classes') }}">Manage Classes</a></li>
-<li><a href="{{ route('manage.section') }}">Manage Sections</a></li>
-<li><a href="students.html">Add Timetable</a></li>
-<li><a href="student-details.html">List Timetable</a></li>
+<li><a class="{{ $currentRoute == 'manage.classes' ? 'active' : '' }}" href="{{ route('manage.classes') }}">Manage Classes</a></li>
+<li><a class="{{ $currentRoute == 'manage.section' ? 'active' : '' }}" href="{{ route('manage.section') }}">Manage Sections</a></li>
+<li><a class="{{ $currentRoute == 'add.timetable' ? 'active' : '' }}" href="{{ route('add.timetable') }}">Add Timetable</a></li>
+<li><a class="{{ $currentRoute == 'all.timetable' ? 'active' : '' }}" href="{{ route('all.timetable')}}">List Timetable</a></li>
 </ul>
 </li>
 
@@ -198,7 +198,6 @@
 <ul>
 <li><a href="departments.html">Department List</a></li>
 <li><a href="add-department.html">Department Add</a></li>
-<li><a href="edit-department.html">Department Edit</a></li>
 </ul>
 </li>
 <li class="submenu">
