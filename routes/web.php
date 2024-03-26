@@ -17,13 +17,16 @@ use App\Http\Controllers\Backend\LibrarianController;
 use App\Http\Controllers\Backend\DepartmentController;
 use App\Http\Controllers\Backend\ExpenseController;
 use App\Http\Controllers\Backend\JobApplicantController;
+use App\Http\Controllers\Backend\ManageStudentController;
 use App\Http\Controllers\Backend\PayrollController;
 use App\Http\Controllers\Backend\SchoolHostelController;
 use App\Http\Controllers\Backend\SchoolLeaveController;
 use App\Http\Controllers\Backend\SectionController;
 use App\Http\Controllers\Backend\SubjectController;
+use App\Http\Controllers\Backend\SyllabusController;
 use App\Http\Controllers\Backend\TeacherController;
 use App\Http\Controllers\Backend\TimetableController;
+use App\Http\Controllers\Backend\TransportationController;
 use App\Http\Controllers\Backend\VacancyController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -438,6 +441,102 @@ Route::controller(SchoolHostelController::class)->group(function(){
     Route::post('/update/hostel/room', 'UpdateHostelRoom')->name('update.hostel.room');
     Route::get('/delete/hostel/room/{id}', 'DeleteHostelRoom')->name('delete.hostel.room');
 
+});
+
+
+
+///SCHOOL HOSTEL All Route 
+Route::controller(SchoolHostelController::class)->group(function(){
+    Route::get('/all/hostel', 'AllHostel')->name('all.hostel');
+    Route::get('/add/hostel', 'AddHostel')->name('add.hostel');
+    Route::post('/store/hostel', 'StoreHostel')->name('store.hostel');
+    Route::get('/edit/hostel/{id}', 'EditHostel')->name('edit.hostel');
+    Route::post('/update/hostel', 'UpdateHostel')->name('update.hostel');
+    Route::get('/delete/hostel/{id}', 'DeleteHostel')->name('delete.hostel');
+
+    Route::get('/view/hostel/{id}', 'ViewHostel')->name('view.hostel');
+    
+});
+
+
+
+///STUDENT HOUSE All Route 
+Route::controller(ManageStudentController::class)->group(function(){
+    Route::get('/student/house', 'StudentHouse')->name('student.house');
+    Route::post('/store/student/house', 'StoreStudentHouse')->name('store.student.house');
+    Route::get('/edit/student/house/{id}', 'EditStudentHouse');
+    Route::post('/update/student/house', 'UpdateStudentHouse')->name('update.student.house');
+    Route::get('/delete/student/house/{id}', 'DeleteStudentHouse')->name('delete.student.house');
+
+});
+
+
+
+
+///STUDENT CATEGORY All Route 
+Route::controller(ManageStudentController::class)->group(function(){
+    Route::get('/student/category', 'StudentCategory')->name('student.category');
+    Route::post('/store/student/category', 'StoreStudentCategory')->name('store.student.category');
+    Route::get('/edit/student/category/{id}', 'EditStudentCategory');
+    Route::post('/update/student/category', 'UpdateStudentCategory')->name('update.student.category');
+    Route::get('/delete/student/category/{id}', 'DeleteStudentCategory')->name('delete.student.category');
+
+});
+
+
+
+///MANAGE STUDENT INFORMATION All Route 
+Route::controller(ManageStudentController::class)->group(function(){
+    
+
+});
+
+
+
+
+///TRANSPORTATION All Route 
+Route::controller(TransportationController::class)->group(function(){
+   
+
+});
+
+
+
+///Manage Vehicle All Route 
+Route::controller(TransportationController::class)->group(function(){
+    Route::get('/manage/vehicle', 'ManageVehicle')->name('manage.vehicle');
+    Route::post('/store/vehicle', 'StoreVehicle')->name('store.vehicle');
+    Route::get('/edit/vehicle/{id}', 'EditVehicle');
+    Route::post('/update/vehicle', 'UpdateVehicle')->name('update.vehicle');
+    Route::get('/delete/vehicle/{id}', 'DeleteVehicle')->name('delete.vehicle');
+
+});
+
+
+
+///Transport Route All Route 
+Route::controller(TransportationController::class)->group(function(){
+    Route::get('/transport/route', 'TransportRoute')->name('transport.route');
+    Route::post('/store/transport/route', 'StoreTransportRoute')->name('store.transport.route');
+    Route::get('/edit/transport/route/{id}', 'EditTransportRoute');
+    Route::post('/update/transport/route', 'UpdateTransportRoute')->name('update.transport.route');
+    Route::get('/delete/transport/route/{id}', 'DeleteTransportRoute')->name('delete.transport.route');
+
+});
+
+
+
+///SCHOOL SYLLABUS All Route 
+Route::controller(SyllabusController::class)->group(function(){
+    Route::get('/all/syllabus', 'AllSyllabus')->name('all.syllabus');
+    Route::get('/add/syllabus', 'AddSyllabus')->name('add.syllabus');
+    Route::post('/store/syllabus', 'StoreSyllabus')->name('store.syllabus');
+    Route::get('/edit/syllabus/{id}', 'EditSyllabus')->name('edit.syllabus');
+    Route::post('/update/syllabus', 'UpdateSyllabus')->name('update.syllabus');
+    Route::get('/delete/syllabus/{id}', 'DeleteSyllabus')->name('delete.syllabus');
+
+    Route::get('/view/syllabus/{id}', 'ViewSyllabus')->name('view.syllabus');
+    
 });
 
 

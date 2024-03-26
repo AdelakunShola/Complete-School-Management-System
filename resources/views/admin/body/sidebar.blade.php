@@ -38,7 +38,8 @@
 <li><a class="{{ $currentRoute == 'manage.circular' ? 'active' : '' }}" href="{{ route('manage.circular') }}">Manage Circular</a></li>
 <li><a href="students.html">Manage Holiday</a></li>
 <li><a href="student-details.html">Manage Moraltalk</a></li>
-<li><a href="add-student.html">Syllabus</a></li>
+<li><a class="{{ $currentRoute == 'all.syllabus' ? 'active' : '' }}" href="{{ route('all.syllabus') }}">All Syllabus</a></li>
+<li><a class="{{ $currentRoute == 'add.syllabus' ? 'active' : '' }}" href="{{ route('add.syllabus') }}">Add Syllabus</a></li>
 <li><a href="edit-student.html">Manage Helpdesk</a></li>
 <li><a href="edit-student.html">Registration Code</a></li>
 <li><a href="add-student.html">Approve Student</a></li>
@@ -144,27 +145,61 @@
 
 
 <li>
-<a class="{{ $currentRoute == 'settings' ? 'active' : '' }}" href="{{ route('manage.subject') }}"><i class="fas fa-cog"></i> <span>MANAGE SUBJECT</span></a>
+<a class="{{ $currentRoute == 'manage.subject' ? 'active' : '' }}" href="{{ route('manage.subject') }}"><i class="fas fa-cog"></i> <span>MANAGE SUBJECT</span></a>
 </li>
 
 
 <li class="submenu">
 <a href="#"><i class="fas fa-graduation-cap"></i> <span>School Hostel</span> <span class="menu-arrow"></span></a>
 <ul>
-<li><a href="students.html">Manage Hostel</a></li>
-<li><a class="{{ $currentRoute == 'hostel.category' ? 'active' : '' }}" href="{{ route('hostel.category') }}">Hotel Category</a></li>
-<li><a class="{{ $currentRoute == 'hostel.room' ? 'active' : '' }}" href="{{ route('hostel.room') }}">Hotel Room</a></li>
+<li><a class="{{ $currentRoute == 'all.hostel' ? 'active' : '' }}" href="{{ route('all.hostel') }}">All Hostel</a></li>
+<li><a class="{{ $currentRoute == 'add.hostel' ? 'active' : '' }}" href="{{ route('add.hostel') }}">Add Hostel</a></li>
+<li><a class="{{ $currentRoute == 'hostel.category' ? 'active' : '' }}" href="{{ route('hostel.category') }}">Hostel Category</a></li>
+<li><a class="{{ $currentRoute == 'hostel.room' ? 'active' : '' }}" href="{{ route('hostel.room') }}">Hostel Room</a></li>
+</ul>
+</li>
+
+
+
+<li class="submenu">
+<a href="#"><i class="fas fa-graduation-cap"></i> <span> Manage Student</span> <span class="menu-arrow"></span></a>
+<ul>
+<li><a href="students.html">Admission Form</a></li>
+<li><a href="student-details.html">Student List</a></li>
+<li><a href="add-student.html">Promote Student</a></li>
+<li><a class="{{ $currentRoute == 'student.category' ? 'active' : '' }}" href="{{ route('student.category') }}">Student Category</a></li>
+<li><a class="{{ $currentRoute == 'student.house' ? 'active' : '' }}" href="{{ route('student.house') }}">Student House</a></li>
+<li><a href="students.html">Student Activities</a></li>
+<li><a href="students.html">Social Category</a></li>
+<li><a href="students.html">Search Students</a></li>
+</ul>
+</li>
+
+
+
+<li class="submenu">
+<a href="#"><i class="fas fa-graduation-cap"></i> <span> Transportation</span> <span class="menu-arrow"></span></a>
+<ul>
+<li><a  href="students.html">Transport</a></li>
+<li><a class="{{ $currentRoute == 'manage.vehicle' ? 'active' : '' }}" href="{{ route('manage.vehicle') }}">Transport Route</a></li>
+<li><a class="{{ $currentRoute == 'transport.route' ? 'active' : '' }}" href="{{ route('transport.route') }}">Manage Vehicle</a></li>
 </ul>
 </li>
 
 
 <li class="submenu">
-<a href="#"><i class="fas fa-graduation-cap"></i> <span> Task Manager</span> <span class="menu-arrow"></span></a>
+<a href="#"><i class="fas fa-file-invoice-dollar"></i> <span> Accounts</span> <span class="menu-arrow"></span></a>
 <ul>
-<li><a href="students.html">Running Tasks</a></li>
-<li><a href="student-details.html">Archieved Tasks</a></li>
+<li><a href="" >Fees Collection</a></li>
+<li><a class="{{ $currentRoute == 'all.expense.category' ? 'active' : '' }}" href="{{ route('all.expense.category') }}">Expense Category</a></li>
+<li><a class="{{ $currentRoute == 'all.expense' ? 'active' : '' }}" href="{{ route('all.expense') }}">All Expenses</a></li>
+<li><a class="{{ $currentRoute == 'add.expense' ? 'active' : '' }}" href="{{ route('add.expense') }}">Add Expenses</a></li>
+<li><a href="salary.html">Salary</a></li>
+<li><a href="add-fees-collection.html">Add Fees</a></li>
+<li><a href="add-salary.html">Add Salary</a></li>
 </ul>
 </li>
+
 
 
 <li class="submenu">
@@ -179,17 +214,7 @@
 </li>
 
 
-<li class="submenu">
-<a href="#"><i class="fas fa-graduation-cap"></i> <span> Manage Student</span> <span class="menu-arrow"></span></a>
-<ul>
-<li><a href="students.html">Admission Form</a></li>
-<li><a href="student-details.html">Student List</a></li>
-<li><a href="add-student.html">Promote Student</a></li>
-<li><a href="edit-student.html">Student Categories</a></li>
-<li><a href="students.html">Student House</a></li>
-<li><a href="students.html">Student Activities</a></li>
-</ul>
-</li>
+
 
 <li class="submenu">
 <a href="#"><i class="fas fa-graduation-cap"></i> <span> Manage Attendance</span> <span class="menu-arrow"></span></a>
@@ -232,18 +257,7 @@
 <li class="menu-title">
 <span>Management</span>
 </li>
-<li class="submenu">
-<a href="#"><i class="fas fa-file-invoice-dollar"></i> <span> Accounts</span> <span class="menu-arrow"></span></a>
-<ul>
-<li><a href="" >Fees Collection</a></li>
-<li><a class="{{ $currentRoute == 'all.expense.category' ? 'active' : '' }}" href="{{ route('all.expense.category') }}">Expense Category</a></li>
-<li><a class="{{ $currentRoute == 'all.expense' ? 'active' : '' }}" href="{{ route('all.expense') }}">All Expenses</a></li>
-<li><a class="{{ $currentRoute == 'add.expense' ? 'active' : '' }}" href="{{ route('add.expense') }}">Add Expenses</a></li>
-<li><a href="salary.html">Salary</a></li>
-<li><a href="add-fees-collection.html">Add Fees</a></li>
-<li><a href="add-salary.html">Add Salary</a></li>
-</ul>
-</li>
+
 <li>
 <a href="holiday.html"><i class="fas fa-holly-berry"></i> <span>Holiday</span></a>
 </li>

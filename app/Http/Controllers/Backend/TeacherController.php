@@ -297,7 +297,7 @@ if ($bankDetails) {
 
     public function DeleteTeacher($id){
         $user = User::find($id);
-    
+     
         // Check if the user exists
         if ($user) {
             // Delete the user's photo file
