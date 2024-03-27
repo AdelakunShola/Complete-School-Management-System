@@ -74,16 +74,16 @@
 </div>
 
 
-
+ 
 
 <!-- ADD EXPENSE CATEGORY --->
 
 <div id="con-close-modal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 <div class="modal-dialog">
 
-<form method="post" action="{{ route('store.expense.category') }}" >
-@csrf
 
+<form id="department-form" method="post" action="{{ route('store.expense.cat') }}" enctype="multipart/form-data">
+@csrf
 <div class="modal-content">
 <div class="modal-header">
 <h4 class="modal-title">Add Expense Category</h4>

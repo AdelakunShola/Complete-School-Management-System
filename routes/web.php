@@ -251,7 +251,7 @@ Route::controller(AlumniController::class)->group(function(){
 ///Expense Category All Route 
 Route::controller(ExpenseCategoryController::class)->group(function(){
     Route::get('/all/expense/category', 'AllExpenseCategory')->name('all.expense.category');
-    Route::post('/store/expense/category', 'StoreExpenseCategory')->name('store.expense.category');
+    Route::post('/store/expense/category', 'StoreExpenseCategory')->name('store.expense.cat');
     Route::get('/edit/expense/category/{id}', 'EditExpenseCategory');
     Route::post('/update/expense/category', 'UpdateExpenseCategory')->name('update.expense.category');
     Route::get('/delete/expense/category/{id}', 'DeleteExpenseCategory')->name('delete.expense.category');
@@ -330,8 +330,9 @@ Route::controller(JobApplicantController ::class)->group(function(){
     Route::get('/all/application', 'AllApplication')->name('all.application');
     Route::get('/add/application', 'AddApplication')->name('add.application');
     Route::post('/store/application', 'StoreApplication')->name('store.application');
-    Route::get('/view/application', 'ViewApplication')->name('view.application');
-    Route::get('/edit/application', 'EditApplication')->name('edit.application');
+    Route::get('/view/application/{id}', 'ViewApplication')->name('view.application');
+    Route::post('/update/application', 'UpdateApplication')->name('update.application');
+    Route::get('/edit/application/{id}', 'EditApplication')->name('edit.application');
 
     Route::get('/delete/application/{id}', 'DeleteApplication')->name('delete.application');
 
@@ -350,6 +351,7 @@ Route::controller(PayrollController::class)->group(function(){
     Route::post('/store/payroll', 'StorePayroll')->name('store.payroll');
     Route::get('/payroll/details/{id}', 'PayrollDetail')->name('payroll.detail');
     Route::get('/edit/payroll/{id}', 'EditPayroll')->name('payroll.edit');
+    Route::get('/view/payroll/{id}', 'ViewPayroll')->name('view.payroll');
     Route::post('/update/payroll/{id}', 'UpdatePayroll')->name('update.payroll');
 
     Route::get('/getTeacher/ajax/{department_id}', 'GetEmployeeName');
@@ -531,7 +533,7 @@ Route::controller(SyllabusController::class)->group(function(){
     Route::get('/all/syllabus', 'AllSyllabus')->name('all.syllabus');
     Route::get('/add/syllabus', 'AddSyllabus')->name('add.syllabus');
     Route::post('/store/syllabus', 'StoreSyllabus')->name('store.syllabus');
-    Route::get('/edit/syllabus/{id}', 'EditSyllabus')->name('edit.syllabus');
+   
     Route::post('/update/syllabus', 'UpdateSyllabus')->name('update.syllabus');
     Route::get('/delete/syllabus/{id}', 'DeleteSyllabus')->name('delete.syllabus');
 

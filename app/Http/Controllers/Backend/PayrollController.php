@@ -99,6 +99,17 @@ class PayrollController extends Controller
         $users = User::all(); // Fetch all users
         return view('backend.payroll.edit_payroll', compact('setting', 'payroll_detail', 'payroll_data', 'departments', 'users'));
     }
+
+
+    public function ViewPayroll($id){
+        $setting = Settings::find(1);
+        $payroll_detail = Payroll::latest()->get();
+        $payroll_data = Payroll::find($id);
+        $payroll_id = Payroll::find($id);
+        $departments = Department::all(); // Fetch all departments
+        $users = User::all(); // Fetch all users
+        return view('backend.payroll.view_payroll', compact('payroll_id', 'setting', 'payroll_detail', 'payroll_data', 'departments', 'users'));
+    }
     
 
 

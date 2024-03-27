@@ -1,5 +1,8 @@
 @extends('admin.admin_dashboard')
 @section('admin')
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <div class="content container-fluid">
 
 <div class="page-header">
@@ -36,12 +39,26 @@
 <input type="text" name="name" class="form-control" value="{{ $department->name }}">
 </div>
 </div>
+
 <div class="col-12 col-sm-4">
 <div class="form-group local-forms">
 <label>Head of Department <span class="login-danger">*</span></label>
-<input type="text" name="hod" class="form-control" value="{{ $department->hod }}">
+<select class="form-select" id="edit-employee_id" name="hod">
+<option value="">Select Head of Department</option>
+@foreach($employeeNamesByRole as $role => $employees)
+<optgroup label="{{ $role }}">
+@foreach($employees as $employee)
+<option value="{{ $employee->id }}" {{ $department->hod == $employee->id ? 'selected' : '' }}>{{ $employee->name }}</option>
+@endforeach
+</optgroup>
+@endforeach
+</select>
 </div>
 </div>
+
+
+
+
 <div class="col-12 col-sm-4">
 <div class="form-group local-forms calendar-icon">
 <label>Department Start Date <span class="login-danger">*</span></label>
@@ -49,22 +66,23 @@
 </div>
 </div>
 
+
 <!-- Add Designation -->
 <div class="col-lg-6 col-md-8" id="designation-container">
-    <!-- Existing designations -->
-    @foreach($designation as $index => $desig)
-    <div class="form-group form-placeholder d-flex">
-        <button class="btn social-icon">
-            <i class="feather-github"></i>
-        </button>
-        <input type="text" class="form-control" name="designation_name[]" value="{{ $desig->designation_name }}">
-        <div>
-            <a href="#" class="btn trash delete-designation">
-                <i class="feather-trash-2"></i>
-            </a>
-        </div>
-    </div>
-    @endforeach
+<!-- Existing designations -->
+@foreach($designation as $index => $desig)
+<div class="form-group form-placeholder d-flex">
+<button class="btn social-icon">
+<i class="feather-github"></i>
+</button>
+<input type="text" class="form-control" name="designation_name[]" value="{{ $desig->designation_name }}">
+<div>
+<a href="#" class="btn trash delete-designation">
+<i class="feather-trash-2"></i>
+</a>
+</div>
+</div>
+@endforeach
 </div>
 
 <!-- Add More button to add more designation fields -->

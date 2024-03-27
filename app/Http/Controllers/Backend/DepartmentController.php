@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Department;
 use App\Models\Designation;
+use App\Models\User;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Carbon\Carbon;
 
@@ -13,15 +14,23 @@ class DepartmentController extends Controller
 {
 
     public function AllDepartment(){
-        
+
+        $employeeNamesByRole = User::whereIn('role', ['teacher'])
+        ->orderBy('role')
+        ->get()
+        ->groupBy('role');
         $department = Department::latest()->get();
-        return view('backend.department.all_department',compact('department'));
+        return view('backend.department.all_department',compact('department','employeeNamesByRole'));
     }//end method
 
 
     public function AddDepartment(){
+        $employeeNamesByRole = User::whereIn('role', ['teacher'])
+        ->orderBy('role')
+        ->get()
+        ->groupBy('role');
         $add_department = Department::latest()->get();
-        return view('backend.department.add_department',compact('add_department'));
+        return view('backend.department.add_department',compact('add_department','employeeNamesByRole'));
 
     } // End Method 
 
@@ -68,9 +77,14 @@ class DepartmentController extends Controller
 
     public function EditDepartment($id){
 
+        $employeeNamesByRole = User::whereIn('role', ['teacher'])
+        ->orderBy('role')
+        ->get()
+        ->groupBy('role');
+
         $designation = Designation::where('department_id',$id)->get();
         $department = Department::find($id);
-        return view('backend.department.edit_department',compact('department','designation'));
+        return view('backend.department.edit_department',compact('department','designation','employeeNamesByRole'));
     } //End Method 
 
 
@@ -107,7 +121,7 @@ class DepartmentController extends Controller
             'alert-type' => 'success'
         ];
     
-        return redirect()->back()->with($notification);
+        return redirect()->route('all.department')->with($notification);
     }// End Method
 
 

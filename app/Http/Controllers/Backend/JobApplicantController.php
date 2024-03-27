@@ -7,12 +7,13 @@ use App\Models\JobApplicant;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+ 
 class JobApplicantController extends Controller
 {
-    public function AllApplication(){
-        $allapplications = JobApplicant::latest()->get();
-        return view('backend.jobapplications.allapplication',compact('allapplications'));
+    public function AllApplication(Request $request){
+        $status = $request->input('status');
+        $allapplications = JobApplicant::where('status', $status)->get();
+        return view('backend.jobapplications.allapplication',compact('allapplications','status'));
     }//end method
 
 
@@ -24,47 +25,87 @@ class JobApplicantController extends Controller
 
 
 
-    public function StoreApplication(Request $request){
-    // For documents, use different upload paths
-    $cvUploadPath = 'application';
-    $coverLetterUploadPath = 'application';
 
-    
-    $cvPath = $request->file('cv') ? $request->file('cv')
-    ->storeAs($cvUploadPath, 'cv_' . uniqid() . '.' . $request
-    ->file('cv')->getClientOriginalExtension()) : null;
-    
-    $coverLetterPath = $request->file('cover_letter') ? $request->file('cover_letter')
-    ->storeAs($coverLetterUploadPath, 'cover_letter_' . uniqid() . '.' . $request
-    ->file('cover_letter')->getClientOriginalExtension()) : null;
-       
-    // Now you can use these variables in your User creation
-    
-    
+public function StoreApplication(Request $request){
+    // Define upload paths for CV and cover letter
+    $cvUploadPath = 'upload/applicant/cv';
+    $coverLetterUploadPath = 'upload/applicant/cover_letter';
 
+    // Handle cover letter upload
+    $coverLetterPath = null;
+    if ($request->hasFile('cover_letter')) {
+        $coverLetterPath = $request->file('cover_letter')->storeAs(
+            $coverLetterUploadPath,
+            'cover_letter_' . uniqid() . '.' . $request->file('cover_letter')->getClientOriginalExtension(),
+            'public' // Specify the disk as 'public'
+        );
+    }
+    
+    // Handle cv upload
+    $cvPath = null;
+    if ($request->hasFile('cv')) {
+        $cvPath = $request->file('cv')->storeAs(
+            $cvUploadPath,
+            'cv_' . uniqid() . '.' . $request->file('cv')->getClientOriginalExtension(),
+            'public' // Specify the disk as 'public'
+        );
+    }
+
+    // Create new JobApplicant instance
     $application = new JobApplicant([
-     
         'vacancy_id' => $request->input('vacancy_id'),
         'applicant_name' => $request->input('applicant_name'),
         'email' => $request->input('email'),
         'cv' => $cvPath,
         'cover_letter' => $coverLetterPath,
-
     ]);
     
-    // Save the HRM instance to the database
+    // Save the JobApplicant instance to the database
     $application->save();
     
-    
+    // Redirect with success message
     $notification = [
-        'message' => 'Your Information has been Inserted Successfully',
+        'message' => 'Your information has been inserted successfully.',
         'alert-type' => 'success',
     ];
     
     return redirect()->route('all.application')->with($notification);
-    
+}
 
+
+
+    public function ViewApplication($id){
+        $applicant = JobApplicant::find($id);
+        $vacancy = Vacancy::latest()->get();
+        return view('backend.jobapplications.viewapplication',compact('vacancy','applicant'));
+    }//end method
+
+
+
+    public function UpdateApplication(Request $request){
+     
+        $applicant_id = $request->id;
+        $applicant = JobApplicant::findOrFail($applicant_id);
+
+        $applicant->update([
+            'status' => $request->status,
+        ]);
+
+    // Redirect with success message
+    $notification = [
+        'message' => 'Applicant Status Updated successfully.',
+        'alert-type' => 'success',
+    ];
     
+    return redirect()->route('all.application')->with($notification);
+
+    }//end method
+
+
+    public function EditApplication($id){
+        $applicant = JobApplicant::find($id);
+        $vacancy = Vacancy::latest()->get();
+        return view('backend.jobapplications.viewapplication',compact('vacancy','applicant'));
     }//end method
 
 
@@ -99,16 +140,16 @@ class JobApplicantController extends Controller
 
 
 
-    public function ViewApplication(){
-        $vacancy = Vacancy::latest()->get();
-        return view('backend.jobapplications.viewapplication',compact('vacancy'));
-    }//end method
+    public function Download(){
+
+        // $editData = User::with('certificate')->find($id);
+        // return $pdf->download('invoice.pdf');
+ 
+      }// End Method 
 
 
-    public function Editpplication(){
-        $vacancy = Vacancy::latest()->get();
-        return view('backend.jobapplications.editapplication',compact('vacancy'));
-    }//end method
+
+    
 
 
 

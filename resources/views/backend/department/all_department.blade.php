@@ -45,7 +45,6 @@
 <th>HOD </th>
 <th>Year Started</th>
 <th>Total Teachers</th>
-<th>No of Students</th>
 
 
 <th class="text-end">Action</th>
@@ -58,13 +57,13 @@
 <td>{{ $item->department_id }}</td>
 <td>{{ $item->name }}</td>
 <td>{{ $item->designation_name }}</td>
-<td>{{ $item->hod }}</td>
+<td>{{ $item->user ? $item->user->name : 'N/A' }}</td>
 <td>{{ $item->year_started }}</td>
-<td>{{ $item->teachers()->count() }}</td> <!-- Count of teachers -->
 <td>{{ $item->teachers()->count() }}</td>
 
+
 <td class="text-end">
-<div class="actions">
+<div class="actions">   
 
 
 <a href="{{ route('edit.department', $item->id) }}" class="btn btn-sm text-success bg-success-light me-2" >

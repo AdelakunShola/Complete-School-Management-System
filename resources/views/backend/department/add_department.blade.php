@@ -1,5 +1,6 @@
 @extends('admin.admin_dashboard')
 @section('admin')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <div class="content container-fluid">
 
 <div class="page-header">
@@ -31,18 +32,46 @@
 <input type="text" name="name" class="form-control">
 </div>
 </div>
+
+
+
 <div class="col-12 col-sm-4">
 <div class="form-group local-forms">
 <label>Head of Department <span class="login-danger">*</span></label>
-<input type="text" name="hod" class="form-control">
+<div class="accordion" id="employeeAccordion">
+@foreach($employeeNamesByRole as $role => $employees)
+<div class="accordion-item">
+<h2 class="accordion-header" id="heading{{ $role }}">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $role }}" aria-expanded="false" aria-controls="collapse{{ $role }}">
+{{ $role }}
+</button>
+</h2>
+<div id="collapse{{ $role }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $role }}" data-bs-parent="#employeeAccordion">
+<div class="accordion-body">
+<select class="form-select" name="hod">
+<option value="">Choose Head of Department from Teachers</option>
+@foreach($employees as $employee)
+<option value="{{ $employee->id }}">{{ $employee->name }}</option>
+@endforeach
+</select>
 </div>
 </div>
+</div>
+@endforeach
+</div>
+</div>
+</div>
+
+
+
 <div class="col-12 col-sm-4">
 <div class="form-group local-forms calendar-icon">
 <label>Department Start Date <span class="login-danger">*</span></label>
-<input class="form-control datetimepicker" type="text" placeholder="DD-MM-YYYY" name="year_started">
+<input class="form-control datetimepicker" type="text" placeholder="29-04-2022" name="year_started">
 </div>
 </div>
+
+
 
 <!-- Add Designation -->
 <div class="col-lg-6 col-md-8">

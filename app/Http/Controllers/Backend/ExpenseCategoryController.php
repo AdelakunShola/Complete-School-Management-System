@@ -30,7 +30,7 @@ class ExpenseCategoryController extends Controller
             'message' => 'Expense Category Added Successfully',
             'alert-type' => 'success',
         );
-        return redirect()->back()->with($notification);
+        return redirect()->route('all.expense.category')->with($notification);
     }// End Method 
 
 

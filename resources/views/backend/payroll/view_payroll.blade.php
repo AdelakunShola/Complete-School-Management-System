@@ -1,5 +1,46 @@
-@extends('admin.admin_dashboard')
-@section('admin')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+<title>Preskool - Dashboard</title>
+
+<link rel="shortcut icon" href="assets/img/favicon.png">
+
+
+<link rel="stylesheet" href="{{asset('backend/assets/css/bootstrap.min.css')}}">
+
+<link rel="stylesheet" href="{{asset('backend/assets/plugins/feather/feather.css')}}">
+
+<link rel="stylesheet" href="{{asset('backend/assets/plugins/icons/flags/flags.css')}}">
+
+<link rel="stylesheet" href="{{asset('backend/assets/plugins/fontawesome/css/fontawesome.min.css')}}">
+<link rel="stylesheet" href="{{asset('backend/assets/plugins/fontawesome/css/all.min.css')}}">
+
+<link rel="stylesheet" href="{{asset('backend/assets/css/style.css')}}">
+
+<!-- DataTable -->
+<link href="{{asset('backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
+<!-- DataTable-->
+
+<!--<link rel="stylesheet" href="{{asset('backend/assets/plugins/select2/css/select2.min.css')}}">--->
+
+<!-- Bootstrap Datepicker -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css">
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+
+<!--<link rel="stylesheet" href="{{asset('backend/assets/plugins/datatables/datatables.min.css')}}">--->
+
+<style>
+    
+</style>
+
+
+</head>
+<body>
+
+
 
 
 <div class="content container-fluid">
@@ -155,17 +196,73 @@ Account Details<br>
 <span class="d-block">Harristemp</span>
 </div>
 
+<button style="width: 10%;" class="btn btn-primary" onclick="printPage()">Print</button> / 
+<a style="width: 15%;" href="{{ route('view.payroll', $payroll_id->id) }}" data-bs-toggle="modal" data-bs-target="#con-close-modal1" class="btn btn-primary me-2" id="downloadLink">download </a>
 
-<a style="width: 15%;" href="{{ route('view.payroll', $payroll_id->id) }}"  class="btn btn-primary me-2" id="downloadLink">Print/download </a>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-</div>
-</div>
-</div>
-</div>
-</div>
+
+
 <script>
 function printPage() {
     window.print(); // Trigger the browser's print functionality
 }
 </script>
-@endsection
+
+
+
+<!-- Add an id attribute to the download link -->
+
+<!-- JavaScript code to handle the download functionality -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the download link element
+    var downloadLink = document.getElementById('downloadLink');
+
+    // Add a click event listener to the download link
+    downloadLink.addEventListener('click', function(event) {
+        // Prevent the default behavior of the link
+        event.preventDefault();
+
+        // Get the HTML content of the current page
+        var htmlContent = document.documentElement.outerHTML;
+
+        // Create a new Blob from the HTML content
+        var blob = new Blob([htmlContent], { type: 'text/html' });
+
+        // Create a temporary URL for the Blob
+        var url = window.URL.createObjectURL(blob);
+
+        // Create a new anchor element
+        var anchor = document.createElement('a');
+
+        // Set the href attribute of the anchor to the URL of the Blob
+        anchor.href = url;
+
+        // Set the download attribute of the anchor to the desired filename for the downloaded file
+        anchor.download = 'page.html';
+
+        // Append the anchor element to the document body
+        document.body.appendChild(anchor);
+
+        // Trigger a click event on the anchor element to start the download
+        anchor.click();
+
+        // Remove the anchor element from the document body after the download starts
+        document.body.removeChild(anchor);
+
+        // Revoke the temporary URL to free up memory
+        window.URL.revokeObjectURL(url);
+    });
+});
+</script>
+
+
+</body>
+
+
+</html>

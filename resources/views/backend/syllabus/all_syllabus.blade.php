@@ -75,9 +75,6 @@
 <div class="actions">
 
 
-<a href="{{ route('edit.syllabus', $item->id) }}" class="btn btn-sm text-success bg-success-light me-2" >
-    <i class="feather-edit"></i>
-</a>
 
 <a href="{{ route('view.syllabus', $item->id) }}" class="btn btn-sm text-success bg-success-light me-2" >
     <i class="feather-eye"></i>

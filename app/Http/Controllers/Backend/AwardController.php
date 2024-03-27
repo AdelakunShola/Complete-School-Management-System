@@ -13,7 +13,7 @@ class AwardController extends Controller
 {
     public function ManageAward(){
         $manage_award = Award::latest()->get();
-    $employeeNamesByRole = User::whereIn('role', ['teacher', 'librarian', 'admin', 'accountant', 'hrm', 'hostelmanager', 'student'])
+        $employeeNamesByRole = User::whereIn('role', ['teacher', 'librarian', 'admin', 'accountant', 'hrm', 'hostelmanager', 'student'])
         ->orderBy('role')
         ->get()
         ->groupBy('role');

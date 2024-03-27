@@ -149,7 +149,7 @@ option.primary {
     <div class="col-md-12">
         <div class="mb-3">
             <label for="employee_id" class="form-label">Awarded Employee</label>
-            <div class="accordion" id="employeeAccordion">
+            <div class="accordion" id="employeeAccordion"> 
                 @foreach($employeeNamesByRole as $role => $employees)
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading{{ $role }}">

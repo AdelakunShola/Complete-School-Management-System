@@ -57,7 +57,7 @@
 <tr>
 <td>{{ $key+1 }}</td>
 <td>{{ $item->expense_id }}</td>
-<td>{{ $item->category_id }}</td>
+<td>{{ $item->category ? $item->category->name : 'N/A' }}</td>
 <td>{{ $item->item_name }}</td>
 <td>{{ $item->quantity }}</td>
 <td>{{ $item->amount }}</td>

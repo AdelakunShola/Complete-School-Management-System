@@ -15,18 +15,25 @@ class Department extends Model
         return $this->hasMany(Designation::class);
     }
 
-    public function teachers()
-    {
-        return $this->hasMany(Teacher::class);
-    }
-
-    public function students()
-    {
-        return $this->hasMany(User::class);
-    }
+    
 
     public function users()
     {
         return $this->hasMany(User::class);
     }
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'hod', 'id');
+    }
+
+    
+    public function teachers()
+    {
+        return $this->hasMany(User::class)->where('role', 'teacher');
+    }
+
+
+
 }

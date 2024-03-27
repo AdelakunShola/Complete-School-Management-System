@@ -68,6 +68,13 @@
 </div>
 
 
+<div class="form-group">
+<label>School Name <span class="star-red">*</span></label>
+<input type="text" class="form-control" name="school_name" value="{{ $site->school_name }}">
+</div>
+
+
+
 <div class="col-md-6">
     <div class="form-group">
         <label>Academic Session <span class="star-red">*</span></label>

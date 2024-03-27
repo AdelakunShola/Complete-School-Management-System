@@ -226,12 +226,13 @@ body{
 <div class="page-header">
 <div class="row align-items-center">
 <div class="btn btn-outline-primary me-2 ">
-<h3 class="">{{ $setting -> website_name }}</h3>
+<h3 class="">{{ $setting -> school_name }}</h3>
 <h3 class="page-title">View Timetable / Class Routine For {{ ($className) }} {{ $section->name }}</h3>
 <h5 class="page-title">{{ $setting -> website_name }}</h5>
 </div>
 <!-- Add the print button here -->
-<button style="width: 10%;" class="btn btn-primary" onclick="printPage()">Print</button> / <a style="width: 10%;" href="#" data-bs-toggle="modal" data-bs-target="#con-close-modal1" class="btn btn-primary me-2" onclick="printPage()">Download </a>
+<button style="width: 10%;" class="btn btn-primary" onclick="printPage()">Print</button> / 
+<a style="width: 10%;" href="#" data-bs-toggle="modal" data-bs-target="#con-close-modal1" class="btn btn-primary me-2" id="downloadLink">Download </a>
 </div>
 </div>
 
@@ -341,6 +342,55 @@ function printPage() {
     window.print(); // Trigger the browser's print functionality
 }
 </script>
+
+
+
+<!-- Add an id attribute to the download link -->
+
+<!-- JavaScript code to handle the download functionality -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the download link element
+    var downloadLink = document.getElementById('downloadLink');
+
+    // Add a click event listener to the download link
+    downloadLink.addEventListener('click', function(event) {
+        // Prevent the default behavior of the link
+        event.preventDefault();
+
+        // Get the HTML content of the current page
+        var htmlContent = document.documentElement.outerHTML;
+
+        // Create a new Blob from the HTML content
+        var blob = new Blob([htmlContent], { type: 'text/html' });
+
+        // Create a temporary URL for the Blob
+        var url = window.URL.createObjectURL(blob);
+
+        // Create a new anchor element
+        var anchor = document.createElement('a');
+
+        // Set the href attribute of the anchor to the URL of the Blob
+        anchor.href = url;
+
+        // Set the download attribute of the anchor to the desired filename for the downloaded file
+        anchor.download = 'page.html';
+
+        // Append the anchor element to the document body
+        document.body.appendChild(anchor);
+
+        // Trigger a click event on the anchor element to start the download
+        anchor.click();
+
+        // Remove the anchor element from the document body after the download starts
+        document.body.removeChild(anchor);
+
+        // Revoke the temporary URL to free up memory
+        window.URL.revokeObjectURL(url);
+    });
+});
+</script>
+
 
 </body>
 
