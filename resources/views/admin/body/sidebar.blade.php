@@ -182,6 +182,7 @@
 <li><a  href="students.html">Transport</a></li>
 <li><a class="{{ $currentRoute == 'manage.vehicle' ? 'active' : '' }}" href="{{ route('manage.vehicle') }}">Transport Route</a></li>
 <li><a class="{{ $currentRoute == 'transport.route' ? 'active' : '' }}" href="{{ route('transport.route') }}">Manage Vehicle</a></li>
+<li><a class="{{ $currentRoute == 'manage.driver' ? 'active' : '' }}" href="{{ route('manage.driver') }}">Manage Drivers</a></li>
 </ul>
 </li>
 

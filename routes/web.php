@@ -528,6 +528,18 @@ Route::controller(TransportationController::class)->group(function(){
 
 
 
+///Manage Driver All Route 
+Route::controller(TransportationController::class)->group(function(){
+    Route::get('/manage/driver', 'ManageDriver')->name('manage.driver');
+    Route::post('/store/driver', 'StoreDriver')->name('store.driver');
+    Route::get('/edit/driver/{id}', 'EditDriver')->name('edit.driver');
+    Route::post('/update/driver', 'UpdateDriver')->name('update.driver');
+    Route::get('/delete/driver/{id}', 'DeleteDriver')->name('delete.driver');
+
+});
+
+
+
 ///SCHOOL SYLLABUS All Route 
 Route::controller(SyllabusController::class)->group(function(){
     Route::get('/all/syllabus', 'AllSyllabus')->name('all.syllabus');
