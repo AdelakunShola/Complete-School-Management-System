@@ -94,7 +94,9 @@ class TransportationController extends Controller
 
      public function ManageVehicle(){
         $vehicle = Vehicle::latest()->get();
-        return view('backend.transportation.manage_vehicle',compact('vehicle'));
+        $driver = Driver::latest()->get();
+        $drivers = Driver::latest()->get();
+        return view('backend.transportation.manage_vehicle',compact('vehicle','driver','drivers'));
     }//end method
 
 

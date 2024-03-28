@@ -3,6 +3,13 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<style>
+    th {
+    font-weight: normal;
+}
+    </style>
+
+
 <div class="content container-fluid">
 
 <div class="page-header">
@@ -60,11 +67,10 @@
 <th>{{$item->vehicle_model}}</th>
 <th>{{$item->vehicle_quantity}}</th>
 <th>{{$item->year_made}}</th>
-<th>{{$item->driver_name}}</th>
-<th>{{$item->driver_contact}}</th>
+<td>{{ $item->driver ? $item->driver->driver_name : 'N/A' }}</td>
+<td>{{ $item->driver ? $item->driver->phone : 'N/A' }}</td>
 <th>{{$item->status}}</th>
 <td>{{ Str::limit($item->description, 55) }}</td>
-<td>{{ $item->created_at->format('d M Y H:i:s') }}</td>
 
 <td class="text-end">
 <div class="actions">
@@ -97,7 +103,7 @@
 <div id="con-close-modal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 <div class="modal-dialog">
 
-<form method="post" action="{{ route('store.transport.route') }}" enctype="multipart/form-data">
+<form method="post" action="{{ route('store.vehicle') }}" enctype="multipart/form-data">
 @csrf
 
 <div class="modal-content">
@@ -110,7 +116,7 @@
 <div class="row">
 <div class="col-md-12">
 <div class="mb-3">
-<label for="field-1" class="form-label"> NAME</label>
+<label for="field-1" class="form-label">Vehicle Name</label>
 <input type="text" class="form-control" id="name" name="name"  >
 </div>
 </div>
@@ -155,24 +161,24 @@
 </div>
 </div>
 
+<div class="form-group local-forms">
+    <label>Select Class</label>
+    <select class="form-control" name="driver_name" onchange="updateDriverContact(this)">
+        <option value="">Select Driver Name</option>
+        @foreach($driver as $dri)
+            <option value="{{ $dri->id }}" data-phone="{{ $dri->phone }}">{{ $dri->driver_name }}</option>
+        @endforeach
+    </select>
+</div>
 
-<div class="row">
-<div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label"> Driver's Contact</label>
-<input type="text" class="form-control" id="driver_contact" name="driver_contact"  >
-</div>
-</div>
+<div class="form-group local-forms">
+    <label>Driver Contact</label>
+    <select class="form-control" name="driver_contact" id="driver_contact">
+        
+    </select>
 </div>
 
-<div class="row">
-<div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label"> STATUS</label>
-<input type="text" class="form-control" id="status" name="status"  >
-</div>
-</div>
-</div>
+
 
 <div class="col-md-12">
 <div class>
@@ -260,20 +266,28 @@
 </div>
 
 
-<div class="row">
-<div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label"> Driver's Contact</label>
-<input type="text" class="form-control" id="edit-driver_contact" name="driver_contact"  >
+<div class="form-group local-forms">
+    <label>Select Class</label>
+    <select class="form-control" name="driver_name" onchange="updateDriverContact(this)">
+        @foreach($drivers as $driver)
+            <option value="{{ $driver->id }}" data-phone="{{ $driver->phone }}">{{ $driver->driver_name }}</option>
+        @endforeach
+    </select>
 </div>
-</div>
-</div>
+
+
+
+
+
 
 <div class="row">
 <div class="col-md-12">
 <div class="mb-3">
-<label for="field-1" class="form-label"> STATUS</label>
-<input type="text" class="form-control" id="edit-status" name="status"  >
+<label for="edit-status" class="form-label">Status</label>
+<select class="form-select" id="edit-status" name="status">
+<option value="active" {{ $item->status === 'active' ? 'selected' : '' }}>Active</option>
+<option value="inactive" {{ $item->status === 'inactive' ? 'selected' : '' }}>Inactive</option>
+</select>
 </div>
 </div>
 </div>
@@ -318,6 +332,37 @@ $('#vehicle_id').val(data.id);
 });
 }
 
+</script>
+
+<script>
+    function updateDriverContact(select) {
+        var selectedOption = select.options[select.selectedIndex];
+        var driverContactInput = document.getElementById('driver_contact');
+        
+        // Clear previous options
+        while (driverContactInput.options.length > 1) {
+            driverContactInput.remove(1);
+        }
+        
+        if (selectedOption.value !== '') {
+            var driverContact = selectedOption.getAttribute('data-phone');
+            var option = document.createElement('option');
+            option.value = driverContact;
+            option.text = driverContact;
+            driverContactInput.add(option);
+        }
+    }
+</script>
+
+
+<script>
+    function updateDriverContactEdit(select) {
+        var selectedOption = select.options[select.selectedIndex];
+        var driverContactInput = document.getElementById('driver_contact');
+        
+        // Update driver contact select dropdown
+        driverContactInput.value = selectedOption.getAttribute('data-phone');
+    }
 </script>
 
 
