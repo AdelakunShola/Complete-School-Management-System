@@ -165,8 +165,8 @@
     <label>Select Class</label>
     <select class="form-control" name="driver_name" onchange="updateDriverContact(this)">
         <option value="">Select Driver Name</option>
-        @foreach($driver as $dri)
-            <option value="{{ $dri->id }}" data-phone="{{ $dri->phone }}">{{ $dri->driver_name }}</option>
+        @foreach($drivers as $driver)
+            <option value="{{ $driver->id }}" data-phone="{{ $driver->phone }}">{{ $driver->driver_name }}</option>
         @endforeach
     </select>
 </div>
@@ -267,12 +267,12 @@
 
 
 <div class="form-group local-forms">
-    <label>Select Class</label>
-    <select class="form-control" name="driver_name" onchange="updateDriverContact(this)">
-        @foreach($drivers as $driver)
-            <option value="{{ $driver->id }}" data-phone="{{ $driver->phone }}">{{ $driver->driver_name }}</option>
-        @endforeach
-    </select>
+<label>Select Class</label>
+<select class="form-control" name="driver_name" onchange="updateDriverContact(this)">
+@foreach($drivers as $driver)
+<option value="{{ $driver->id }}" data-phone="{{ $driver->phone }}">{{ $driver->driver_name }}</option>
+@endforeach
+</select>
 </div>
 
 

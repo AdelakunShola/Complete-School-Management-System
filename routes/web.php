@@ -498,7 +498,11 @@ Route::controller(ManageStudentController::class)->group(function(){
 
 ///TRANSPORTATION All Route 
 Route::controller(TransportationController::class)->group(function(){
-   
+    Route::get('/manage/transport', 'ManageTransport')->name('manage.transport');
+    Route::post('/store/transport', 'StoreTransport')->name('store.transport');
+    Route::get('/edit/transport/{id}', 'EditTransport');
+    Route::post('/update/transport', 'UpdateTransport')->name('update.transport');
+    Route::get('/delete/transport/{id}', 'DeleteTransport')->name('delete.transport');
 
 });
 

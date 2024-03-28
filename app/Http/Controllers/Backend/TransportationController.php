@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Driver;
+use App\Models\Transport;
 use App\Models\TransportRoute;
 use App\Models\Vehicle;
 use Carbon\Carbon;
@@ -12,6 +13,81 @@ use Intervention\Image\Facades\Image;
 
 class TransportationController extends Controller
 {
+
+
+
+
+
+    ////////////MANAGE TRANSPORT ////////
+
+
+    public function ManageTransport(){
+        $vehicle = Vehicle::latest()->get();
+        $drivers = Driver::latest()->get();
+        $transportroute = TransportRoute::latest()->get();
+        $transport = Transport::latest()->get();
+        return view('backend.transportation.manage_transport',compact('vehicle','drivers','transportroute','transport'));
+    }//end method
+
+
+    public function EditTransport($id){
+        $transport = Transport::find($id);
+        return response()->json($transport);
+    }// End Method 
+
+
+    public function StoreTransport(Request $request){
+        Transport::insert([
+            'name' => $request->name,
+            'transport_route_id' => $request->transport_route_id,
+            'vehicle_id' => $request->vehicle_id,
+            'route_fare' => $request->route_fare,
+            'description' => $request->description,
+            'created_at' => Carbon::now(),
+        ]);
+        $notification = array(
+            'message' => 'Transport Added Successfully',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    }// End Method 
+
+
+    public function UpdateTransport(Request $request){
+        $transport_id = $request->transport_id;
+        Transport::find($transport_id)->update([
+            
+            'name' => $request->name,
+            'transport_route_id' => $request->transport_route_id,
+            'vehicle_id' => $request->vehicle_id,
+            'route_fare' => $request->route_fare,
+            'description' => $request->description,
+            'status' => $request->status,
+        ]);
+        $notification = array(
+            'message' => 'Transport Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+
+
+    }// End Method  
+
+
+    public function DeleteTransport($id){
+        Transport::find($id)->delete();
+        $notification = array(
+            'message' => 'Transport Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+
+    }// End Method 
+
+
+
+
+
     
 
 
@@ -94,9 +170,8 @@ class TransportationController extends Controller
 
      public function ManageVehicle(){
         $vehicle = Vehicle::latest()->get();
-        $driver = Driver::latest()->get();
         $drivers = Driver::latest()->get();
-        return view('backend.transportation.manage_vehicle',compact('vehicle','driver','drivers'));
+        return view('backend.transportation.manage_vehicle',compact('vehicle','drivers'));
     }//end method
 
 
