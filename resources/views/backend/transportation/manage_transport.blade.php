@@ -60,11 +60,11 @@
 <tr>
 <td>{{ $key+1 }}</td>
 <td>{{ $item->name }}</td>
-<th>{{$item->transport_route_id}}</th>
-<th>{{$item->vehicle_id}}</th>
+<th>{{$item->route->name}}</th>
+<th>{{$item->vehicle->name}}</th>
 <th>{{$item->route_fare}}</th>
 <td>{{ Str::limit($item->description, 55) }}</td>
-<th>{{$item->status}}</th>
+<th>{{ $item->status == 0 ? 'Active' : 'Inactive' }}</th>
 
 <td class="text-end">
 <div class="actions">
@@ -239,12 +239,15 @@
 <div class="form-group">
 <label>STATUS <span class="star-red">*</span></label>
 <select id="edit-status" name="status" class="select form-control">
-    <option selected disabled>Edit Status..</option>
     <option value="0" {{ $item->status == 0 ? 'selected' : '' }}>Active</option>
     <option value="1" {{ $item->status == 1 ? 'selected' : '' }}>Inactive</option>
 </select>
 </div>
 </div>
+
+
+
+
 
 </div>
 <div class="modal-footer">
