@@ -163,8 +163,8 @@
 <li class="submenu">
 <a href="#"><i class="fas fa-graduation-cap"></i> <span> Manage Student</span> <span class="menu-arrow"></span></a>
 <ul>
-<li><a href="students.html">Admission Form</a></li>
-<li><a href="student-details.html">Student List</a></li>
+<li><a class="{{ $currentRoute == 'add.student' ? 'active' : '' }}" href="{{ route('add.student') }}">Admission Form</a></li>
+<li><a class="{{ $currentRoute == 'all.student' ? 'active' : '' }}" href="{{ route('all.student') }}">Student List</a></li>
 <li><a href="add-student.html">Promote Student</a></li>
 <li><a class="{{ $currentRoute == 'student.category' ? 'active' : '' }}" href="{{ route('student.category') }}">Student Category</a></li>
 <li><a class="{{ $currentRoute == 'student.house' ? 'active' : '' }}" href="{{ route('student.house') }}">Student House</a></li>

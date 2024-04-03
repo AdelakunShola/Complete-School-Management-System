@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Student;
 use App\Models\StudentCategory;
 use App\Models\StudentHouse;
 use Carbon\Carbon;
@@ -10,7 +11,19 @@ use Illuminate\Http\Request;
 
 class ManageStudentController extends Controller
 {
-    
+
+    public function AllStudent(){
+        $allstudent = Student::latest()->get();
+        return view('backend.managestudent.all_student',compact('allstudent'));
+    }//end method
+
+
+    public function AddStudent(){
+        return view('backend.managestudent.add_student');
+    }//end method
+
+
+   
 
 
 

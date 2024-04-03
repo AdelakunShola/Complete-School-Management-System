@@ -489,7 +489,8 @@ Route::controller(ManageStudentController::class)->group(function(){
 
 ///MANAGE STUDENT INFORMATION All Route 
 Route::controller(ManageStudentController::class)->group(function(){
-    
+    Route::get('/all/student', 'AllStudent')->name('all.student');
+    Route::get('/add/student', 'AddStudent')->name('add.student');
 
 });
 
