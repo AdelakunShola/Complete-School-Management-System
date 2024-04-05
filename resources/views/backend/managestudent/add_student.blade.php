@@ -229,65 +229,139 @@
 
 <div class="settings-form deductions-form">
 
-<div class="links-info">
-<div class="row form-row links-cont" id="deductions-container">
-<div class="form-group local-forms form-placeholder d-flex">
-<label style="color: black;" for="inputVendor" class="form-label">Deduction Type</label>
-<input type="text" class="form-control me-2" name="deduction_type1" placeholder="Deduction type">
-<input type="number" min="0" class="form-control deduction-amount" name="deduction_amount1" placeholder="Deduction Amount">
-<div>
-<a href="#" class="btn trash delete-deduction">
-<i class="feather-trash-2"></i>
-</a>
-</div>
+
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
 </div>
 </div>
 </div>
 
-<div class="links-info">
-<div class="row form-row links-cont" id="deductions-container">
-<div class="form-group local-forms form-placeholder d-flex">
-<label style="color: black;" for="inputVendor" class="form-label">Deduction Type</label>
-<input type="text" class="form-control me-2" name="deduction_type2" placeholder="Deduction type">
-<input type="number" min="0" class="form-control deduction-amount" name="deduction_amount2" placeholder="Deduction Amount">
-<div>
-<a href="#" class="btn trash delete-deduction">
-<i class="feather-trash-2"></i>
-</a>
-</div>
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
 </div>
 </div>
 </div>
 
-<div class="links-info">
-<div class="row form-row links-cont" id="deductions-container">
-<div class="form-group local-forms form-placeholder d-flex">
-<label style="color: black;" for="inputVendor" class="form-label">Deduction Type</label>
-<input type="text" class="form-control me-2" name="deduction_type3" placeholder="Deduction type">
-<input type="number" min="0" class="form-control deduction-amount" name="deduction_amount3" placeholder="Deduction Amount">
-<div>
-<a href="#" class="btn trash delete-deduction">
-<i class="feather-trash-2"></i>
-</a>
-</div>
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
 </div>
 </div>
 </div>
 
-<div class="links-info">
-<div class="row form-row links-cont" id="deductions-container">
-<div class="form-group local-forms form-placeholder d-flex">
-<label style="color: black;" for="inputVendor" class="form-label">Deduction Type</label>
-<input type="text" class="form-control me-2" name="deduction_type4" placeholder="Deduction type">
-<input type="number" min="0" class="form-control deduction-amount" name="deduction_amount4" placeholder="Deduction Amount">
-<div>
-<a href="#" class="btn trash delete-deduction">
-<i class="feather-trash-2"></i>
-</a>
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
 </div>
 </div>
 </div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
 </div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+
+
 
 </div>
 
