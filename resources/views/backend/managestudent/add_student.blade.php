@@ -231,7 +231,134 @@
 
 
 
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
 
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Student Category Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
 
 
 
