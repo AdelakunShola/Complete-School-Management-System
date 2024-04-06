@@ -8,11 +8,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <style>
     .select2-container .select2-selection--single{
-    height:34px !important;
+    height:41px !important;
 }
 .select2-container--default .select2-selection--single{
          border: 1px solid #ccc !important; 
-     border-radius: 0px !important; 
+         border-radius: 5px !important; 
 }
 
 </style>
