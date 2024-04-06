@@ -127,7 +127,7 @@ class SyllabusController extends Controller
         $classes = Classes::latest()->get();
         $subject = SchoolSubject::latest()->get();
         $setting = Settings::find(1);
-        return view('backend.syllabus.view_syllabus', compact('classes', 'subject','setting','edit_syllabus'));
+        return view('backend.syllabus.view_syllabus', compact('classes', 'subject','setting','editSyllabus'));
     }//end method
 
 

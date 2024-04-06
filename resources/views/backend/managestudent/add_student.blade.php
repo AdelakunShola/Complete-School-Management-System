@@ -2,7 +2,23 @@
 @section('admin')
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<style>
+    .select2-container .select2-selection--single{
+    height:34px !important;
+}
+.select2-container--default .select2-selection--single{
+         border: 1px solid #ccc !important; 
+     border-radius: 0px !important; 
+}
+
+</style>
 <div class="content container-fluid">
 
 <div class="page-header">
@@ -41,33 +57,47 @@
 <div class="card-body pt-0">
 <div class="settings-form allowances-form">
 
+
+
+
+
 <div class="row">
-    <div class="col-md-12">
-        <div class="mb-3 position-relative">
-            <label for="field-1" class="form-label">Student Category Name</label>
-            <div class="d-flex align-items-center">
-                <input type="text" class="form-control" id="name" name="name">
-                <a href="#">
-                    <span class="position-absolute bottom-0 start-0 rounded-circle" style="background-color: blue; ">
-                        <i class="fe fe-plus" style="color: white; font-size: 12px;"></i>
-                    </span>
-                </a>
-            </div>
-        </div>
-    </div>
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Image</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
 </div>
 
-
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">Full Name</label>
+<input type="text" class="form-control" id="name" name="name"  >
+</div>
+</div>
+</div>
 
 <div class="row">
     <div class="col-md-12">
         <div class="mb-3 position-relative">
-            <label for="field-1" class="form-label">Student Category Name</label>
-            <div class="d-flex align-items-center">
-                <input type="text" class="form-control" id="name" name="name">
+            <label for="field-1" class="form-label">Parent</label>
+            <div class="d-flex align-items-center mt-2">
+                <select id="parentSelect" class="select form-control">
+                    <option selected="selected">Select</option>
+                    <option value="search" data-toggle="search">Search...</option>
+                    <option value="California">California</option>
+                    <option value="Tasmania">Tasmania</option>
+                    <option value="Auckland">Auckland</option>
+                    <option value="Marlborough">Marlborough</option>
+                </select>
+                <div id="searchDropdown" class="dropdown-menu p-3" style="display: none;">
+                    <input type="text" id="searchInput" class="form-control mb-2" placeholder="Search...">
+                </div>
                 <a href="#">
                     <span class="position-absolute bottom-0 start-0 rounded-pill" style="background-color: blue;  transform: translate(-30%, 90%);  width: 20px; height: 20px;">
-                        <i class="fas fe-plus" style="color: white; font-size: 12px; padding-left: 5px;  padding-top: -30px; "></i>
+                        <i class="fas fa-plus" style="color: white; font-size: 12px; padding-left: 5px;  padding-top: -30px;"></i>
                     </span>
                 </a>
             </div>
@@ -76,22 +106,40 @@
 </div>
 
 
+<div class="container">
+	<div class="row">
+	    <form class="col-md-4">
+	        <label>Select</label>
+	        <select class="form-control select2">
+	           <option>Select</option> 
+	           <option>Car</option> 
+	           <option>Bike</option> 
+	           <option>Scooter</option> 
+	           <option>Cycle</option> 
+	           <option>Horse</option> 
+	        </select>
+	    </form>
+ 	</div>
+</div>
+<script>
+    $('.select2').select2();
+</script>
+
+
 
 
 <div class="row">
 <div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<div class="mb-3 position-relative">
+<label for="field-1" class="form-label">Class</label>
+<div class="d-flex align-items-center">
+<input type="text" class="form-control" id="name" name="name">
+<a href="#">
+<span class="position-absolute bottom-0 start-0 rounded-pill" style="background-color: blue;  transform: translate(-30%, 90%);  width: 20px; height: 20px;">
+<i class="fas fa-plus" style="color: white; font-size: 12px; padding-left: 5px;  padding-top: -30px; "></i>
+</span>
+</a>
 </div>
-</div>
-</div>
-
-<div class="row">
-<div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
 </div>
 </div>
 </div>
