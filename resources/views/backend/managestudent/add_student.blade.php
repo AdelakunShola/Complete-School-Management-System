@@ -76,11 +76,11 @@
 </div>
 </div>
 
-<div class="row">
+<div class="row mb-4">
 <div class="col-md-12">
 <div class="mb-3 position-relative">
 <label for="field-1" class="form-label">Parent</label>
-<div class="d-flex align-items-center mt-2">
+<div class="d-flex align-items-center">
 <select id="parentSelect" class="select2 form-control">
 <option selected="selected">Select</option>
 <option value="search" data-toggle="search">Search...</option>
