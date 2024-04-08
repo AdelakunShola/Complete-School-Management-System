@@ -62,7 +62,8 @@
 
 
 
-
+<form method="post" action="{{ route('store.student') }}" enctype="multipart/form-data">
+@csrf
 
 <div class="col-12 col-sm-4">
 <div class="form-group students-up-files">
@@ -513,7 +514,32 @@ Choose File <input type="file" id="img" name="photo">
 </div>
 </div>
 
+<div class="row">
+<div class="col-md-12">
+<div class="form-group local-forms">
+<label style="font-size: 15px;" for="field-1" class="form-label">Facebook</label>
+<input type="text" class="form-control" id="name" name="facebook"  >
+</div>
+</div>
+</div>
 
+<div class="row">
+<div class="col-md-12">
+<div class="form-group local-forms">
+<label style="font-size: 15px;" for="field-1" class="form-label">Twitter</label>
+<input type="text" class="form-control" id="name" name="twitter"  >
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="form-group local-forms">
+<label style="font-size: 15px;" for="field-1" class="form-label">Linkedin</label>
+<input type="text" class="form-control" id="name" name="linkedin"  >
+</div>
+</div>
+</div>
 
 </div>
 </div>
@@ -626,6 +652,7 @@ $(document).ready(function(){
 
 
 <script>
+    // get age from birthday
     $(document).ready(function() {
         // Attach change event listener to the birthday input field
         $('#birthday').change(function() {
@@ -652,6 +679,11 @@ $(document).ready(function(){
         }
     });
 </script>
+
+
+
+
+
 
 
 <script>

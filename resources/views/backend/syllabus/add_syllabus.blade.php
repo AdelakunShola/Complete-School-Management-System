@@ -159,10 +159,6 @@ Choose Files <input type="file" id="syllabus" name="file_name[]" accept=".pdf, .
 </script>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-
-
 
 <script type="text/javascript">
   		
@@ -204,7 +200,7 @@ Choose Files <input type="file" id="syllabus" name="file_name[]" accept=".pdf, .
 
             // AJAX call to upload files
             $.ajax({
-                url: '{{ route("store.syllabus") }}', // Replace 'upload.php' with your server-side upload script
+                url: '{{ route("store.syllabus") }}', 
                 type: 'POST',
                 data: formData,
                 processData: false,

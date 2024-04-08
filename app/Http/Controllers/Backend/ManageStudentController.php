@@ -46,65 +46,84 @@ class ManageStudentController extends Controller
 
     public function StoreStudent(Request $request){
 
+
+        $save_url = null;
+        if ($request->file('photo')) {
+            $image = $request->file('photo');
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $save_url = 'upload/student/' . $name_gen;
+            Image::make($image)->resize(300, 300)->save($save_url);
+        }
+
         // Generate librarian ID
         $student_number = IdGenerator::generate([
             'table' => 'students',
             'field' => 'student_id',
             'length' => 7,
-            'prefix' => 'ID'
+            'prefix' => 'ID',
+            'suffix' => '',
         ]);
 
 
-        Classes::insert([
+
+        // For documents, use different upload paths
+$tcertificateUploadPath = 'public/tcertificates';
+$birthCertificateUploadPath = 'public/birth_certificates';
+
+$tcertificatePath = $request->file('transfer_cert') ? $request->file('transfer_cert')->storeAs($tcertificateUploadPath, 'transfer_cert_' . uniqid() . '.' . $request->file('transfer_cert')->getClientOriginalExtension()) : null;
+
+$birthCertificatePath = $request->file('birth_cert') ? $request->file('birth_cert')->storeAs($birthCertificateUploadPath, 'birth_cert_' . uniqid() . '.' . $request->file('birth_cert')->getClientOriginalExtension()) : null;
+
+
+
+        StudentHouse::insert([
 
             'student_id' => $student_number,
-            'name' => $request->description,
-            'email' => $request->name,
-            'birthday' => $request->description,
-            'age' => $request->name,
-            'tribe' => $request->description,
-            'state_of_origin' => $request->name,
+            'name' => $request->name,
+            'parent_id' => $request->parent_id,
+            'class_id' => $request->class_id,
+            'section_id' => $request->section_id,
+            'birthday' => $request->birthday,
+            'age' => $request->age,
+            'sex' => $request->sex,
+            'tribe' => $request->tribe,
+            'state_of_origin' => $request->state_of_origin,
+
+            'religion' => $request->religion,
+            'blood_group' => $request->blood_group,
+            'address' => $request->address,
+            'city' => $request->city,
+            'club_id' => $request->club_id,
+            'house_id' => $request->house_id,
+            'state' => $request->state,
+            'nationality' => $request->nationality,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            
             'password' => Hash::make($request-> password),
+            'prev_sch_attended' => $request->prev_sch_attended,
+            'prev_sch_address' => $request->prev_sch_address,
+            'date_of_leaving_prev_sch' => $request->date_of_leaving_prev_sch,
+            'reason_of_leaving_prev_sch' => $request->reason_of_leaving_prev_sch,
+            'class_in_prev_sch' => $request->class_in_prev_sch,
+            'physical_handicap' => $request->physical_handicap,
+            'transport_id' => $request->transport_id,
+            'student_category_id' => $request->student_category_id, 
+            'hostel_id' => $request->hostel_id,
 
-            'religion' => $request->description,
-            'sex' => $request->name,
-            'blood_group' => $request->description,
-            'photo' => $request->name,
-            'phone' => $request->description,
-            'address' => $request->name,
-            'city' => $request->description,
-            'state' => $request->name,
-
-            'nationality' => $request->description,
-            'physical_handicap' => $request->name,
-            'prev_sch_attended' => $request->name,
-            'prev_sch_address' => $request->description,
-            'date_of_leaving_prev_sch' => $request->name,
-            'reason_of_leaving_prev_sch' => $request->description,
-            'class_in_prev_sch' => $request->name,
-            'class_id' => $request->description,
-
-            'section_id' => $request->name,
-            'parent_id' => $request->description,
-            'transport_id' => $request->name,
-            'student_category_id' => $request->description,
-            'club_id' => $request->name,
-            'house_id' => $request->description,
-            'hostel_id' => $request->name,
             'session' => $request->session,
+            'facebook' => $request->facebook,
+            'twitter' => $request->twitter,
+            'linkedin' => $request->linkedin,
 
-            'status' => $request->name,
-            'facebook' => $request->description,
-            'twitter' => $request->name,
-            'linkedin' => $request->description,
-
-            'transfer_cert' => $request->description,
-            'birth_cert' => $request->name,
+            'transfer_cert' => $tcertificatePath,
+            'birth_cert' => $birthCertificatePath,
+            'photo' => $save_url,
 
             'created_at' => Carbon::now(),
         ]);
         $notification = array(
-            'message' => 'Class Added Successfully',
+            'message' => 'Student Added Successfully',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);
