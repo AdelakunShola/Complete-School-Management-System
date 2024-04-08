@@ -492,6 +492,8 @@ Route::controller(ManageStudentController::class)->group(function(){
     Route::get('/all/student', 'AllStudent')->name('all.student');
     Route::get('/add/student', 'AddStudent')->name('add.student');
 
+    Route::get('/sections/ajax/{class_id}' , 'getSectionByClass');
+
 });
 
 

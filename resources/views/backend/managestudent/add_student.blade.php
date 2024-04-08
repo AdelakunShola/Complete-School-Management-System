@@ -7,9 +7,20 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <style>
-    .select2-container .select2-selection--single{
-    height:41px !important;
+
+.select2-container--default .select2-selection--single {
+    height: 40px !important; /* Adjust the height as needed */
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+    display: flex; /* Use flexbox to center the text vertically */
+    align-items: center; /* Center the text vertically */
 }
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    padding-top: 5px; /* Adjust the padding as needed */
+}
+
+    
 .select2-container--default .select2-selection--single{
          border: 1px solid #ccc !important; 
          border-radius: 5px !important; 
@@ -21,10 +32,10 @@
 <div class="page-header">
 <div class="row align-items-center">
 <div class="col">
-<h3 class="page-title">Add Payroll</h3>
+<h3 class="page-title">Add Student</h3>
 <ul class="breadcrumb">
-<li class="breadcrumb-item"><a href="expenses.html">Payroll</a></li>
-<li class="breadcrumb-item active">Add Payroll</li>
+<li class="breadcrumb-item"><a href="expenses.html">ADMISSION FORM</a></li>
+<li class="breadcrumb-item active">Add Student</li>
 </ul>
 </div>
 </div>
@@ -38,18 +49,13 @@
 
 
 
-
-
-
-
-
-<!--ALLOWANCES-->
+<!--ADMISSION FORM PART A-->
 <div class="content container-fluid">
 <div class="row">
 <div class="col-md-6">
 <div class="card">
 <div class="card-header">
-<h5 class="card-title">ADD ALLOWANCES</h5>
+<h5 class="card-title">ADMISSION FORM - Part A</h5>
 </div>
 <div class="card-body pt-0">
 <div class="settings-form allowances-form">
@@ -58,12 +64,22 @@
 
 
 
-<div class="row">
-<div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Image</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<div class="col-12 col-sm-4">
+<div class="form-group students-up-files">
+<label>Upload Your Photo </label>
+<div class="uplod">
+<label class="file-upload image-upbtn mb-0">
+Choose File <input type="file" id="img" name="photo">
+</label>
 </div>
+<img id="showImg" class="rounded-circle" alt="Student Image" src="{{ (!empty($studentData->photo)) ? url('upload/student_images/'.$studentData->photo):url('upload/no_image.jpg') }}" style="width: 100px; height:100px;">
+</div>
+</div>
+
+<div class="col-12 col-md-12">
+<div class="form-group local-forms">
+<label>Academic Session</label>
+<input class="form-control" type="text" name="session" value="{{ $setting->academic_session }}" readonly>
 </div>
 </div>
 
@@ -76,20 +92,19 @@
 </div>
 </div>
 
+
 <div class="row mb-4">
 <div class="col-md-12">
 <div class="mb-3 position-relative">
-<label for="field-1" class="form-label">Parent</label>
+<label for="field-1" class="form-label">Select Parent</label>
 <div class="d-flex align-items-center">
-<select id="parentSelect" class="select2 form-control">
-<option selected="selected">Select</option>
-<option value="search" data-toggle="search">Search...</option>
-<option value="California">California</option>
-<option value="Tasmania">Tasmania</option>
-<option value="Auckland">Auckland</option>
-<option value="Marlborough">Marlborough</option>
+<select id="parentSelect1" class="select2 form-control" name="house_id">
+<option selected="selected">Select Parent</option>
+@foreach($parents as $parent)
+<option value="{{ $parent->id }}">{{ $parent->name }}</option>
+@endforeach
 </select>
-<div id="searchDropdown" class="dropdown-menu p-3" style="display: none;">
+<div id="searchDropdown1" class="dropdown-menu p-3" style="display: none;">
 <input type="text" id="searchInput" class="form-control mb-2" placeholder="Search...">
 </div>
 <a href="#">
@@ -104,15 +119,45 @@
 
 
 
-<div class="row">
+<div class="row mb-4">
 <div class="col-md-12">
 <div class="mb-3 position-relative">
-<label for="field-1" class="form-label">Class</label>
+<label for="field-1" class="form-label">Select Class</label>
 <div class="d-flex align-items-center">
-<input type="text" class="form-control" id="name" name="name">
+<select id="parentSelect2" class="select2 form-control" name="class_id">
+<option selected="selected">Select Class</option>
+@foreach($classes as $class)
+<option value="{{ $class->id }}">{{ $class->class_name }}</option>
+@endforeach
+</select>
+<div id="searchDropdown2" class="dropdown-menu p-3" style="display: none;">
+<input type="text" id="searchInput" class="form-control mb-2" placeholder="Search...">
+</div>
 <a href="#">
 <span class="position-absolute bottom-0 start-0 rounded-pill" style="background-color: blue;  transform: translate(-30%, 90%);  width: 20px; height: 20px;">
-<i class="fas fa-plus" style="color: white; font-size: 12px; padding-left: 5px;  padding-top: -30px; "></i>
+<i class="fas fa-plus" style="color: white; font-size: 12px; padding-left: 5px;  padding-top: -30px;"></i>
+</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="row mb-4">
+<div class="col-md-12">
+<div class="mb-3 position-relative">
+<label for="field-1" class="form-label">Section</label>
+<div class="d-flex align-items-center">
+<select class="form-control" id="section" name="section_id">
+<option value="">Select Section</option>
+</select>
+<div id="searchDropdown3" class="dropdown-menu p-3" style="display: none;">
+<input type="text" id="searchInput" class="form-control mb-2" placeholder="Search...">
+</div>
+<a href="#">
+<span class="position-absolute bottom-0 start-0 rounded-pill" style="background-color: blue;  transform: translate(-30%, 90%);  width: 20px; height: 20px;">
+<i class="fas fa-plus" style="color: white; font-size: 12px; padding-left: 5px;  padding-top: -30px;"></i>
 </span>
 </a>
 </div>
@@ -122,9 +167,9 @@
 
 <div class="row">
 <div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<div class="mb-3 ">
+<label for="birthday" class="form-label ">Birthday<span class="calendar-icon"></span></label>
+<input type="text" class="form-control datetimepicker" id="birthday" name="birthday">
 </div>
 </div>
 </div>
@@ -132,26 +177,8 @@
 <div class="row">
 <div class="col-md-12">
 <div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
-</div>
-</div>
-</div>
-
-<div class="row">
-<div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
-</div>
-</div>
-</div>
-
-<div class="row">
-<div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<label for="age" class="form-label">Age</label>
+<input type="text" class="form-control" id="age" name="age" readonly>
 </div>
 </div>
 </div>
@@ -160,17 +187,8 @@
 <div class="row">
 <div class="col-md-12">
 <div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
-</div>
-</div>
-</div>
-
-<div class="row">
-<div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<label for="age" class="form-label">Gender</label>
+<input type="text" class="form-control"  name="sex" >
 </div>
 </div>
 </div>
@@ -179,17 +197,8 @@
 <div class="row">
 <div class="col-md-12">
 <div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
-</div>
-</div>
-</div>
-
-<div class="row">
-<div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<label for="field-1" class="form-label">State of Origin</label>
+<input type="text" class="form-control" id="name" name="state_of_origin"  >
 </div>
 </div>
 </div>
@@ -198,8 +207,8 @@
 <div class="row">
 <div class="col-md-12">
 <div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<label for="field-1" class="form-label">Religion</label>
+<input type="text" class="form-control" id="name" name="religion"  >
 </div>
 </div>
 </div>
@@ -207,8 +216,8 @@
 <div class="row">
 <div class="col-md-12">
 <div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<label for="field-1" class="form-label">Tribe</label>
+<input type="text" class="form-control" id="name" name="tribe"  >
 </div>
 </div>
 </div>
@@ -216,38 +225,100 @@
 <div class="row">
 <div class="col-md-12">
 <div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<label for="field-1" class="form-label">Blood Group</label>
+<input type="text" class="form-control" id="name" name="blood_group"  >
 </div>
 </div>
 </div>
+
 
 <div class="row">
 <div class="col-md-12">
 <div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
-</div>
-</div>
-</div>
-
-</div>
-
+<label for="field-1" class="form-label">Address</label>
+<input type="text" class="form-control" id="name" name="address"  >
 </div>
 </div>
 </div>
 
 
 
+<div class="row">
+<div class="col-md-12">
+<div class="mb-3">
+<label for="field-1" class="form-label">City</label>
+<input type="text" class="form-control" id="name" name="city"  >
+</div>
+</div>
+</div>
+
+<div class="row mb-4">
+<div class="col-md-12">
+<div class="mb-3 position-relative">
+<label for="field-1" class="form-label">Student House</label>
+<div class="d-flex align-items-center">
+<select id="parentSelect4" class="select2 form-control" name="house_id">
+<option selected="selected">Select Student House</option>
+@foreach($house as $studenthouse)
+<option value="{{ $studenthouse->id }}">{{ $studenthouse->name }}</option>
+@endforeach
+</select>
+<div id="searchDropdown4" class="dropdown-menu p-3" style="display: none;">
+<input type="text" id="searchInput" class="form-control mb-2" placeholder="Search...">
+</div>
+<a href="#">
+<span class="position-absolute bottom-0 start-0 rounded-pill" style="background-color: blue;  transform: translate(-30%, 90%);  width: 20px; height: 20px;">
+<i class="fas fa-plus" style="color: white; font-size: 12px; padding-left: 5px;  padding-top: -30px;"></i>
+</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row mb-4">
+<div class="col-md-12">
+<div class="mb-3 position-relative">
+<label for="field-1" class="form-label">Student Club</label>
+<div class="d-flex align-items-center">
+<select id="parentSelect5" class="select2 form-control" name="club_id">
+<option selected="selected">Select Student Club</option>
+@foreach($club as $studentclub)
+<option value="{{ $studentclub->id }}">{{ $studentclub->club_name }}</option>
+@endforeach
+</select>
+<div id="searchDropdown5" class="dropdown-menu p-3" style="display: none;">
+<input type="text" id="searchInput" class="form-control mb-2" placeholder="Search...">
+</div>
+<a href="#">
+<span class="position-absolute bottom-0 start-0 rounded-pill" style="background-color: blue;  transform: translate(-30%, 90%);  width: 20px; height: 20px;">
+<i class="fas fa-plus" style="color: white; font-size: 12px; padding-left: 5px;  padding-top: -30px;"></i>
+</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+
+
+
+</div>
+
+</div>
+</div>
+</div>
 
 
 
 
-<!-- DEDUCTIONS -->
+
+
+
+<!-- ADMISSION FORM - Part A -->
 <div class="col-md-6">
 <div class="card">
 <div class="card-header">
-<h5 class="card-title">ADD DEDUCTIONS</h5>
+<h5 class="card-title">ADMISSION FORM - Part B</h5>
 </div>
 <div class="card-body pt-0">
 
@@ -257,54 +328,27 @@
 
 <div class="row">
 <div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<div class="form-group local-forms">
+<label style="font-size: 15px;">State <span class="login-danger">*</span></label>
+<input type="text" class="form-control" id="name" name="state"  >
 </div>
 </div>
 </div>
 
 <div class="row">
 <div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<div class="form-group local-forms">
+<label style="font-size: 15px;">Nationality <span class="login-danger">*</span></label>
+<input type="text" class="form-control" id="name" name="nationality"  >
 </div>
 </div>
 </div>
 
 <div class="row">
 <div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
-</div>
-</div>
-</div>
-
-<div class="row">
-<div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
-</div>
-</div>
-</div>
-
-<div class="row">
-<div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
-</div>
-</div>
-</div>
-
-<div class="row">
-<div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<div class="form-group local-forms">
+<label style="font-size: 15px;">Phone <span class="login-danger">*</span></label>
+<input type="text" class="form-control" id="name" name="phone"  >
 </div>
 </div>
 </div>
@@ -312,18 +356,36 @@
 
 <div class="row">
 <div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<div class="form-group local-forms">
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+<label style="font-size: 15px;">E-Mail <span class="login-danger">*</span></label>
+<input class="form-control" type="email" name="email">
 </div>
 </div>
 </div>
 
 <div class="row">
 <div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<div class="form-group local-forms">
+<label style="font-size: 15px;">Password <span class="login-danger">*</span></label>
+<input type="text" class="form-control" id="name" name="password"  >
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="form-group local-forms">
+<label style="font-size: 15px;">Previous School Name </label>
+<input type="text" class="form-control" id="name" name="prev_sch_attended"  >
 </div>
 </div>
 </div>
@@ -331,18 +393,18 @@
 
 <div class="row">
 <div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<div class="form-group local-forms">
+<label style="font-size: 15px;">Previous School Address </label>
+<input type="text" class="form-control" id="name" name="prev_sch_address"  >
 </div>
 </div>
 </div>
 
 <div class="row">
 <div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<div class="form-group local-forms">
+<label style="font-size: 15px;">Purpose of Leaving</label>
+<input type="text" class="form-control" id="name" name="reason_of_leaving_prev_sch"  >
 </div>
 </div>
 </div>
@@ -350,45 +412,110 @@
 
 <div class="row">
 <div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<div class="form-group local-forms">
+<label style="font-size: 15px;">Current Class Before Leaving</label>
+<input type="text" class="form-control" id="name" name="class_in_prev_sch"  >
+</div>
+</div>
+</div>
+
+
+<div class="row">
+<div class="col-md-12">
+<div class="form-group local-forms">
+<label style="font-size: 15px;">Date Of Leaving Previous School</label>
+<input type="text" class="form-control" id="name" name="date_of_leaving_prev_sch"  >
 </div>
 </div>
 </div>
 
 <div class="row">
 <div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<div class="form-group local-forms">
+<label style="font-size: 15px;" for="field-1" class="form-label">Physical Handicap</label>
+<input type="text" class="form-control" id="name" name="physical_handicap"  >
 </div>
 </div>
 </div>
 
-<div class="row">
+
+<div class="row mb-4">
 <div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<div class="form-group local-forms position-relative">
+<label style="font-size: 15px;" for="field-1" class="form-label">School Hostel/ Dormitory</label>
+<div class="d-flex align-items-center">
+<select id="parentSelect5" class="select2 form-control" name="hostel_id">
+<option selected="selected">Select Student House</option>
+@foreach($hostel as $dormitory)
+<option value="{{ $dormitory->id }}">{{ $dormitory->name }}</option>
+@endforeach
+</select>
+<div id="searchDropdown5" class="dropdown-menu p-3" style="display: none;">
+<input type="text" id="searchInput" class="form-control mb-2" placeholder="Search...">
+</div>
+<a href="#">
+<span class="position-absolute bottom-0 start-0 rounded-pill" style="background-color: blue;  transform: translate(-30%, 90%);  width: 20px; height: 20px;">
+<i class="fas fa-plus" style="color: white; font-size: 12px; padding-left: 5px;  padding-top: -30px;"></i>
+</span>
+</a>
+</div>
 </div>
 </div>
 </div>
 
-<div class="row">
+
+<div class="row mb-4">
 <div class="col-md-12">
-<div class="mb-3">
-<label for="field-1" class="form-label">Student Category Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<div class="form-group local-forms position-relative">
+<label style="font-size: 15px;" for="field-1" class="form-label">Student Category</label>
+<div class="d-flex align-items-center">
+<select id="parentSelect6" class="select2 form-control" name="hostel_id">
+<option selected="selected">Select Student Category</option>
+@foreach($studentcategory as $scategory)
+<option value="{{ $scategory->id }}">{{ $scategory->name }}</option>
+@endforeach
+</select>
+<div id="searchDropdown6" class="dropdown-menu p-3" style="display: none;">
+<input type="text" id="searchInput" class="form-control mb-2" placeholder="Search...">
+</div>
+<a href="#">
+<span class="position-absolute bottom-0 start-0 rounded-pill" style="background-color: blue;  transform: translate(-30%, 90%);  width: 20px; height: 20px;">
+<i class="fas fa-plus" style="color: white; font-size: 12px; padding-left: 5px;  padding-top: -30px;"></i>
+</span>
+</a>
 </div>
 </div>
 </div>
+</div>
 
+
+<div class="row mb-4">
+<div class="col-md-12">
+<div class="form-group local-forms position-relative">
+<label  for="field-1" class="form-label">Transport Route</label>
+<div class="d-flex align-items-center">
+<select id="parentSelect7" class="select2 form-control" name="hostel_id">
+<option selected="selected">Select Student House</option>
+@foreach($transports as $transport)
+<option value="{{ $transport->id }}">{{ $transport->name }}</option>
+@endforeach
+</select>
+<div id="searchDropdown7" class="dropdown-menu p-3" style="display: none;">
+<input type="text" id="searchInput" class="form-control mb-2" placeholder="Search...">
+</div>
+<a href="#">
+<span class="position-absolute bottom-0 start-0 rounded-pill" style="background-color: blue;  transform: translate(-30%, 90%);  width: 20px; height: 20px;">
+<i class="fas fa-plus" style="color: white; font-size: 12px; padding-left: 5px;  padding-top: -30px;"></i>
+</span>
+</a>
+</div>
+</div>
+</div>
+</div>
 
 
 
 </div>
-
 </div>
 </div>
 </div>
@@ -398,18 +525,133 @@
 
 
 
+<div class="col-12 col-sm-4">
+<div class="form-group students-up-files">
+<label>Transfer Certificate</label>
+<div class="uplod">
+<label class="file-upload image-upbtn mb-0">
+Choose File <input type="file" id="tcertificate" name="transfer_cert" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
+</label>
+</div>
+<span id="tcertificateFileName"></span>
+</div>
+</div>
+
+<div class="col-12 col-sm-4">
+<div class="form-group students-up-files">
+<label>Birth Certificate</label>
+<div class="uplod">
+<label class="file-upload image-upbtn mb-0">
+Choose File <input type="file" id="birth_certificate" name="birth_cert" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
+</label>
+</div>
+<span id="birthCertificateFileName"></span>
+</div>
+</div>
 
 
 
-
-
-
-
-
-
-
+<div class="col-12">
+<div class="student-submit">
+<button type="submit" class="btn btn-primary">Submit</button>
+</div>
+</div>
 
 </form>
+</div>
+</div>
+
+
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#img').change(function(e){
+			var reader = new FileReader();
+			reader.onload = function(e){
+				$('#showImg').attr('src',e.target.result);
+			}
+			reader.readAsDataURL(e.target.files['0']);
+		});
+	});
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Function to handle file input change for CV
+        $('#tcertificate').change(function (e) {
+            var fileName = e.target.files[0].name;
+            $('#tcertificateFileName').text('File Name: ' + fileName);
+        });
+
+        // Function to handle file input change for cover letter
+        $('#birth_certificate').change(function (e) {
+            var fileName = e.target.files[0].name;
+            $('#birthCertificateFileName').text('File Name: ' + fileName);
+        });
+
+
+    });
+</script>
+
+
+<script>
+
+$(document).ready(function(){
+    $('select[name="class_id"]').on('change', function(){
+        var class_id = $(this).val();
+        if (class_id) {
+            $.ajax({
+                url: "{{ url('/sections/ajax') }}/"+class_id,
+                type: "GET",
+                dataType: "json",
+                success: function(data){
+                    var sectionDropdown = $('select[name="section_id"]');
+                    sectionDropdown.html('<option value="">Select Section</option>');
+                    $.each(data, function(key, value){
+                        sectionDropdown.append('<option value="'+ value.id + '">' + value.name + '</option>');
+                    });
+                },
+            });
+        } else {
+            var sectionDropdown = $('select[name="section_id"]');
+            sectionDropdown.html('<option value="">Select Section</option>');
+        }
+    });
+});
+
+</script>
+
+
+
+<script>
+    $(document).ready(function() {
+        // Attach change event listener to the birthday input field
+        $('#birthday').change(function() {
+            // Get the selected birthday value
+            var birthday = $(this).val();
+
+            // Calculate age based on the selected birthday
+            var age = calculateAge(birthday);
+
+            // Update the age input field
+            $('#age').val(age);
+        });
+
+        // Function to calculate age based on the given birthday
+        function calculateAge(birthday) {
+            var today = new Date();
+            var birthDate = new Date(birthday);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var month = today.getMonth() - birthDate.getMonth();
+            if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
+        }
+    });
+</script>
 
 
 <script>

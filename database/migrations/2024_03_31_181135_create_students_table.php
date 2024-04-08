@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('age')->nullable();
             $table->string('tribe')->nullable();
             $table->string('state_of_origin')->nullable();
-            $table->string('place_of_birth')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('sex')->nullable();
@@ -51,7 +50,7 @@ return new class extends Migration
             $table->string('house_id')->nullable();
             $table->string('hostel_id')->nullable();
             $table->string('transfer_cert')->nullable();
-            $table->string('dob_cert')->nullable();
+            $table->string('birth_cert')->nullable();
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
             $table->string('linkedin')->nullable();

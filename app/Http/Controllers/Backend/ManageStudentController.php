@@ -3,9 +3,20 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
+use App\Models\Classes;
+use App\Models\SchoolClub;
+use App\Models\SchoolHostel;
+use App\Models\SchoolSubject;
+use App\Models\Section;
+use App\Models\Settings;
 use App\Models\Student;
 use App\Models\StudentCategory;
 use App\Models\StudentHouse;
+use App\Models\TransportRoute;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -19,8 +30,95 @@ class ManageStudentController extends Controller
 
 
     public function AddStudent(){
-        return view('backend.managestudent.add_student');
+        $classes = Classes::latest()->get();
+        $section = Section::latest()->get();
+        $setting = Settings::find(1);
+        $house = StudentHouse::latest()->get();
+        $club = SchoolClub::latest()->get();
+        $hostel = SchoolHostel::latest()->get();
+        $transports = TransportRoute::latest()->get();
+        $studentcategory = StudentCategory::latest()->get();
+        $parents = User::where('role', 'parent')->get();
+        return view('backend.managestudent.add_student',compact('setting','section','classes','house','club','hostel','transports','studentcategory','parents'));
     }//end method
+
+
+
+    public function StoreStudent(Request $request){
+
+        // Generate librarian ID
+        $student_number = IdGenerator::generate([
+            'table' => 'students',
+            'field' => 'student_id',
+            'length' => 7,
+            'prefix' => 'ID'
+        ]);
+
+
+        Classes::insert([
+
+            'student_id' => $student_number,
+            'name' => $request->description,
+            'email' => $request->name,
+            'birthday' => $request->description,
+            'age' => $request->name,
+            'tribe' => $request->description,
+            'state_of_origin' => $request->name,
+            'password' => Hash::make($request-> password),
+
+            'religion' => $request->description,
+            'sex' => $request->name,
+            'blood_group' => $request->description,
+            'photo' => $request->name,
+            'phone' => $request->description,
+            'address' => $request->name,
+            'city' => $request->description,
+            'state' => $request->name,
+
+            'nationality' => $request->description,
+            'physical_handicap' => $request->name,
+            'prev_sch_attended' => $request->name,
+            'prev_sch_address' => $request->description,
+            'date_of_leaving_prev_sch' => $request->name,
+            'reason_of_leaving_prev_sch' => $request->description,
+            'class_in_prev_sch' => $request->name,
+            'class_id' => $request->description,
+
+            'section_id' => $request->name,
+            'parent_id' => $request->description,
+            'transport_id' => $request->name,
+            'student_category_id' => $request->description,
+            'club_id' => $request->name,
+            'house_id' => $request->description,
+            'hostel_id' => $request->name,
+            'session' => $request->session,
+
+            'status' => $request->name,
+            'facebook' => $request->description,
+            'twitter' => $request->name,
+            'linkedin' => $request->description,
+
+            'transfer_cert' => $request->description,
+            'birth_cert' => $request->name,
+
+            'created_at' => Carbon::now(),
+        ]);
+        $notification = array(
+            'message' => 'Class Added Successfully',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    }// End Method 
+
+
+
+
+    public function getSectionByClass($class_id)
+{
+    $sections = Section::where('class_id', $class_id)->get();
+    return response()->json($sections);
+}
+
 
 
    
