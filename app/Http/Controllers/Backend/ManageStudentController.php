@@ -46,6 +46,12 @@ class ManageStudentController extends Controller
 
     public function StoreStudent(Request $request){
 
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:students',
+      
+      ]);
+
 
         $save_url = null;
         if ($request->file('photo')) {
@@ -76,7 +82,7 @@ $birthCertificatePath = $request->file('birth_cert') ? $request->file('birth_cer
 
 
 
-        StudentHouse::insert([
+        Student::insert([
 
             'student_id' => $student_number,
             'name' => $request->name,
