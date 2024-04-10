@@ -149,7 +149,7 @@ if ($existingUser) {
         $teacher = User::where('role', 'teacher')->findOrFail($id);
         return view('backend.teacher.view_teacher', compact('teacher'));
     }//end method
-
+ 
 
     public function EditTeacher($id){
         $departments = Department::latest()->get();

@@ -492,7 +492,11 @@ Route::controller(ManageStudentController::class)->group(function(){
     Route::get('/all/student', 'AllStudent')->name('all.student');
     Route::get('/add/student', 'AddStudent')->name('add.student');
     Route::post('/store/student', 'StoreStudent')->name('store.student');
+    Route::get('/edit/student/{id}', 'EditStudent')->name('edit.student');
+    Route::post('/update/student', 'UpdateStudent')->name('update.student');
+    Route::get('/delete/student/{id}', 'DeleteStudent')->name('delete.student');
 
+    Route::post('/view/student/{id}', 'ViewStudent')->name('view.student');
     Route::get('/sections/ajax/{class_id}' , 'getSectionByClass');
 
 });

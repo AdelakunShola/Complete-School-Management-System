@@ -32,10 +32,10 @@
 <div class="page-header">
 <div class="row align-items-center">
 <div class="col">
-<h3 class="page-title">Add Student</h3>
+<h3 class="page-title">Edit Student</h3>
 <ul class="breadcrumb">
 <li class="breadcrumb-item"><a href="expenses.html">ADMISSION FORM</a></li>
-<li class="breadcrumb-item active">Add Student</li>
+<li class="breadcrumb-item active">Edit Student</li>
 </ul>
 </div>
 </div>
@@ -62,8 +62,9 @@
 
 
 
-<form method="post" action="{{ route('store.student') }}" enctype="multipart/form-data">
+<form method="post" action="{{ route('update.student') }}" enctype="multipart/form-data">
 @csrf
+<input type="hidden" name="id" value="{{ $editStudent->id }}">
 
 <div class="col-12 col-sm-4">
 <div class="form-group students-up-files">
@@ -88,7 +89,7 @@ Choose File <input type="file" id="img" name="photo">
 <div class="col-md-12">
 <div class="mb-3">
 <label for="field-1" class="form-label">Full Name</label>
-<input type="text" class="form-control" id="name" name="name"  >
+<input type="text" class="form-control" id="name" name="name" value="{{ $editStudent->name}}"  >
 </div>
 </div>
 </div>
@@ -97,12 +98,12 @@ Choose File <input type="file" id="img" name="photo">
 <div class="row mb-4">
 <div class="col-md-12">
 <div class="mb-3 position-relative">
-<label for="field-1" class="form-label">Select Parent</label>
+<label for="parentSelect1" class="form-label">Select Parent</label>
 <div class="d-flex align-items-center">
 <select id="parentSelect1" class="select2 form-control" name="parent_id">
-<option value="">Select Parent</option>
+<option selected="selected">Select Parent</option>
 @foreach($parents as $parent)
-<option value="{{ $parent->id }}">{{ $parent->name }}</option>
+<option value="{{ $parent->id }}" {{ $parent->id == $selectedParentId ? 'selected' : '' }}>{{ $parent->name }}</option>
 @endforeach
 </select>
 <div id="searchDropdown1" class="dropdown-menu p-3" style="display: none;">
@@ -118,17 +119,15 @@ Choose File <input type="file" id="img" name="photo">
 </div>
 </div>
 
-
-
 <div class="row mb-4">
 <div class="col-md-12">
 <div class="mb-3 position-relative">
-<label for="field-1" class="form-label">Select Class</label>
+<label for="parentSelect2" class="form-label">Select Class</label>
 <div class="d-flex align-items-center">
 <select id="parentSelect2" class="select2 form-control" name="class_id">
-<option value="">Select Class</option>
+<option selected="selected">Select Class</option>
 @foreach($classes as $class)
-<option value="{{ $class->id }}">{{ $class->class_name }}</option>
+<option value="{{ $class->id }}" {{ $class->id == $editStudent->class_id ? 'selected' : '' }}>{{ $class->class_name }}</option>
 @endforeach
 </select>
 <div id="searchDropdown2" class="dropdown-menu p-3" style="display: none;">
@@ -144,11 +143,10 @@ Choose File <input type="file" id="img" name="photo">
 </div>
 </div>
 
-
 <div class="row mb-4">
 <div class="col-md-12">
 <div class="mb-3 position-relative">
-<label for="field-1" class="form-label">Section</label>
+<label for="section" class="form-label">Section</label>
 <div class="d-flex align-items-center">
 <select class="form-control" id="section" name="section_id">
 <option value="">Select Section</option>
@@ -166,11 +164,12 @@ Choose File <input type="file" id="img" name="photo">
 </div>
 </div>
 
+
 <div class="row">
 <div class="col-md-12">
 <div class="mb-3 ">
 <label for="birthday" class="form-label ">Birthday<span class="calendar-icon"></span></label>
-<input type="text" class="form-control datetimepicker" id="birthday" name="birthday">
+<input type="text" class="form-control datetimepicker" id="birthday" name="birthday" value="{{ $editStudent->birthday}}">
 </div>
 </div>
 </div>
@@ -179,7 +178,7 @@ Choose File <input type="file" id="img" name="photo">
 <div class="col-md-12">
 <div class="mb-3">
 <label for="age" class="form-label">Age</label>
-<input type="text" class="form-control" id="age" name="age" readonly>
+<input type="text" class="form-control" id="age" name="age" value="{{ $editStudent->age}}" readonly>
 </div>
 </div>
 </div>
@@ -189,7 +188,7 @@ Choose File <input type="file" id="img" name="photo">
 <div class="col-md-12">
 <div class="mb-3">
 <label for="age" class="form-label">Gender</label>
-<input type="text" class="form-control"  name="sex" >
+<input type="text" class="form-control"  name="sex" value="{{ $editStudent->sex}}">
 </div>
 </div>
 </div>
@@ -199,7 +198,7 @@ Choose File <input type="file" id="img" name="photo">
 <div class="col-md-12">
 <div class="mb-3">
 <label for="field-1" class="form-label">State of Origin</label>
-<input type="text" class="form-control" id="name" name="state_of_origin"  >
+<input type="text" class="form-control" id="name" name="state_of_origin"  value="{{ $editStudent->state_of_origin}}">
 </div>
 </div>
 </div>
@@ -209,7 +208,7 @@ Choose File <input type="file" id="img" name="photo">
 <div class="col-md-12">
 <div class="mb-3">
 <label for="field-1" class="form-label">Religion</label>
-<input type="text" class="form-control" id="name" name="religion"  >
+<input type="text" class="form-control" id="name" name="religion" value="{{ $editStudent->religion}}" >
 </div>
 </div>
 </div>
@@ -218,7 +217,7 @@ Choose File <input type="file" id="img" name="photo">
 <div class="col-md-12">
 <div class="mb-3">
 <label for="field-1" class="form-label">Tribe</label>
-<input type="text" class="form-control" id="name" name="tribe"  >
+<input type="text" class="form-control" id="name" name="tribe" value="{{ $editStudent->tribe}}" >
 </div>
 </div>
 </div>
@@ -227,7 +226,7 @@ Choose File <input type="file" id="img" name="photo">
 <div class="col-md-12">
 <div class="mb-3">
 <label for="field-1" class="form-label">Blood Group</label>
-<input type="text" class="form-control" id="name" name="blood_group"  >
+<input type="text" class="form-control" id="name" name="blood_group" value="{{ $editStudent->blood_group}}" >
 </div>
 </div>
 </div>
@@ -237,7 +236,7 @@ Choose File <input type="file" id="img" name="photo">
 <div class="col-md-12">
 <div class="mb-3">
 <label for="field-1" class="form-label">Address</label>
-<input type="text" class="form-control" id="name" name="address"  >
+<input type="text" class="form-control" id="name" name="address"  value="{{ $editStudent->address}}">
 </div>
 </div>
 </div>
@@ -248,7 +247,7 @@ Choose File <input type="file" id="img" name="photo">
 <div class="col-md-12">
 <div class="mb-3">
 <label for="field-1" class="form-label">City</label>
-<input type="text" class="form-control" id="name" name="city"  >
+<input type="text" class="form-control" id="name" name="city"  value="{{ $editStudent->city}}">
 </div>
 </div>
 </div>
@@ -259,9 +258,9 @@ Choose File <input type="file" id="img" name="photo">
 <label for="field-1" class="form-label">Student House</label>
 <div class="d-flex align-items-center">
 <select id="parentSelect4" class="select2 form-control" name="house_id">
-<option value="">Select Student House</option>
+<option selected="selected">Select Student House</option>
 @foreach($house as $studenthouse)
-<option value="{{ $studenthouse->id }}">{{ $studenthouse->name }}</option>
+<option value="{{ $studenthouse->id }}" {{ $studenthouse->id == $editStudent->house_id ? 'selected' : '' }}>{{ $studenthouse->name }}</option>
 @endforeach
 </select>
 <div id="searchDropdown4" class="dropdown-menu p-3" style="display: none;">
@@ -282,13 +281,13 @@ Choose File <input type="file" id="img" name="photo">
 <div class="mb-3 position-relative">
 <label for="field-1" class="form-label">Student Club</label>
 <div class="d-flex align-items-center">
-<select id="parentSelect5" class="select2 form-control" name="club_id">
-<option value="">Select Student Club</option>
+<select id="parentSelect8" class="select2 form-control" name="club_id">
+<option selected="selected">Select Student Club</option>
 @foreach($club as $studentclub)
-<option value="{{ $studentclub->id }}">{{ $studentclub->club_name }}</option>
+<option value="{{ $studentclub->id }}" {{ $studentclub->id == $editStudent->club_id ? 'selected' : '' }}>{{ $studentclub->club_name }}</option>
 @endforeach
 </select>
-<div id="searchDropdown5" class="dropdown-menu p-3" style="display: none;">
+<div id="searchDropdown8" class="dropdown-menu p-3" style="display: none;">
 <input type="text" id="searchInput" class="form-control mb-2" placeholder="Search...">
 </div>
 <a href="#">
@@ -331,7 +330,7 @@ Choose File <input type="file" id="img" name="photo">
 <div class="col-md-12">
 <div class="form-group local-forms">
 <label style="font-size: 15px;">State <span class="login-danger">*</span></label>
-<input type="text" class="form-control" id="name" name="state"  >
+<input type="text" class="form-control" id="name" name="state" value="{{ $editStudent->state}}" >
 </div>
 </div>
 </div>
@@ -340,7 +339,7 @@ Choose File <input type="file" id="img" name="photo">
 <div class="col-md-12">
 <div class="form-group local-forms">
 <label style="font-size: 15px;">Nationality <span class="login-danger">*</span></label>
-<input type="text" class="form-control" id="name" name="nationality"  >
+<input type="text" class="form-control" id="name" name="nationality" value="{{ $editStudent->nationality}}" >
 </div>
 </div>
 </div>
@@ -349,7 +348,7 @@ Choose File <input type="file" id="img" name="photo">
 <div class="col-md-12">
 <div class="form-group local-forms">
 <label style="font-size: 15px;">Phone <span class="login-danger">*</span></label>
-<input type="text" class="form-control" id="name" name="phone"  >
+<input type="text" class="form-control" id="name" name="phone" value="{{ $editStudent->phone}}" >
 </div>
 </div>
 </div>
@@ -368,25 +367,18 @@ Choose File <input type="file" id="img" name="photo">
     </div>
 @endif
 <label style="font-size: 15px;">E-Mail <span class="login-danger">*</span></label>
-<input class="form-control" type="email" name="email">
+<input class="form-control" type="email" name="email" value="{{ $editStudent->email}}">
 </div>
 </div>
 </div>
 
-<div class="row">
-<div class="col-md-12">
-<div class="form-group local-forms">
-<label style="font-size: 15px;">Password <span class="login-danger">*</span></label>
-<input type="text" class="form-control" id="name" name="password"  >
-</div>
-</div>
-</div>
+
 
 <div class="row">
 <div class="col-md-12">
 <div class="form-group local-forms">
 <label style="font-size: 15px;">Previous School Name </label>
-<input type="text" class="form-control" id="name" name="prev_sch_attended"  >
+<input type="text" class="form-control" id="name" name="prev_sch_attended" value="{{ $editStudent->prev_sch_attended}}" >
 </div>
 </div>
 </div>
@@ -396,7 +388,7 @@ Choose File <input type="file" id="img" name="photo">
 <div class="col-md-12">
 <div class="form-group local-forms">
 <label style="font-size: 15px;">Previous School Address </label>
-<input type="text" class="form-control" id="name" name="prev_sch_address"  >
+<input type="text" class="form-control" id="name" name="prev_sch_address" value="{{ $editStudent->prev_sch_address}}" >
 </div>
 </div>
 </div>
@@ -405,7 +397,7 @@ Choose File <input type="file" id="img" name="photo">
 <div class="col-md-12">
 <div class="form-group local-forms">
 <label style="font-size: 15px;">Purpose of Leaving</label>
-<input type="text" class="form-control" id="name" name="reason_of_leaving_prev_sch"  >
+<input type="text" class="form-control" id="name" name="reason_of_leaving_prev_sch" value="{{ $editStudent->reason_of_leaving_prev_sch}}" >
 </div>
 </div>
 </div>
@@ -415,7 +407,7 @@ Choose File <input type="file" id="img" name="photo">
 <div class="col-md-12">
 <div class="form-group local-forms">
 <label style="font-size: 15px;">Current Class Before Leaving</label>
-<input type="text" class="form-control" id="name" name="class_in_prev_sch"  >
+<input type="text" class="form-control" id="name" name="class_in_prev_sch" value="{{ $editStudent->class_in_prev_sch}}" >
 </div>
 </div>
 </div>
@@ -425,7 +417,7 @@ Choose File <input type="file" id="img" name="photo">
 <div class="col-md-12">
 <div class="form-group local-forms">
 <label style="font-size: 15px;">Date Of Leaving Previous School</label>
-<input type="text" class="form-control datetimepicker" id="name" name="date_of_leaving_prev_sch"  >
+<input type="text" class="form-control datetimepicker" id="name" name="date_of_leaving_prev_sch"  value="{{ $editStudent->date_of_leaving_prev_sch}}">
 </div>
 </div>
 </div>
@@ -434,7 +426,7 @@ Choose File <input type="file" id="img" name="photo">
 <div class="col-md-12">
 <div class="form-group local-forms">
 <label style="font-size: 15px;" for="field-1" class="form-label">Physical Handicap</label>
-<input type="text" class="form-control" id="name" name="physical_handicap"  >
+<input type="text" class="form-control" id="name" name="physical_handicap" value="{{ $editStudent->physical_handicap}}" >
 </div>
 </div>
 </div>
@@ -446,9 +438,9 @@ Choose File <input type="file" id="img" name="photo">
 <label style="font-size: 15px;" for="field-1" class="form-label">School Hostel/ Dormitory</label>
 <div class="d-flex align-items-center">
 <select id="parentSelect5" class="select2 form-control" name="hostel_id">
-<option value="">Select Student Hostel</option>
+<option selected="selected">Select Student House</option>
 @foreach($hostel as $dormitory)
-<option value="{{ $dormitory->id }}">{{ $dormitory->name }}</option>
+<option value="{{ $dormitory->id }}" {{ $dormitory->id == $editStudent->hostel_id ? 'selected' : '' }}>{{ $dormitory->name }}</option>
 @endforeach
 </select>
 <div id="searchDropdown5" class="dropdown-menu p-3" style="display: none;">
@@ -471,10 +463,9 @@ Choose File <input type="file" id="img" name="photo">
 <label style="font-size: 15px;" for="field-1" class="form-label">Student Category</label>
 <div class="d-flex align-items-center">
 <select id="parentSelect6" class="select2 form-control" name="student_category_id">
-<option value="">Select Student Category</option>
-House
+<option selected="selected">Select Student Category</option>
 @foreach($studentcategory as $scategory)
-<option value="{{ $scategory->id }}">{{ $scategory->name }}</option>
+<option value="{{ $scategory->id }}" {{ $scategory->id == $editStudent->student_category_id ? 'selected' : '' }}>{{ $scategory->name }}</option>
 @endforeach
 </select>
 <div id="searchDropdown6" class="dropdown-menu p-3" style="display: none;">
@@ -497,9 +488,9 @@ House
 <label  for="field-1" class="form-label">Transport Route</label>
 <div class="d-flex align-items-center">
 <select id="parentSelect7" class="select2 form-control" name="transport_id">
-<option value="">Select Transport Route</option>
+<option selected="selected">Select Student House</option>
 @foreach($transports as $transport)
-<option value="{{ $transport->id }}">{{ $transport->name }}</option>
+<option value="{{ $transport->id }}" {{ $transport->id == $editStudent->transport_id ? 'selected' : '' }}>{{ $transport->name }}</option>
 @endforeach
 </select>
 <div id="searchDropdown7" class="dropdown-menu p-3" style="display: none;">
@@ -519,7 +510,7 @@ House
 <div class="col-md-12">
 <div class="form-group local-forms">
 <label style="font-size: 15px;" for="field-1" class="form-label">Facebook</label>
-<input type="text" class="form-control" id="name" name="facebook"  >
+<input type="text" class="form-control" id="name" name="facebook" value="{{ $editStudent->facebook}}" >
 </div>
 </div>
 </div>
@@ -528,7 +519,7 @@ House
 <div class="col-md-12">
 <div class="form-group local-forms">
 <label style="font-size: 15px;" for="field-1" class="form-label">Twitter</label>
-<input type="text" class="form-control" id="name" name="twitter"  >
+<input type="text" class="form-control" id="name" name="twitter" value="{{ $editStudent->twitter}}" >
 </div>
 </div>
 </div>
@@ -537,7 +528,7 @@ House
 <div class="col-md-12">
 <div class="form-group local-forms">
 <label style="font-size: 15px;" for="field-1" class="form-label">Linkedin</label>
-<input type="text" class="form-control" id="name" name="linkedin"  >
+<input type="text" class="form-control" id="name" name="linkedin" value="{{ $editStudent->linkedin}}" >
 </div>
 </div>
 </div>
@@ -560,7 +551,8 @@ House
 Choose File <input type="file" id="tcertificate" name="transfer_cert" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
 </label>
 </div>
-<span id="tcertificateFileName"></span>
+<a href="{{ asset($editStudent->transfer_cert) }}" id="showTCertificate">Download School Transfer Letter / Transcript</a>
+<span id="tcertificateFileName"><br>File Name: {{ $editStudent->transfer_cert ? basename($editStudent->transfer_cert) : 'No file selected' }}</span>
 </div>
 </div>
 
@@ -572,9 +564,11 @@ Choose File <input type="file" id="tcertificate" name="transfer_cert" accept=".p
 Choose File <input type="file" id="birth_certificate" name="birth_cert" accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
 </label>
 </div>
-<span id="birthCertificateFileName"></span>
+<a href="{{ asset($editStudent->birth_cert) }}" id="showBirthCertificate">Download Birth Certificate</a>
+<span id="birthCertificateFileName"><br>File Name: {{ $editStudent->birth_cert ? basename($editStudent->birth_cert) : 'No file selected' }}</span>
 </div>
 </div>
+
 
 
 
@@ -604,27 +598,39 @@ Choose File <input type="file" id="birth_certificate" name="birth_cert" accept="
 </script>
 
 
+
 <script type="text/javascript">
     $(document).ready(function () {
-        // Function to handle file input change for CV
-        $('#tcertificate').change(function (e) {
+    // Function to handle file input change for transfer certificate
+    $('#tcertificate').change(function (e) {
             var fileName = e.target.files[0].name;
             $('#tcertificateFileName').text('File Name: ' + fileName);
-        });
 
-        // Function to handle file input change for cover letter
-        $('#birth_certificate').change(function (e) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#showTCertificate').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    });
+
+    // Function to handle file input change for birth Certificate
+    $('#birth_certificate').change(function (e) {
             var fileName = e.target.files[0].name;
             $('#birthCertificateFileName').text('File Name: ' + fileName);
-        });
 
-
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#showBirthCertificate').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(e.target.files['0']);
     });
+
+   
+});
 </script>
 
 
 <script>
-
 $(document).ready(function(){
     $('select[name="class_id"]').on('change', function(){
         var class_id = $(this).val();
@@ -646,9 +652,79 @@ $(document).ready(function(){
             sectionDropdown.html('<option value="">Select Section</option>');
         }
     });
-});
 
+    // Show only sections related to the selected class
+    $('select[name="section_id"]').on('focus', function(){
+        var class_id = $('select[name="class_id"]').val();
+        if (class_id) {
+            $.ajax({
+                url: "{{ url('/sections/ajax') }}/"+class_id,
+                type: "GET",
+                dataType: "json",
+                success: function(data){
+                    var sectionDropdown = $('select[name="section_id"]');
+                    sectionDropdown.empty().append('<option value="">Select Section</option>');
+                    $.each(data, function(key, value){
+                        sectionDropdown.append('<option value="'+ value.id +'">'+ value.name +'</option>');
+                    });
+                },
+            });
+        } else {
+            alert('Please select a class first');
+        }
+    });
+});
 </script>
+
+
+
+<script>
+$(document).ready(function(){
+    // Function to populate sections based on the selected class
+    function populateSections(class_id) {
+        if (class_id) {
+            $.ajax({
+                url: "{{ url('/sections/ajax') }}/" + class_id,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    var sectionDropdown = $('select[name="section_id"]');
+                    sectionDropdown.empty().append('<option value="">Select Section</option>');
+                    $.each(data, function(key, value) {
+                        var option = '<option value="' + value.id + '"';
+                        if (value.id == "{{ $editStudent->section_id }}") {
+                            option += ' selected';
+                        }
+                        option += '>' + value.name + '</option>';
+                        sectionDropdown.append(option);
+                    });
+                },
+            });
+        } else {
+            var sectionDropdown = $('select[name="section_id"]');
+            sectionDropdown.html('<option value="">Select Section</option>');
+        }
+    }
+
+    // On change event for the class dropdown
+    $('select[name="class_id"]').on('change', function() {
+        var class_id = $(this).val();
+        populateSections(class_id);
+    });
+
+    // On focus event for the section dropdown
+    $('select[name="section_id"]').on('focus', function() {
+        var class_id = $('select[name="class_id"]').val();
+        populateSections(class_id);
+    });
+
+    // Initially populate sections based on the selected class
+    var initialClassId = $('select[name="class_id"]').val();
+    populateSections(initialClassId);
+});
+</script>
+
+
 
 
 
@@ -680,6 +756,9 @@ $(document).ready(function(){
         }
     });
 </script>
+
+
+
 
 
 

@@ -175,6 +175,50 @@
 
 
 
+
+<!-- JavaScript code to handle the download functionality -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the download link element
+    var downloadLink = document.getElementById('downloadLink');
+
+    // Add a click event listener to the download link
+    downloadLink.addEventListener('click', function(event) {
+        // Prevent the default behavior of the link
+        event.preventDefault();
+
+        // Get the HTML content of the current page
+        var htmlContent = document.documentElement.outerHTML;
+
+        // Create a new Blob from the HTML content
+        var blob = new Blob([htmlContent], { type: 'text/html' });
+
+        // Create a temporary URL for the Blob
+        var url = window.URL.createObjectURL(blob);
+
+        // Create a new anchor element
+        var anchor = document.createElement('a');
+
+        // Set the href attribute of the anchor to the URL of the Blob
+        anchor.href = url;
+
+        // Set the download attribute of the anchor to the desired filename for the downloaded file
+        anchor.download = 'page.html';
+
+        // Append the anchor element to the document body
+        document.body.appendChild(anchor);
+
+        // Trigger a click event on the anchor element to start the download
+        anchor.click();
+
+        // Remove the anchor element from the document body after the download starts
+        document.body.removeChild(anchor);
+
+        // Revoke the temporary URL to free up memory
+        window.URL.revokeObjectURL(url);
+    });
+});
+</script>
 </body>
 
 
