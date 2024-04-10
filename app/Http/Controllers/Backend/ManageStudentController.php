@@ -81,9 +81,6 @@ class ManageStudentController extends Controller
         ]);
 
 
-
-
-
     $tcertificatePath = $request->file('transfer_cert') ? 
     $request->file('transfer_cert')->move('public/tcertificates', 'transfer_cert_' . uniqid() . '.' . $request
     ->file('transfer_cert')->getClientOriginalExtension()) : null;
@@ -94,10 +91,6 @@ class ManageStudentController extends Controller
     ->file('birth_cert')->getClientOriginalExtension()) : null;
 
     
-
-
-
-
 
         Student::insert([
 
@@ -151,6 +144,8 @@ class ManageStudentController extends Controller
         );
         return redirect()->route('all.student')->with($notification);
     }// End Method 
+
+
 
 
     public function EditStudent($id){
@@ -284,7 +279,7 @@ class ManageStudentController extends Controller
 
         $selectedParentId = $editStudent->parent_id;
 
-        return view('backend.managestudent.edit_student',compact('editStudent','setting','sections','classes','house','club','hostel','transports','studentcategory','parents','selectedParentId'));
+        return view('backend.managestudent.view_student',compact('editStudent','setting','sections','classes','house','club','hostel','transports','studentcategory','parents','selectedParentId'));
     }//end method
 
 
