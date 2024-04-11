@@ -59,10 +59,16 @@
 
 
 <li class="submenu">
-<a href="#"><i class="fas fa-chalkboard-teacher"></i> <span>Librarian</span> <span class="menu-arrow"></span></a>
+<a href="#"><i class="fas fa-chalkboard-teacher"></i> <span>Manage Library</span> <span class="menu-arrow"></span></a>
 <ul>
 <li><a class="{{ $currentRoute == 'all.librarian' ? 'active' : '' }}" href="{{ route('all.librarian') }}">All Librarian</a></li>
 <li><a class="{{ $currentRoute == 'add.librarian' ? 'active' : '' }}" href="{{ route('add.librarian') }}">Add Librarian</a></li>
+<li><a href="add-student.html">Master Data</a></li>
+<li><a href="edit-student.html">Book Publisher</a></li>
+<li><a href="edit-student.html">Book Category</a></li>
+<li><a href="add-student.html">Book Author</a></li>
+<li><a href="edit-student.html">RegisterStudent</a></li>
+<li><a href="edit-student.html">Request Book</a></li>
 </ul>
 </li>
 
